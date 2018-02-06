@@ -1,0 +1,23 @@
+#individualPageTitle("WEB_CONCEPTS_DELETE_CONCEPT_PAGE_TITEL")
+#parse("/velocity/loggedInLayout.vm")
+#@mainLayout()
+#infoAndErrorMessage()
+
+#if($refinedConcepts || $transformedConcepts)
+	
+	<label>$lh.getWord("WEB_CONCEPTS_DELETE_CONCEPT_PAGE_LABEL_REFINED_BY")</label>
+	#if($refinedConcepts && !$refinedConcepts.isEmpty())
+		#conceptsTable($refinedConcepts, $lh.getWord("WEB_CONCEPTS_SEARCH_CONCEPT_PAGE_NO_CONCEPT_FOUND"))
+	#else
+		<p>-</p>
+	#end
+	
+	<label>$lh.getWord("WEB_CONCEPTS_DELETE_CONCEPT_PAGE_LABEL_TRANSFORMED_BY")</label>
+	#if($transformedConcepts && !$transformedConcepts.isEmpty())
+		#conceptsTable($transformedConcepts, ""))
+	#else
+		<p>-</p>
+	#end
+	
+#end 
+#end

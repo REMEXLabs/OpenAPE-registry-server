@@ -1,0 +1,72 @@
+#individualPageTitle("WEB_ACCOUNT_MY_DATA_PAGE_TITLE")
+#parse("/velocity/loggedInLayout.vm")
+#@mainLayout()
+#infoAndErrorMessage()
+<p>$lh.getWord("WEB_ACCOUNT_MY_DATA_PAGE_GUIDE")</p>
+<form id="myDataForm" method="post">
+	#inputTextWithLabel("WEB_ACCOUNT_MY_DATA_PAGE_LABEL_USER_NAME", "userName", $userName, "", true)
+	</p>
+	
+	#inputTextWithLabel("WEB_ACCOUNT_MY_DATA_PAGE_LABEL_FIRST_NAME", "firstName", $firstName, "", false)
+	</p>
+	
+	#inputTextWithLabel("WEB_ACCOUNT_MY_DATA_PAGE_LABEL_LAST_NAME", "lastName", $lastName, "", false)
+	</p>
+	
+	#inputTextWithLabel("WEB_ACCOUNT_MY_DATA_PAGE_LABEL_INSTITUTE", "institute", $institute, "", false)
+	</p>
+	
+	<label>$lh.getWord("WEB_ACCOUNT_MY_DATA_PAGE_LABEL_MAIL_ADDRESS")</label>
+	<input type="email" name="eMailAddress" placeholder="", value=#if($eMailAddress) "$eMailAddress" #end, required>
+	</p>
+	
+	<label>$lh.getWord("WEB_ACCOUNT_MY_DATA_PAGE_LABEL_OLD_PASSWORD")</label>
+	<input type="password" name="oldPassword" placeholder="" value="">
+	</p>
+	
+	<label>$lh.getWord("WEB_ACCOUNT_MY_DATA_PAGE_LABEL_NEW_PASSWORD_1")</label>
+	<input type="password" name="newPassword1" placeholder="" value="">
+	</p>
+	
+	<label>$lh.getWord("WEB_ACCOUNT_MY_DATA_PAGE_LABEL_NEW_PASSWORD_2")</label>
+	<input type="password" name="newPassword2" placeholder="" value="">
+	</p>
+	
+	<label>$lh.getWord("WEB_ACCOUNT_MY_DATA_PAGE_LABEL_API_KEY")</label>
+	#if(!$apiKey)
+		#set($apiKey = "No API-Key exists.")
+	#end
+	<p>$apiKey</p>
+	
+	#if($user.isSuperAdmin())
+		<div class="12u 12u$(small)">
+			<input type="radio" id="apiKeyActionNothing" name="apiKeyAction" value="nothing" #if($apiKeyAction == "nothing") checked #end>
+			<label for="apiKeyActionNothing">$lh.getWord("WEB_ACCOUNT_MY_DATA_PAGE_LABEL_API_KEY_ACTION_KEEP_CURRENT")</label>
+		</div>
+		<div class="12u 12u$(small)">
+			<input type="radio" id="apiKeyActionDelete" name="apiKeyAction" value="delete" #if($apiKeyAction == "delete") checked #end>
+			<label for="apiKeyActionDelete">$lh.getWord("WEB_ACCOUNT_MY_DATA_PAGE_LABEL_API_KEY_ACTION_DELETE")</label>
+		</div>
+		<div class="12u 12u$(small)">
+			<input type="radio" id="apiKeyActionNew" name="apiKeyAction" value="new" #if($apiKeyAction == "new") checked #end>
+			<label for="apiKeyActionNew">$lh.getWord("WEB_ACCOUNT_MY_DATA_PAGE_LABEL_API_KEY_ACTION_GENERATE")</label>
+		</div>
+		</p>
+	
+		<label>Super admin</label>
+		<div class="4u 12u$(small)">
+			<input type="radio" id="superAdminNo" name="superAdmin" value="no" #if(!$superAdmin) checked #end>
+			<label for="superAdminNo">$lh.getWord("WEB_ACCOUNT_MY_DATA_PAGE_SUPER_ADMIN_NO")</label>
+		</div>
+		<div class="4u 12u$(small)">
+			<input type="radio" id="superAdminYes" name="superAdmin" value="yes" #if($superAdmin) checked #end>
+			<label for="superAdminYes">$lh.getWord("WEB_ACCOUNT_MY_DATA_PAGE_SUPER_ADMIN_YES")</label>
+		</div>
+		</p>
+	#end
+	<input type="submit" value="$lh.getWord("WEB_ACCOUNT_MY_DATA_PAGE_SUBMIT_BUTTON_TEXT")">
+</form>
+<form action="/web/loggedIn/users/remove?userId=$user.getId()" method="post" onsubmit="return confirm('$lh.getWord("WEB_ACCOUNT_MY_DATA_PAGE_CONFIRM_MESSAGE")')">
+	<input type="submit" value='$lh.getWord("WEB_ACCOUNT_MY_DATA_PAGE_BUTTON_TEXT_DELETE_ACCOUNT")'>
+</form>
+#end

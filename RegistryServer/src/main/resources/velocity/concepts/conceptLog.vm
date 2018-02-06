@@ -1,0 +1,53 @@
+#individualPageTitle("WEB_CONCEPTS_CONCEPT_LOG_PAGE_TITLE")
+#parse("/velocity/loggedInLayout.vm")
+#@mainLayout()
+<script src="/js/concepts/conceptLog.js" type="text/javascript"></script>
+#infoAndErrorMessage()
+<div class="table-wrapper">
+	#if($logs && $logs.isEmpty() == false)
+		<table>
+			<thead>
+				<tr>
+					<th>$lh.getWord("WEB_CONCEPTS_CONCEPT_LOG_PAGE_COLUMN_NAME_USER")</th>
+					<th>$lh.getWord("WEB_CONCEPTS_CONCEPT_LOG_PAGE_COLUMN_NAME_TIME_STAMP")</th>
+					<th>$lh.getWord("WEB_CONCEPTS_CONCEPT_LOG_PAGE_COLUMN_NAME_ACTION")</th>
+					<th>$lh.getWord("WEB_CONCEPTS_CONCEPT_LOG_PAGE_COLUMN_NAME_SUCCESS")</th>
+					<th>$lh.getWord("WEB_CONCEPTS_CONCEPT_LOG_PAGE_COLUMN_NAME_NOTE")</th>
+				</tr>
+				<tbody>
+					#set($noteIdCounter = 0)
+					#foreach($log in $logs)
+						<tr>
+							#if($log.getUserId() == -1)
+								<td>-</td>
+							#else
+								#if($user.isSuperAdmin())
+									<td><a href="/web/loggedIn/users/edit?userId=$log.getUserId()">$usersMap.get($log.getUserId()).getUserName()</a></td>
+								#else
+									<td>$usersMap.get($log.getUserId()).getUserName()</td>
+								#end
+							#end
+							<td>$log.getDateTimeStampAsUTCString()</td>
+							<td>$log.getAction()</td>
+							<td>$log.isSuccess()</td>
+							#if($log.getNote())
+								#if($log.isNoteJson())
+									<td><pre id="note$noteIdCounter"></pre></td>
+									<script type="text/javascript">insertFormattedNote($log.getNote(), "note$noteIdCounter")</script>
+									#set($noteIdCounter = ($noteIdCounter + 1))
+								#else
+									<td>$log.getNote()</td>
+								#end
+							#else
+								<td></td>
+							#end
+						</tr>
+					#end
+				</tbody>
+			</thead>
+		</table>
+	#else
+		<b><font>$lh.getWord("WEB_CONCEPTS_CONCEPT_LOG_PAGE_MESSAGE_NO_LOGS")</font></b>
+	#end
+</div>
+#end

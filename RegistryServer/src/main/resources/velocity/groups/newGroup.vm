@@ -1,0 +1,19 @@
+#individualPageTitle("WEB_GROUPS_NEW_GROUP_PAGE_TITLE")
+#parse("/velocity/loggedInLayout.vm")
+#@mainLayout()
+#infoAndErrorMessage()
+<p>$lh.getWord("WEB_GROUPS_NEW_GROUP_PAGE_GUIDE")</p>
+<form id="newGroupForm" method="post">
+	#if(!$groupName)
+		#set($groupName = false)
+	#end
+	#inputTextWithLabel("WEB_GROUPS_NEW_GROUP_PAGE_LABEL_GROUP_NAME", "groupName", $groupName, "WEB_GROUPS_NEW_GROUP_PAGE_PLACEHOLDER_GROUP_NAME", true)
+	</p>
+	#if(!$groupMembers)
+		#set($groupMembers = false)
+	#end
+	#inputTextAreaWithLabel("WEB_GROUPS_NEW_GROUP_PAGE_LABEL_GROUP_MEMBERS", "groupMembers", $groupMembers, "WEB_GROUPS_NEW_GROUP_PAGE_PLACEHOLDER_GROUP_MEMBERS", false, 10)
+	</p>
+	<input type="submit" value="$lh.getWord("WEB_GROUPS_NEW_GROUP_PAGE_SUBMIT_BUTTON_TEXT")">
+</form>
+#end

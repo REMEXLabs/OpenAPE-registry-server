@@ -1,0 +1,4 @@
+#parse("/velocity/notLoggedInLayout.vm")
+#@notLoggedInLayout()
+#infoAndErrorMessage()
+#end

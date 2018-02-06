@@ -1,0 +1,12 @@
+#individualPageTitle("WEB_USERS_DELETE_USER_PAGE_TITLE")
+#parse("/velocity/loggedInLayout.vm")
+#@mainLayout()
+#infoAndErrorMessage()
+
+#if($singleOwnerConcepts)
+	<label>$lh.getWord("WEB_USERS_DELETE_USER_PAGE_LABEL_SINGLE_OWNER_CONCEPTS")</label>
+	#set($emptyMessage = "")
+	#conceptsTable($singleOwnerConcepts, $emptyMessage)
+#end 
+
+#end

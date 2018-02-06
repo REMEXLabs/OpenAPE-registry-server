@@ -1,0 +1,89 @@
+#individualPageTitle("WEB_USERS_NEW_USER_PAGE_TITLE")
+#parse("/velocity/loggedInLayout.vm")
+#@mainLayout()
+#infoAndErrorMessage()
+<p>$lh.getWord("WEB_USERS_NEW_USER_PAGE_GUIDE")</p>
+<form id="newUserForm" method="post">
+	#if(!$userName)
+		#set($userName = false)
+	#end
+	#inputTextWithLabel("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_USER_NAME", "userName", $userName, "WEB_USERS_NEW_AND_EDIT_USER_PAGE_PLACEHOLDER_USER_NAME", true)
+	</p>
+	
+	#if(!$firstName)
+		#set($firstName = false)
+	#end
+	#inputTextWithLabel("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_FIRST_NAME", "firstName", $firstName, "WEB_USERS_NEW_AND_EDIT_USER_PAGE_PLACEHOLDER_FIRST_NAME", false)
+	</p>
+	
+	#if(!$lastName)
+		#set($lastName = false)
+	#end
+	#inputTextWithLabel("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_LAST_NAME", "lastName", $lastName, "WEB_USERS_NEW_AND_EDIT_USER_PAGE_PLACEHOLDER_LAST_NAME", false)
+	</p>
+	
+	#if(!$institute)
+		#set($institute = false)
+	#end
+	#inputTextWithLabel("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_INSTITUTE", "institute", $institute, "WEB_USERS_NEW_AND_EDIT_USER_PAGE_PLACEHOLDER_INSTITUTE", false)
+	</p>
+	
+	#if(!$eMailAddress)
+		#set($eMailAddress = "")
+	#end
+	<label>$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_MAIL_ADDRESS")</label>
+	<input type="email" name="eMailAddress" placeholder="$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_PLACEHOLDER_MAIL_ADDRESS")", value="$eMailAddress", required>
+	</p>
+	
+	<label>$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_PASSWORD_1")</label>
+	#if(!$password1)
+		<input type="password" name="password1" placeholder="$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_PLACEHOLDER_PASSWORD_1")" value="" required>
+	#else
+		<input type="password" name="password1" placeholder="$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_PLACEHOLDER_PASSWORD_1")" value="$password1" required>
+	#end
+	</p>
+	
+	<label>$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_PASSWORD_2")</label>
+	#if(!$password2)
+		<input type="password" name="password2" placeholder="$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_PLACEHOLDER_PASSWORD_2")" value="" required>
+	#else
+		<input type="password" name="password2" placeholder="$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_PLACEHOLDER_PASSWORD_2")" value="$password2" required>
+	#end
+	</p>
+
+	<label>$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_ACCOUNT_STATE")</label>
+	<div class="4u 12u$(small)">
+		<input type="radio" id="accountStateNotLocked" name="accountState" value="no" #if(!$accountLocked) checked #end>
+		<label for="accountStateNotLocked">$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_ACCOUNT_STATE_NOT_LOCKED")</label>
+	</div>
+	<div class="4u 12u$(small)">
+		<input type="radio" id="accountStateLocked" name="accountState" value="yes" #if($accountLocked) checked #end>
+		<label for="accountStateLocked">$lh.getWord("WEB_USERS_NEW_USER_PAGE_LABEL_ACCOUNT_STATE_LOCKED")</label>
+	</div>
+	</p>
+
+	<label>$lh.getWord("WEB_USERS_NEW_USER_PAGE_LABEL_API_KEY")</label>
+	<div class="4u 12u$(small)">
+		<input type="radio" id="apiKeyNo" name="generateApiKey" value="no" #if(!$generateApiKey) checked #end>
+		<label for="apiKeyNo">No</label>
+	</div>
+	<div class="4u 12u$(small)">
+		<input type="radio" id="apiKeyYes" name="generateApiKey" value="yes" #if($generateApiKey) checked #end>
+		<label for="apiKeyYes">Yes</label>
+	</div>
+	</p>
+
+	<label>$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_SUPER_ADMIN")</label>
+	<div class="4u 12u$(small)">
+		<input type="radio" id="superAdminNo" name="superAdmin" value="no" #if(!$superAdmin) checked #end>
+		<label for="superAdminNo">No</label>
+	</div>
+	<div class="4u 12u$(small)">
+		<input type="radio" id="superAdminYes" name="superAdmin" value="yes" #if($superAdmin) checked #end>
+		<label for="superAdminYes">Yes</label>
+	</div>
+	</p>
+	
+	<input type="submit" value="$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_SUBMIT_BUTTON_TEXT")">
+</form>
+#end

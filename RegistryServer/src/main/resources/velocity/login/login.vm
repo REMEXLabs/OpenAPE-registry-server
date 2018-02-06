@@ -1,0 +1,52 @@
+#individualPageTitle("WEB_LOGIN_PAGE_TITLE")
+#parse("/velocity/notLoggedInLayout.vm")
+#@notLoggedInLayout()
+<header class="main">
+	<h1>$lh.getWord("WEB_LOGIN_PAGE_HEADING")</h1>
+</header>
+#infoAndErrorMessage()
+<form id="loginForm" method="post">
+
+	#if($userIsLockedMessage)
+		<b><font color="red">$userIsLockedMessage</font></b>
+	#end
+
+	<label>$lh.getWord("WEB_LOGIN_PAGE_LABEL_USER_NAME")</label>
+	#if($authenticationFailed)
+		#if($userNameIsUnknown)
+			<b><font color="red">$lh.getWord("WEB_LOGIN_PAGE_AUTHENTICATION_FAILED_UNKNOWN_USER_NAME")</font></b>
+			<input type="text" name="userName" placeholder="$lh.getWord("WEB_LOGIN_PAGE_PLACEHOLDER_USER_NAME")" value="" required>
+		#end
+		#if(!$userNameIsUnknown)
+			
+			<input type="text" name="userName" value="$userName" required>
+		#end
+		#if($missingUserNameMessage)
+			<b><font color="red">$missingUserNameMessage</font></b>
+			<input type="text" name="userName" placeholder="$lh.getWord("WEB_LOGIN_PAGE_PLACEHOLDER_USER_NAME")" value="" required>
+		#end
+	#else
+		<input type="text" name="userName" placeholder="$lh.getWord("WEB_LOGIN_PAGE_PLACEHOLDER_USER_NAME")" value="" required>
+	#end
+	</p>
+  
+    <label>$lh.getWord("WEB_LOGIN_PAGE_LABEL_PASSWORD")</label>
+    #if($authenticationFailed)
+    	#if($passwordInvalid)
+    		<b><font color="red">$lh.getWord("WEB_LOGIN_PAGE_AUTHENTICATION_FAILED_INVALID_PASSWORD")</font></b>
+    	#end
+    	#if($missingPasswordMessage)
+    		<b><font color="red">$missingPasswordMessage</font></b>
+    	#end
+    #end
+    <input type="password" name="password" placeholder="$lh.getWord("WEB_LOGIN_PAGE_PLACEHOLDER_PASSWORD")" value="" required>
+    </p>
+    
+    <input type="submit" value="$lh.getWord("WEB_LOGIN_PAGE_SUBMIT_BUTTON_TEXT")">
+</form>
+#if($userName)
+	<a href="/web/forgotPassword?userName=$userName">$lh.getWord("WEB_LOGIN_PAGE_LINK_NAME_FORGOT_PASSWORD")</a>
+#else
+	<a href="/web/forgotPassword">$lh.getWord("WEB_LOGIN_PAGE_LINK_NAME_FORGOT_PASSWORD")</a>
+#end	
+#end

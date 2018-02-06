@@ -1,0 +1,102 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.hdm</groupId>
+	<artifactId>RegistryServerV0.1</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	
+	<packaging>war</packaging> 
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<encoding>UTF-8</encoding>
+		<scala.version>2.11.8</scala.version>
+	</properties>
+	
+	<dependencies>
+		
+		<!-- <dependency>
+			<groupId>com.sparkjava</groupId>
+			<artifactId>spark-core</artifactId>
+			<version>2.3</version>
+		</dependency> -->
+		
+		<!-- https://mvnrepository.com/artifact/com.sparkjava/spark-core -->
+		<dependency>
+		    <groupId>com.sparkjava</groupId>
+		    <artifactId>spark-core</artifactId>
+		    <version>2.5.5</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.sparkjava/spark-template-velocity -->
+		<dependency>
+		    <groupId>com.sparkjava</groupId>
+		    <artifactId>spark-template-velocity</artifactId>
+		    <version>2.5.5</version>
+		</dependency>
+				
+		<dependency>
+    		<groupId>com.sparkjava</groupId>
+    		<artifactId>spark-debug-tools</artifactId>
+    		<version>0.5</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+    		<groupId>mysql</groupId>
+    		<artifactId>mysql-connector-java</artifactId>
+    		<version>5.1.40</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+    		<groupId>com.googlecode.json-simple</groupId>
+    		<artifactId>json-simple</artifactId>
+    		<version>1.1.1</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jdbc -->
+		<dependency>
+    		<groupId>org.apache.tomcat</groupId>
+    		<artifactId>tomcat-jdbc</artifactId>
+    		<version>8.5.11</version>
+		</dependency>
+		
+		<dependency>
+  			<groupId>org.slf4j</groupId>
+  			<artifactId>slf4j-simple</artifactId>
+  			<version>1.7.21</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.velocity/velocity -->
+		<dependency>
+    		<groupId>org.apache.velocity</groupId>
+    		<artifactId>velocity</artifactId>
+   	 		<version>1.7</version>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>mail</artifactId>
+		    <version>1.4.7</version>
+		</dependency>
+		
+		<dependency>
+    		<groupId>com.github.everit-org.json-schema</groupId>
+    		<artifactId>org.everit.json.schema</artifactId>
+   			<version>1.6.0</version>
+		</dependency>
+		
+	</dependencies>
+	
+	<repositories>
+	    <repository>
+	        <id>jitpack.io</id>
+	        <url>https://jitpack.io</url>
+	    </repository>
+	</repositories>
+
+</project>

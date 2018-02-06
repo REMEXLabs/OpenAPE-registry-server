@@ -1,0 +1,46 @@
+#individualPageTitle("WEB_CONCEPTS_SEARCH_CONCEPT_PAGE_TITEL")
+#parse("/velocity/loggedInLayout.vm")
+#@mainLayout()
+#infoAndErrorMessage()
+<p>$lh.getWord("WEB_CONCEPTS_SEARCH_CONCEPT_PAGE_GUIDE")</p>
+<form id="searchConceptForm" method="post">
+
+	<label>$lh.getWord("WEB_CONCEPTS_SEARCH_CONCEPT_PAGE_SEARCH_LABEL")</label>
+	<div class="row uniform">
+		<div class="12u 12u$(small)">
+			#if(!$searchTerm)
+				#set($searchTerm = "")
+			#end
+			<input type="text" name="searchTerm" placeholder="$lh.getWord("WEB_CONCEPTS_SEARCH_CONCEPT_PAGE_SEARCH_PLACEHOLDER")", value="$searchTerm">
+		</div>
+	</div>
+	</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_SEARCH_CONCEPT_PAGE_LABEL_SEARCH_OPTION")</label>
+	
+	<div class="row uniform">
+		<div class="4u 12u$(small)">
+			<input type="radio" id="searchOptionIdAndName" name="searchOption" tabindex="0" value="idAndName" #if($searchOption == "idAndName") checked #end>
+			<label for="searchOptionIdAndName">$lh.getWord("WEB_CONCEPTS_SEARCH_CONCEPT_PAGE_LABEL_SEARCH_OPTION_ID_AND_NAME")</label>
+		</div>
+		<div class="4u 12u$(small)">
+			<input type="radio" id="searchOptionId" name="searchOption" tabindex="0" value="id" #if($searchOption == "id") checked #end>
+			<label for="searchOptionId">$lh.getWord("WEB_CONCEPTS_SEARCH_CONCEPT_PAGE_LABEL_SEARCH_OPTION_ID")</label>
+		</div>
+		<div class="4u 12u$(small)">
+			<input type="radio" id="searchOptionName" name="searchOption" tabindex="0" value="name" #if($searchOption == "name") checked #end>
+			<label for="searchOptionName">$lh.getWord("WEB_CONCEPTS_SEARCH_CONCEPT_PAGE_LABEL_SEARCH_OPTION_NAME")</label>
+		</div>
+	</div>
+	</p>
+	
+	<input type="submit" value="$lh.getWord("WEB_CONCEPTS_SEARCH_CONCEPT_PAGE_SUBMIT_BUTTON_TEXT")">
+
+</form>
+
+#if($concepts)
+	<hr class="major">
+	#conceptsTable($concepts, $lh.getWord("WEB_CONCEPTS_SEARCH_CONCEPT_PAGE_NO_CONCEPT_FOUND"))
+#end
+
+#end

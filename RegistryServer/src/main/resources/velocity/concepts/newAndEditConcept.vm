@@ -1,0 +1,247 @@
+#if($editMode)
+	#individualPageTitle("WEB_CONCEPTS_EDIT_CONCEPT_PAGE_TITLE")
+#else
+	#individualPageTitle("WEB_CONCEPTS_NEW_CONCEPT_PAGE_TITLE")
+#end
+#parse("/velocity/loggedInLayout.vm")
+#@mainLayout()
+<script src="/js/concepts/newAndEditConcept.js" type="text/javascript"></script>
+#infoAndErrorMessage()
+#if($editMode)
+	<p>$lh.getWord("WEB_CONCEPTS_EDIT_CONCEPT_PAGE_GUIDE")</p>
+#else
+	<p>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_GUIDE")</p>
+#end
+<form id="newConceptForm" method="post">
+	
+	#if(!$editMode)
+		<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_ID")</label>
+		<div class="row uniform">
+			<div class="12u 12u$(small)">
+				#if(!$id)
+					#set($id = "")
+				#end
+				<input type="text" id="id" name="id" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_ID")", value="$id">	
+			</div>
+		</div>
+	#else
+		<label>$lh.getWord("WEB_CONCEPTS_EDIT_CONCEPT_PAGE_LABEL_ID")</label>
+		<div class="row uniform">
+			<div class="12u 12u$(small)">
+				#if(!$id)
+					#set($id = "")
+				#end
+				<input type="text" id="id" name="id" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_ID")", value="$id" disabled>	
+			</div>
+		</div>
+	#end
+	</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_NAME")</label>
+	#if(!$languageCodeNames)
+		#set($languageCodeNames = false)
+	#end
+	#if(!$names)
+		#set($names = false)
+	#end
+	#contentFields($languageCodeNames, $names, $lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_NAME"), 0, 1, true, "names")
+	</p>
+	</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_DEFINITION")</label>
+	#if(!$languageCodeDefinitions)
+		#set($languageCodeDefinitions = false)
+	#end
+	#if(!$definitions)
+		#set($definitions = false)
+	#end
+	#contentFields($languageCodeDefinitions, $definitions, $lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_DEFINITION"), 1, 3, true, "definitions")
+	</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_TYPE")</label>
+	#set($values = ["", "NEED_AND_PREFERENCE", "CONTEXT_DESCRIPTION", "RESOURCE_DESCRIPTION"])
+	#set($names = [$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_TYPE"), "NeedAndPreference", "ContextDescription", "ResourceDesription"])
+	#if(!$type)
+		#set($type = false)
+	#end
+	#dropdownMenu($values, $names, $type, true, "type")
+	</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_SUBTYPE")</label>
+	#set($values = ["", "TERM", "ALIAS", "TRANSFORM", "TRANSLATION"])
+	#set($names = [$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_SUBTYPE"), "Term", "Alias", "Transform", "Translation"])
+	#if(!$subType)
+		#set($subType = false)
+	#end
+	#dropdownMenu($values, $names, $subType, true, "subType")
+	</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_DATATYPE")</label>
+	#set($values = ["", "BOOLEAN", "NUMBER", "STRING"])
+	#set($names = [$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_DATATYPE"), "Boolean", "Number", "String"])
+	#if(!$dataType)
+		#set($dataType = false)
+	#end
+	#dropdownMenu($values, $names, $dataType, true, "dataType")
+	</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_ORIGIN")</label>
+	<div class="row uniform">
+		<div class="12u 12u$(small)">
+			#if(!$origin)
+				#set($origin = "")
+			#end
+			<input type="text" name="origin" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_ORIGIN")", value="$origin">	
+		</div>
+	</div>
+	</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_VALUE_SPACE")</label>
+	<div class="row uniform">
+		<div class="12u$">
+			<div class="select-wrapper">
+				<select name="valueSpaceTemplate" id="valueSpaceTemplate" onchange="insertValueSpaceTemplate()">
+					<option value="-">$lh.getWord("WEB_CONCEPTS_NEW_AND_EDIT_CONCEPT_PAGE_PLACEHOLDER_VALUE_SPACE_TEMPLATE")</option>
+					<option value="boolean">$lh.getWord("WEB_CONCEPTS_NEW_AND_EDIT_CONCEPT_PAGE_VALUE_VALUE_SPACE_TEMPLATE_BOOLEAN")</option>
+					<option value="number">$lh.getWord("WEB_CONCEPTS_NEW_AND_EDIT_CONCEPT_PAGE_VALUE_VALUE_SPACE_TEMPLATE_NUMBER")</option>
+					<option value="numberWithMinMax">$lh.getWord("WEB_CONCEPTS_NEW_AND_EDIT_CONCEPT_PAGE_VALUE_VALUE_SPACE_TEMPLATE_NUMBER_WITH_MIN_MAX")</option>
+					<option value="string">$lh.getWord("WEB_CONCEPTS_NEW_AND_EDIT_CONCEPT_PAGE_VALUE_VALUE_SPACE_TEMPLATE_STRING")</option>
+					<option value="stringWithFixedValues">$lh.getWord("WEB_CONCEPTS_NEW_AND_EDIT_CONCEPT_PAGE_VALUE_VALUE_SPACE_TEMPLATE_STRING_WITH_FIXED_VALUES")</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="row uniform">
+		<div class="12u 12u$(small)">
+			#if($valueSpace)
+				#if($valueSpaceValid)
+					<textarea name="valueSpace" id="valueSpace" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_VALUE_SPACE")" rows="10"></textarea>
+					<script type="text/javascript">insertFormattedValueSpace($valueSpace)</script>
+				#else
+					<textarea name="valueSpace" id="valueSpace" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_VALUE_SPACE")" rows="10">$valueSpace</textarea>
+				#end
+			#else
+				<textarea name="valueSpace" id="valueSpace" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_VALUE_SPACE")" rows="10"></textarea>
+			#end
+		</div>
+	</div>
+	</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_OWNERS")</label>
+	<div class="row uniform">
+		<div class="12u 12u$(small)">
+			#if(!$owners)
+				#set($owners = "")
+			#end
+			<textarea name="owners" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_OWNERS")" rows="5">$owners</textarea>
+		</div>
+	</div>
+	</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_AUTHORS")</label>
+	<div class="row uniform">
+		<div class="12u 12u$(small)">
+			#if(!$authors)
+				#set($authors = "")
+			#end
+			<textarea name="authors" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_AUTHORS")" rows="5">$authors</textarea>
+		</div>
+	</div>
+	</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_TRANSFORMATIONS")</label>
+	<div class="row uniform">
+		<div class="12u 12u$(small)">
+			#if(!$transformations)
+				#set($transformations = "")
+			#end
+			<textarea name="transformations" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_TRANSFORMATIONS")" rows="5">$transformations</textarea>
+		</div>
+	</div>
+	</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_REFINEMENTS")</label>
+	<div class="row uniform">
+		<div class="12u 12u$(small)">
+			#if(!$refinements)
+				#set($refinements = "")
+			#end
+			<textarea name="refinements" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_REFINEMENTS")" rows="5">$refinements</textarea>
+		</div>
+	</div>
+	</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_NOTES")</label>
+	#if(!$languageCodeNotes)
+		#set($languageCodeNotes = false)
+	#end
+	#if(!$notes)
+		#set($notes = false)
+	#end
+	#contentFields($languageCodeNotes, $notes, $lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_NOTE"), 2, 3, false, "notes")
+	</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_EXAMPLES")</label>
+	#if(!$languageCodeExamples)
+		#set($languageCodeExamples = false)
+	#end
+	#if(!$examples)
+		#set($examples = false)
+	#end
+	#contentFields($languageCodeExamples, $examples, $lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_EXAMPLE"), 3, 3, false, "examples")
+	</p>
+	
+	#if($groups && $groups.isEmpty() == false)
+		<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_ACCESS_RIGHTS")</label>
+		<table>
+			<thead>
+				<tr>
+					<th>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_COLUMN_NAME_GROUP")</th>
+					<th align="center">$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_COLUMN_NAME_READ_RIGHT")</th>
+					<th align="center">$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_COLUMN_NAME_UPDATE_RIGHT")</th>
+					<th align="center">$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_COLUMN_NAME_DELETE_RIGHT")</th>
+					<th align="center">$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_COLUMN_NAME_CHANGE_RIGHTS_RIGHT")</th>
+				</tr>
+				<tbody>
+					#if(!$editMode || $editMode && $groupAccessRightsEnabled)
+						<tr>
+							<td></td>
+							<td align="center"><a href="" onclick='toggleCheckboxes("readRight", true);return false;'>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LINK_SELECT_ALL_NAME")</a> | <a href="" onclick='toggleCheckboxes("readRight", false);return false;'>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LINK_DESELECT_ALL_NAME")</a></td>
+							<td align="center"><a href="" onclick='toggleCheckboxes("updateRight", true);return false;'>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LINK_SELECT_ALL_NAME")</a> | <a href="" onclick='toggleCheckboxes("updateRight", false);return false;'>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LINK_DESELECT_ALL_NAME")</a></td>
+							<td align="center"><a href="" onclick='toggleCheckboxes("deleteRight", true);return false;'>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LINK_SELECT_ALL_NAME")</a> | <a href="" onclick='toggleCheckboxes("deleteRight", false);return false;'>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LINK_DESELECT_ALL_NAME")</a></td>
+							<td align="center"><a href="" onclick='toggleCheckboxes("changeRightsRight", true);return false;'>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LINK_SELECT_ALL_NAME")</a> | <a href="" onclick='toggleCheckboxes("changeRightsRight", false);return false;'>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LINK_DESELECT_ALL_NAME")</a></td>
+						</tr>
+					#end
+					#set($counter = 0)
+					#foreach($group in $groups)
+						<tr>
+							<input type="hidden" name="groupId" value="$group.getId()"/>
+							<td>$group.getName()</td>
+							#if(!$readRights)
+								#set($readRights = false)
+							#end
+							<td align="center">#accessRightCheckBox("readRight", $group, $readRights)</td>
+							#if(!$updateRights)
+								#set($updateRights = false)
+							#end
+							<td align="center">#accessRightCheckBox("updateRight", $group, $updateRights)</td>
+							#if(!$deleteRights)
+								#set($deleteRights = false)
+							#end
+							<td align="center">#accessRightCheckBox("deleteRight", $group, $deleteRights)</td>
+							#if(!$changeRightsRights)
+								#set($changeRightsRights = false)
+							#end
+							<td align="center">#accessRightCheckBox("changeRightsRight", $group, $changeRightsRights)</td>
+						</tr>
+						#set($counter = ($counter + 1))
+					#end
+				</tbody>
+			</thead>
+		</table>
+	#end
+	
+	<input type="submit" value="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_SUBMIT_BUTTON_TEXT")">
+
+</form>
+#end

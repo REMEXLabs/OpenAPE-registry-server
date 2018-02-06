@@ -1,0 +1,6 @@
+#individualPageTitle("WEB_CONCEPTS_LIST_MY_PAGE_TITLE")
+#parse("/velocity/loggedInLayout.vm")
+#@mainLayout()
+#infoAndErrorMessage()
+#conceptsTable($concepts, $lh.getWord("WEB_CONCEPTS_LIST_MY_PAGE_MESSAGE_NO_CONCEPTS"))
+#end

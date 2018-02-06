@@ -1,0 +1,76 @@
+#individualPageTitle("WEB_USERS_EDIT_USER_PAGE_TITLE")
+#parse("/velocity/loggedInLayout.vm")
+#@mainLayout()
+#infoAndErrorMessage()
+<p>$lh.getWord("WEB_USERS_EDIT_USER_PAGE_GUIDE")</p>
+<form id="editUserForm" method="post">
+	#inputTextWithLabel("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_USER_NAME", "userName", $userName, "", true)
+	</p>
+	
+	#inputTextWithLabel("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_FIRST_NAME", "firstName", $firstName, "", false)
+	</p>
+	
+	#inputTextWithLabel("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_LAST_NAME", "lastName", $lastName, "", false)
+	</p>
+	
+	#inputTextWithLabel("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_INSTITUTE", "institute", $institute, "", false)
+	</p>
+	
+	<label>$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_MAIL_ADDRESS")</label>
+	<input type="email" name="eMailAddress" placeholder="", value=#if($eMailAddress) "$eMailAddress" #end, required>
+	</p>
+	
+	<label>$lh.getWord("WEB_USERS_EDIT_USER_PAGE_LABEL_PASSWORD_1")</label>
+	<input type="password" name="password1" placeholder="" value="">
+	</p>
+	
+	<label>$lh.getWord("WEB_USERS_EDIT_USER_PAGE_LABEL_PASSWORD_2")</label>
+	<input type="password" name="password2" placeholder="" value="">
+	</p>
+	
+	<label>$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_ACCOUNT_STATE")</label>
+	<div class="4u 12u$(small)">
+		<input type="radio" id="accountStateNotLocked" name="accountState" value="no" #if(!$accountLocked) checked #end>
+		<label for="accountStateNotLocked">$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_ACCOUNT_STATE_NOT_LOCKED")</label>
+	</div>
+	<div class="4u 12u$(small)">
+		<input type="radio" id="accountStateLocked" name="accountState" value="yes" #if($accountLocked) checked #end>
+		#set($lockedLabel = $tf.fillTemplate($lh.getWord("WEB_USERS_EDIT_USER_PAGE_LABEL_ACCOUNT_STATE_LOCKED"), $numberOfFailedLogins))
+		<label for="accountStateLocked">$lockedLabel</label>
+	</div>
+	</p>
+	
+	<label>$lh.getWord("WEB_USERS_EDIT_USER_PAGE_LABEL_API_KEY")</label>
+	#if(!$apiKey)
+		#set($apiKey = $lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_AND_MY_DATA_PAGE_NO_API_KEY"))
+	#end
+	<p>$apiKey</p>
+	<div class="12u 12u$(small)">
+		<input type="radio" id="apiKeyActionNothing" name="apiKeyAction" value="nothing" #if($apiKeyAction == "nothing") checked #end>
+		<label for="apiKeyActionNothing">$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_AND_MY_DATA_PAGE_LABEL_API_KEY_ACTION_KEEP_CURRENT")</label>
+	</div>
+	<div class="12u 12u$(small)">
+		<input type="radio" id="apiKeyActionDelete" name="apiKeyAction" value="delete" #if($apiKeyAction == "delete") checked #end>
+		<label for="apiKeyActionDelete">$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_AND_MY_DATA_PAGE_LABEL_API_KEY_ACTION_DELETE")</label>
+	</div>
+	<div class="12u 12u$(small)">
+		<input type="radio" id="apiKeyActionNew" name="apiKeyAction" value="new" #if($apiKeyAction == "new") checked #end>
+		<label for="apiKeyActionNew">$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_AND_MY_DATA_PAGE_LABEL_API_KEY_ACTION_GENERATE")</label>
+	</div>
+	</p>
+
+	<label>$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_LABEL_SUPER_ADMIN")</label>
+	<div class="4u 12u$(small)">
+		<input type="radio" id="superAdminNo" name="superAdmin" value="no" #if(!$superAdmin) checked #end>
+		<label for="superAdminNo">$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_AND_MY_DATA_PAGE_SUPER_ADMIN_NO")</label>
+	</div>
+	<div class="4u 12u$(small)">
+		<input type="radio" id="superAdminYes" name="superAdmin" value="yes" #if($superAdmin) checked #end>
+		<label for="superAdminYes">$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_AND_MY_DATA_PAGE_SUPER_ADMIN_YES")</label>
+	</div>
+	</p>
+	
+	<input type="submit" value="$lh.getWord("WEB_USERS_NEW_AND_EDIT_USER_PAGE_SUBMIT_BUTTON_TEXT")">
+	<input type="hidden" name="editUserId" value="$editUserId">
+</form>
+#end

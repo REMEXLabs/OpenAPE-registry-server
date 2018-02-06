@@ -1,0 +1,10 @@
+#individualPageTitle("WEB_CONCEPTS_LIST_ALL_PAGE_TITLE")
+#parse("/velocity/loggedInLayout.vm")
+#@mainLayout()
+#infoAndErrorMessage()
+#if($user.isSuperAdmin())
+	#conceptsTable($concepts, $lh.getWord("WEB_CONCEPTS_LIST_ALL_PAGE_MESSAGE_NO_CONCEPTS_FOR_SUPER_ADMIN"))
+#else
+	#conceptsTable($concepts, $lh.getWord("WEB_CONCEPTS_LIST_ALL_PAGE_MESSAGE_NO_CONCEPTS"))
+#end
+#end

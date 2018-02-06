@@ -1,0 +1,133 @@
+#macro(mainLayout)
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		#if($individualPageTitle)
+			<title>$individualPageTitle - $lh.getWord("WEB_PAGE_TITLE_COMMON")</title>
+		#else
+			<title>$lh.getWord("WEB_PAGE_TITLE_COMMON")</title>
+		#end
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<!--[if lte IE 8]><script src="/assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="/assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
+		
+		<script src="/js/concepts/barrierFreeSidebar.js" type="text/javascript"></script>
+		
+	</head>
+	<body>
+		<!-- Wrapper -->
+		<div id="wrapper">
+			
+			<!-- Main -->
+			<div id="main">
+				<div class="inner">
+					#if($individualPageTitle)
+						<!-- Header -->
+						<header id="header">
+							<label class="logo"><strong>$individualPageTitle</strong></label>
+						</header>		
+					#end
+					<!-- Content -->
+					<section>
+						$bodyContent
+						<hr class="major" />
+						<center>
+							<!-- Footer -->
+							#copyright()
+						</center>	
+					</section>
+				</div>
+			</div>
+
+			<!-- Sidebar -->
+			<div id="sidebar">
+				<div class="inner">
+
+					<!-- Menu -->
+					<nav id="menu">
+						<header class="major">
+							<h2>$lh.getWord("WEB_SIDEBAR_MENU")</h2>
+						</header>
+						<ul>
+							<li>
+								<span class=#openedMenuHandler("CONCEPTS") tabindex="0" role="button" aria-pressed="false" onclick="handleSidebarMenuButtonClick(event)" onKeyPress="handleSidebarMenuButtonKeyPress(event)">$lh.getWord("WEB_SIDEBAR_CONCEPTS")</span>
+								<ul>
+									<li><a href="/web/loggedIn/concepts/searchConcept/">$lh.getWord("WEB_SIDEBAR_CONCEPTS_SEARCH")</a></li>
+									<li><a href="/web/loggedIn/concepts/allConcepts/">$lh.getWord("WEB_SIDEBAR_CONCEPTS_SHOW_ALL")</a></li>
+									<li><a href="/web/loggedIn/concepts/myConcepts/">$lh.getWord("WEB_SIDEBAR_CONCEPTS_SHOW_MY")</a></li>
+									<li><a href="/web/loggedIn/concepts/newConcept/">$lh.getWord("WEB_SIDEBAR_CONCEPTS_CREATE")</a></li>
+								</ul>
+							</li>
+							#if($user.isSuperAdmin())
+								<li>
+									<span class=#openedMenuHandler("GROUPS") tabindex="0" role="button" onclick="handleSidebarMenuButtonClick(event)" onKeyPress="handleSidebarMenuButtonKeyPress(event)">$lh.getWord("WEB_SIDEBAR_GROUPS")</span>
+									<ul>
+										<li><a href="/web/loggedIn/groups/list/">$lh.getWord("WEB_SIDEBAR_GROUPS_SHOW_ALL")</a></li>
+										<li><a href="/web/loggedIn/groups/new/">$lh.getWord("WEB_SIDEBAR_GROUPS_CREATE")</a></li>
+									</ul>
+								</li>
+							#elseif($user.isAdminOfAtLeastOneGroup())
+								<li>
+									<span class=#openedMenuHandler("GROUPS") tabindex="0" role="button" onclick="handleSidebarMenuButtonClick(event)" onKeyPress="handleSidebarMenuButtonKeyPress(event)">$lh.getWord("WEB_SIDEBAR_GROUPS")</span>
+									<ul>
+										<li><a href="/web/loggedIn/groups/list/">$lh.getWord("WEB_SIDEBAR_GROUPS_SHOW_MY")</a></li>
+									</ul>
+								</li>
+							#end
+							#if($user.isSuperAdmin())
+								<li>
+									<span class=#openedMenuHandler("USERS") tabindex="0" role="button" onclick="handleSidebarMenuButtonClick(event)" onKeyPress="handleSidebarMenuButtonKeyPress(event)">$lh.getWord("WEB_SIDEBAR_USERS")</span>
+									<ul>
+										<li><a href="/web/loggedIn/users/list/">$lh.getWord("WEB_SIDEBAR_USERS_SHOW_ALL")</a></li>
+										<li><a href="/web/loggedIn/users/new/">$lh.getWord("WEB_SIDEBAR_USERS_CREATE")</a></li>
+									</ul>
+								</li>
+							#end
+							<li>
+								<span class=#openedMenuHandler("MY_DATA") tabindex="0" role="button" onclick="handleSidebarMenuButtonClick(event)" onKeyPress="handleSidebarMenuButtonKeyPress(event)">$lh.getWord("WEB_SIDEBAR_ACCOUNT")</span>
+								<ul>
+									<li><a href="/web/loggedIn/users/myData/">$lh.getWord("WEB_SIDEBAR_ACCOUNT_MY_DATA")</a></li>
+									<li><a href="/web/loggedIn/logout/">$lh.getWord("WEB_SIDEBAR_ACCOUNT_LOGOUT")</a></li>
+								</ul>
+							</li>
+						</ul>
+					</nav>
+
+					<!-- Section -->
+					<section>
+						<header class="major">
+							<h2>Get in touch</h2>
+						</header>
+						<p>Responsive Media Experience Group (REMEX) at Stuttgart Media University.</p>
+						<ul class="contact">
+							<li class="fa-envelope-o"><a href="mailto:gzimmermann@acm.org">gzimmermann@acm.org</a></li>
+							<li class="fa-phone">+49 (0)711 8923-2751</li>
+							<li class="fa-home">Nobelstraße 10<br />
+							70569 Stuttgart, Deutschland</li>
+						</ul>
+					</section>
+
+					<!-- Footer -->
+					#copyright()
+
+				</div>
+			</div>
+		</div>
+
+		<!-- Scripts -->
+		<script src="/assets/js/jquery.min.js"></script>
+		<script src="/assets/js/skel.min.js"></script>
+		<script src="/assets/js/util.js"></script>
+		<!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js"></script><![endif]-->
+		<script src="/assets/js/main.js"></script>
+	</body>
+</html>
+#end

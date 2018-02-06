@@ -1,0 +1,45 @@
+#individualPageTitle("WEB_USERS_LIST_PAGE_TITLE")
+#parse("/velocity/loggedInLayout.vm")
+#@mainLayout()
+#infoAndErrorMessage()
+<div class="table-wrapper">
+#if($userList)
+	#if($userList.isEmpty() == false)
+		<table>
+			<thead>
+				<tr>
+					<th>$lh.getWord("WEB_USERS_LIST_PAGE_COLUMN_NAME_ID")</th>
+					<th>$lh.getWord("WEB_USERS_LIST_PAGE_COLUMN_NAME_USER_NAME")</th>
+					<th>$lh.getWord("WEB_USERS_LIST_PAGE_COLUMN_NAME_FIRST_NAME")</th>
+					<th>$lh.getWord("WEB_USERS_LIST_PAGE_COLUMN_NAME_LAST_NAME")</th>
+					<th>$lh.getWord("WEB_USERS_LIST_PAGE_COLUMN_NAME_INSTITUTE")</th>
+					<th>$lh.getWord("WEB_USERS_LIST_PAGE_COLUMN_NAME_MAIL_ADDRESS")</th>
+					<th>$lh.getWord("WEB_USERS_LIST_PAGE_COLUMN_NAME_API_KEY")</th>
+					<th>$lh.getWord("WEB_USERS_LIST_PAGE_COLUMN_NAME_ACTION")</th>
+				</tr>
+				<tbody>
+					#foreach($userOfList in $userList)
+						<tr>
+							<td>$userOfList.getId()</td>
+							<td>$userOfList.getUserName()</td>
+							#fillTableCell($userOfList.getFirstName())
+							#fillTableCell($userOfList.getLastName())
+							#fillTableCell($userOfList.getInstitute())
+							<td>$userOfList.geteMailAddress()</td>
+							#if($userOfList.getApiKey())
+								<td>$lh.getWord("WEB_USERS_LIST_PAGE_COLUMN_CONTENT_API_KEY_YES")</td>
+							#else
+								<td>$lh.getWord("WEB_USERS_LIST_PAGE_COLUMN_CONTENT_API_KEY_NO")</td>
+							#end
+							<td><a href="/web/loggedIn/users/edit?userId=$userOfList.getId()">$lh.getWord("WEB_USERS_LIST_PAGE_LINK_EDIT_NAME")</a> | <a href="/web/loggedIn/users/remove?userId=$userOfList.getId()" onclick="return confirm('$lh.getWord("WEB_USERS_LIST_PAGE_LINK_REMOVE_CONFIRM_MESSAGE") $userOfList.getUserName()?')">$lh.getWord("WEB_USERS_LIST_PAGE_LINK_REMOVE_NAME")</a></td>
+						</tr>
+					#end
+				</tbody>
+			</thead>
+		</table>
+	#else
+		<b><font>$lh.getWord("WEB_USERS_LIST_PAGE_ERROR_MESSAGE_NO_USERS")</font></b>
+	#end
+#end
+</div>
+#end

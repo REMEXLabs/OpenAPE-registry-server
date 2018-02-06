@@ -1,0 +1,29 @@
+#individualPageTitle("WEB_GROUPS_LIST_PAGE_TITLE")
+#parse("/velocity/loggedInLayout.vm")
+#@mainLayout()
+#infoAndErrorMessage()
+<div class="table-wrapper">
+	#if($groups && $groups.isEmpty() == false)
+		<table>
+			<thead>
+				<tr>
+					<th>$lh.getWord("WEB_GROUPS_LIST_PAGE_COLUMN_NAME_ID")</th>
+					<th>$lh.getWord("WEB_GROUPS_LIST_PAGE_COLUMN_NAME_GROUP_NAME")</th>
+					<th>$lh.getWord("WEB_GROUPS_LIST_PAGE_COLUMN_NAME_ACTION")</th>
+				</tr>
+				<tbody>
+					#foreach($group in $groups)
+						<tr>
+							<td>$group.getId()</td>
+							<td>$group.getName()</td>
+							<td><a href="/web/loggedIn/groups/edit?groupId=$group.getId()">$lh.getWord("WEB_GROUPS_LIST_PAGE_LINK_EDIT_NAME")</a> | <a href="/web/loggedIn/groups/remove?groupId=$group.getId()" onclick="return confirm('$lh.getWord("WEB_GROUPS_LIST_PAGE_LINK_REMOVE_CONFIRM_MESSAGE") $group.getName()?')">$lh.getWord("WEB_GROUPS_LIST_PAGE_LINK_REMOVE_NAME")</a></td>
+						</tr>
+					#end
+				</tbody>
+			</thead>
+		</table>
+	#else
+		<b><font>$lh.getWord("WEB_GROUPS_LIST_PAGE_ERROR_MESSAGE_NO_GROUPS")</font></b>
+	#end
+</div>
+#end
