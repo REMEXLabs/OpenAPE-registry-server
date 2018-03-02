@@ -89,7 +89,9 @@ public class MailUtil {
 		mail.setRecipient(Message.RecipientType.TO, internetAddress);
 		mail.setSubject(subject);
 		mail.setContent(message, "text/plain" );
+		System.out.println("before send");
 		Transport.send(mail);
+		System.out.println("after send");
 	}
 
 
@@ -150,13 +152,22 @@ public class MailUtil {
         props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
         // for sending
-        props.setProperty("mail.smtp.host", "smtp.mi.hdm-stuttgart.de");
+        //props.setProperty("mail.smtp.host", "smtp.mi.hdm-stuttgart.de");
+        //props.setProperty("mail.smtp.host", "smtp.hdm-stuttgart.de");
+        //props.setProperty("mail.smtp.host", "mx1.hdm-stuttgart.de");
+        props.setProperty("mail.smtp.host", "mail.mi.hdm-stuttgart.de");
+        
         props.setProperty("mail.smtp.auth", "true");
-        props.setProperty("mail.smtp.port", "25");
-        props.setProperty("mail.smtp.socketFactory.port", "587");
+        props.setProperty("mail.smtp.port", "465");
+        //props.setProperty("mail.smtp.user", MyProperties.getResetPasswordMailUser());
+        //props.setProperty("mail.smtp.password", MyProperties.getResetPasswordMailPassword());
+        
+        props.setProperty("mail.smtp.socketFactory.port", "465");
         props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
         props.setProperty("mail.smtp.socketFactory.fallback", "false");
-
+        props.put("mail.smtp.auth", "true");
+        //props.put("mail.smtp.starttls.enable", "true");
+        
         return Session.getInstance(props, new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {

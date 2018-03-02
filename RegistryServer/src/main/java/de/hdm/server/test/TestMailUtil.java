@@ -22,8 +22,9 @@ import de.hdm.server.MailUtil;
 public class TestMailUtil {
 
 	public static void main(String[] args) throws MessagingException {
-		MailUtil.sendMail("tobias.ableitner@t-online.de", "New password", "Test");
-
+		System.out.println("before sendMail");
+	    MailUtil.sendMail("tobias.ableitner@t-online.de", "New password", "Test");
+	    System.out.println("after sendMail");
 	}
 
 }
