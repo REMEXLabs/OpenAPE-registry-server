@@ -95,6 +95,7 @@ public class RegistryServerMain {
 	 *            start parameters
 	 */
 	public static void main(String[] args) {
+	    System.setProperty("log.name", "Registry-Server");
 	    logger.info("Starting registry server application");
         logger.debug("Working directory: " + System.getProperty("user.dir"));
 
