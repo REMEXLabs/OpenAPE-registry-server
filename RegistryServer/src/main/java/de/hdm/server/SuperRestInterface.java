@@ -15,11 +15,13 @@
  ******************************************************************************/
 package de.hdm.server;
 
+import static spark.Spark.before;
 import static spark.Spark.delete;
 import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.put;
 
+import org.junit.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -107,6 +109,7 @@ public class SuperRestInterface {
     public SuperRestInterface(){
         SuperRestInterface.logger.info("Setting up Rest API");
         Spark.staticFiles.location("/public");
+        this.initBeforeFilters();
         this.initRestEndPointsForJsonAPI();
         this.initRestEndPointsForWebUserInterface();
     }
@@ -165,6 +168,10 @@ public class SuperRestInterface {
     // *********************************************************************************************************************************************
     // *********************************************************************************************************************************************
 
+    private void initBeforeFilters() {
+        before("*", Filters.addMissingSlash);
+    }
+    
     private void initRestEndPointsForJsonAPI(){
         post(Path.Json.CREATE_CONCEPT_RECORD, "application/json", new Route() {
             @Override
@@ -212,6 +219,13 @@ public class SuperRestInterface {
     }
 
     private void initRestEndPointsForWebUserInterface(){
+        get(Path.Web.ROOT, "application/html", new Route(){
+            @Override
+            public Object handle(Request request, Response response) throws Exception{
+                return htmlLoginController.getLoginPage(request, response);
+            }
+        });
+        
         get(Path.Web.NOT_LOGGED_IN_INFO_AND_ERROR, "application/html", new Route(){
             @Override
             public Object handle(Request request, Response response) throws Exception{
@@ -458,7 +472,8 @@ public class SuperRestInterface {
             }
         });
         
-        get(Path.Web.LEGAL_NOTICE, "application/html", new Route(){
+        // not needed by Stuttgart Media University
+        /*get(Path.Web.LEGAL_NOTICE, "application/html", new Route(){
             @Override
             public Object handle(Request request, Response response) throws Exception{
                 return htmlInfoAndErrorController.getLegalNoticePage(request, response);
@@ -470,8 +485,8 @@ public class SuperRestInterface {
             public Object handle(Request request, Response response) throws Exception{
                 return htmlInfoAndErrorController.getPrivacyPolicyPage(request, response);
             }
-        });
-        
+        });*/
+         
         // show error page if no path was found in the url
         get("*", "application/html", new Route(){
             @Override

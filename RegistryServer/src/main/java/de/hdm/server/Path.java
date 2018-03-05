@@ -154,9 +154,11 @@ public class Path {
 		
 		public static final String NOT_LOGGED_IN_INFO_AND_ERROR = "/web/infoAndError/";
 		
-		public static final String LEGAL_NOTICE = "/web/legalNotice/";
+		//public static final String LEGAL_NOTICE = "/web/legalNotice/";
 		
-		public static final String PRIVACY_POLICY = "/web/privacyPolicy/";
+		//public static final String PRIVACY_POLICY = "/web/privacyPolicy/";
+		
+		public static final String ROOT = "/";
 		
 		
 		// login and logout
