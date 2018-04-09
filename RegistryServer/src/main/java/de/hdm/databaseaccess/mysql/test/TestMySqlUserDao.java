@@ -15,16 +15,19 @@
  ******************************************************************************/
 package de.hdm.databaseaccess.mysql.test;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 
 import de.hdm.databaseaccess.DataAccessException;
 import de.hdm.databaseaccess.mysql.MySqlUserDao;
 import de.hdm.datatypes.IUser;
 import de.hdm.helpers.test.TestEntities;
+import de.hdm.server.AuthenticationController;
 
 public class TestMySqlUserDao {
 
-	public static void main(String[] args) throws DataAccessException{
+	public static void main(String[] args) throws DataAccessException, NoSuchAlgorithmException, InvalidKeySpecException{
 		MySqlUserDao m = new MySqlUserDao();
 		//List<IUser> users = TestEntities.createUsers();
 		//m.insertUser(null, users.get(0));
@@ -34,14 +37,21 @@ public class TestMySqlUserDao {
 		//System.out.println(m.selectUser(null, 2).getHashOfResetPassword());
 		//m.deleteUser(null, 2);
 		//System.out.println(m.isUserSuperAdmin(null, 5));
-		IUser user = m.selectUser(null, "toabl");
-		user.setFirstName("test");
+		IUser user = m.selectUser(null, "ResetPasswordTestUser");
+		System.out.println(user.getHashOfResetPassword());
+		//user.setFirstName("test");
 		//user.setSessionId("test");
 		//user.setId(238219381);
 		//user.setExpiryDateOfResetPasswordInMilliseconds(-1);
-		//user.setHashOfResetPassword(null);
-		m.updateUser(null, user);
+		//user.setHashOfResetPassword("test2");
+		//m.updateUser(null, user);
+		//IUser user2 = m.selectUser(null, "ResetPasswordTestUser");
+        //System.out.println(user2.getHashOfResetPassword());
+        
 		//System.out.println(System.currentTimeMillis());
+		
+		System.out.println(AuthenticationController.hashNewPassword("test"));
+		System.out.println(AuthenticationController.hashNewPassword("test"));
 	}
 	
 }

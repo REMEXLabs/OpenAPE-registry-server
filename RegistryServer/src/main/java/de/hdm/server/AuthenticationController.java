@@ -176,14 +176,15 @@ public class AuthenticationController {
 		//System.out.println("user.getExpiryDateOfResetPasswordInMilliseconds()=" + user.getExpiryDateOfResetPasswordInMilliseconds());
 		//System.out.println("System.currentTimeMillis()=" + System.currentTimeMillis());
 		if(user.getExpiryDateOfResetPasswordInMilliseconds() >= System.currentTimeMillis()){
-			System.out.println("reset password link not expired");
+			//System.out.println("reset password link not expired");
+			//System.out.println("user.getHashOfResetPassword() = " + user.getHashOfResetPassword());
 			String hashOfResetPassword = user.getHashOfResetPassword().replaceFirst(MyProperties.getPrefixForHashOfPassword(), "");
 			try {
 				if(PasswordEncoder.matches(resetPassword + MyProperties.getSuffixForPassword(), hashOfResetPassword)){
-					//System.out.println("reset password link valid");
+					System.out.println("reset password link valid");
 					resetPasswordValid = true;
 				}else{
-					//System.out.println("reset password link not valid");
+					System.out.println("reset password link not valid");
 				}
 			} catch (NoSuchAlgorithmException e) {
 				e.printStackTrace();

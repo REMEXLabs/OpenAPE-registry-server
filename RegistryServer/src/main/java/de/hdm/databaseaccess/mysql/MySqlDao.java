@@ -160,12 +160,12 @@ public abstract class MySqlDao implements IDao {
 	}
 
 	protected GregorianCalendar convertMySqlDateTimeToGregorianCalendar(String mySqlDateTime) {
-		System.out.println("mySqlDateTime=" + mySqlDateTime);
+		//System.out.println("mySqlDateTime=" + mySqlDateTime);
 		GregorianCalendar gregorianCalendar = GregorianCalendarHelper
 				.convertDateTimeStringFromDatabaseToGregorianCalendar(mySqlDateTime);
-		System.out.println("gregorianCalendar.getTimeInMillis()=" + gregorianCalendar.getTimeInMillis());
+		//System.out.println("gregorianCalendar.getTimeInMillis()=" + gregorianCalendar.getTimeInMillis());
 		gregorianCalendar.setTimeZone(TimeZone.getTimeZone("UTC"));
-		System.out.println("gregorianCalendar.getTimeInMillis()=" + gregorianCalendar.getTimeInMillis());
+		//System.out.println("gregorianCalendar.getTimeInMillis()=" + gregorianCalendar.getTimeInMillis());
 		return gregorianCalendar;
 	}
 

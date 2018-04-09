@@ -164,9 +164,9 @@ public class Path {
 		// login and logout
 		public static final String LOGIN = "/web/login/";
 		
-		public static final String FORGOT_PASSWORD = "/web/forgotPassword";
+		public static final String FORGOT_PASSWORD = "/web/forgotPassword/";
 		
-		public static final String RESET_PASSWORD = "/web/resetPassword/";
+		public static final String RESET_PASSWORD = "/web/resetPassword";
 		
 		public static final String LOGOUT = "/web/loggedIn/logout/";
 		

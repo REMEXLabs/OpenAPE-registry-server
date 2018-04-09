@@ -111,7 +111,7 @@
 								</li>
 							#end
 							<li>
-								<span class=#openedMenuHandler("MY_DATA") tabindex="0" role="button" onclick="handleSidebarMenuButtonClick(event)" onKeyPress="handleSidebarMenuButtonKeyPress(event)">$lh.getWord("WEB_SIDEBAR_ACCOUNT")</span>
+								<span class=#openedMenuHandler("MY_ACCOUNT") tabindex="0" role="button" onclick="handleSidebarMenuButtonClick(event)" onKeyPress="handleSidebarMenuButtonKeyPress(event)">$lh.getWord("WEB_SIDEBAR_ACCOUNT")</span>
 								<ul>
 									<li><a href="/web/loggedIn/users/myData/">$lh.getWord("WEB_SIDEBAR_ACCOUNT_MY_DATA")</a></li>
 									<li><a href="/web/loggedIn/logout/">$lh.getWord("WEB_SIDEBAR_ACCOUNT_LOGOUT")</a></li>

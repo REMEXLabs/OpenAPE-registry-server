@@ -65,6 +65,6 @@
 #if($userName)
 	<a href="/web/forgotPassword?userName=$userName">$lh.getWord("WEB_LOGIN_PAGE_LINK_NAME_FORGOT_PASSWORD")</a>
 #else
-	<a href="/web/forgotPassword">$lh.getWord("WEB_LOGIN_PAGE_LINK_NAME_FORGOT_PASSWORD")</a>
+	<a href="/web/forgotPassword/">$lh.getWord("WEB_LOGIN_PAGE_LINK_NAME_FORGOT_PASSWORD")</a>
 #end	
 #end

@@ -305,7 +305,7 @@ public class HtmlLoginController extends HtmlController implements IHtmlLoginCon
 				user.setHashOfResetPassword(AuthenticationController.hashNewPassword(resetPassword));
 				user.setExpiryDateOfResetPasswordInMilliseconds(System.currentTimeMillis() + MyProperties.getResetPasswordPeriodOfValidityInSeconds() * 1000);
 				String mailMessage = request.host() + "/web/resetPassword?userName=" + user.getUserName() + "&resetPassword=" + resetPassword;
-				MailUtil.sendMail(user.geteMailAddress(), "Reset Registry Server Password", mailMessage);
+				MailUtil.sendMail(user.geteMailAddress(), "Reset Registry-Server Password", mailMessage);
 				this.userDao.updateUser(null, user);
 			}
 			
@@ -345,23 +345,20 @@ public class HtmlLoginController extends HtmlController implements IHtmlLoginCon
 			    throw new BadRequestException("The user " + userName + " does not exist!", null, userMessage);
 			}
 			
-			// remove hash of reset password
-			// This can be done before the reset password authentication,
-			// because the reset password of a user should always be deleted,
-			// when somebody tried to reset the user's password with an invalid reset password.
-			if(user != null){
-	            user.setHashOfResetPassword(null);
-	            this.userDao.updateUser(null, user);
-	        }
-			
 			// check reset password
-			if(AuthenticationController.authenticateViaResetPassword(user, resetPassword) == false){
-				//this.removeHashOfResetPasswordFromDatabase(user);
+			boolean resetPasswordValid = AuthenticationController.authenticateViaResetPassword(user, resetPassword);
+			
+			// remove hash of reset password
+			if(user != null){
+                user.setHashOfResetPassword(null);
+                this.userDao.updateUser(null, user);
+            }
+			
+			if(!resetPasswordValid){
 				String userMessage = LanguageHandler.getWord(locale, "WEB_RESET_PASSWORD_PAGE_ERROR_MESSAGE_INVALID_LINK");
 				throw new AuthenticationException("The reset password is invalid or expired!", null, userMessage, false);
 			}
 			
-			//this.removeHashOfResetPasswordFromDatabase(user);
 			request.session(true);
 			HttpSession session = request.session().raw();
 			session.setMaxInactiveInterval(MyProperties.getResetPasswordSessionTimeoutInSeconds());
@@ -421,8 +418,9 @@ public class HtmlLoginController extends HtmlController implements IHtmlLoginCon
 			
 		} catch(Exception e){
 		    this.handleExpception(locale, null, e, model, request, response, "WEB_RESET_PASSWORD_PAGE_ERROR_MESSAGE_COMMON_POST");
+		    result = ViewUtil.render(request, model, Path.WebTemplate.RESET_PASSWORD, locale);
 		}
-		return result = ViewUtil.render(request, model, Path.WebTemplate.RESET_PASSWORD, locale);
+		return result;
 	}
 	
     @Override

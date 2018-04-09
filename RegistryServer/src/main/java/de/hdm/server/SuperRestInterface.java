@@ -168,7 +168,8 @@ public class SuperRestInterface {
     // *********************************************************************************************************************************************
 
     private void initBeforeFilters() {
-        before("*", Filters.addMissingSlash);
+        // TODO this is not working correctly, because it destroys some requests with parameters
+        //before("*", Filters.addMissingSlash);
     }
     
     private void initRestEndPointsForJsonAPI(){
@@ -270,6 +271,7 @@ public class SuperRestInterface {
         get(Path.Web.RESET_PASSWORD, "application/html", new Route(){
             @Override
             public Object handle(Request request, Response response) throws Exception{
+                System.out.println("in get(Path.Web.RESET_PASSWORD, \"application/html\", new Route()");
                 return htmlLoginController.getResetPasswordPage(request, response);
             }
         });
@@ -277,6 +279,7 @@ public class SuperRestInterface {
         post(Path.Web.RESET_PASSWORD, "application/html", new Route(){
             @Override
             public Object handle(Request request, Response response) throws Exception{
+                System.out.println("in post(Path.Web.RESET_PASSWORD, \"application/html\", new Route()");
                 return htmlLoginController.handleResetPasswordPost(request, response);
             }
         });
@@ -490,6 +493,7 @@ public class SuperRestInterface {
         get("*", "application/html", new Route(){
             @Override
             public Object handle(Request request, Response response) throws Exception{
+                System.out.println("get(\"*\", \"application/html\", new Route()");
                 return htmlInfoAndErrorController.getNotFoundPage(request, response);
             }
         });

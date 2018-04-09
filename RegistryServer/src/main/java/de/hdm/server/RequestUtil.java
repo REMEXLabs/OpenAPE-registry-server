@@ -410,7 +410,8 @@ public class RequestUtil {
 	public static String getQueryParameter(Locale locale, Request request, String parameterName,
 			boolean throwExceptionIfMissing, boolean withUserMessage) throws BadRequestException {
 		String parameter = request.queryParams(parameterName);
-		/*if(parameter == null){
+		/*System.out.println("parameter = " + parameter);
+		if(parameter == null){
 			System.out.println("query parameter " + parameterName + " is null");
 		}
 		if(parameter != null && parameter.isEmpty()){

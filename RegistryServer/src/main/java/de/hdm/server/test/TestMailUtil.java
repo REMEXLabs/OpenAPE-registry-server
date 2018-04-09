@@ -23,7 +23,7 @@ public class TestMailUtil {
 
 	public static void main(String[] args) throws MessagingException {
 		System.out.println("before sendMail");
-	    MailUtil.sendMail("tobias.ableitner@t-online.de", "New password", "Test");
+	    MailUtil.sendMail("TODO!!!", "New password", "Test");
 	    System.out.println("after sendMail");
 	}
 

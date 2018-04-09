@@ -266,6 +266,10 @@ public class MySqlUserDao extends MySqlDao implements IUserDao {
     @Override
     public void updateUser(IUnitOfWork unitOfWork, IUser user) throws DataAccessException {
         Checker.checkNull(user, "user");
+        
+        //System.out.println("in updateUser");
+        //System.out.println("user.getHashOfResetPassword() = " + user.getHashOfResetPassword());
+        
         Connection connection = this.getConnection(unitOfWork);
         try {
             PreparedStatement updateUserStatement = connection.prepareStatement(
@@ -363,10 +367,15 @@ public class MySqlUserDao extends MySqlDao implements IUserDao {
         } finally {
             this.closeConnection(unitOfWork, connection);
         }
+        
+        //System.out.println("in selectUserWithWhereCondition");
+        //System.out.println("user.getHashOfResetPassword() = " + user.getHashOfResetPassword());
+        
         return user;
     }
 
     private IUser createUser(ResultSet resultSet) throws SQLException, DataAccessException {
+        //System.out.println(resultSet.getString(8));
         IUser user = new User(resultSet.getInt(1));
         user.setUserName(resultSet.getString(2));
         user.setFirstName(resultSet.getString(3));

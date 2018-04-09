@@ -84,14 +84,12 @@ public class MailUtil {
 
 	public static void sendMail(String receiverAddress, String subject, String message) throws MessagingException{
 		Checker.checkNullAndEmptiness(receiverAddress, "receiverAddress");
-		Message mail = new MimeMessage(getMailMiHdmSession());
+		Message mail = new MimeMessage(getGmailSession());
 		InternetAddress internetAddress = new InternetAddress(receiverAddress);
 		mail.setRecipient(Message.RecipientType.TO, internetAddress);
 		mail.setSubject(subject);
 		mail.setContent(message, "text/plain" );
-		System.out.println("before send");
 		Transport.send(mail);
-		System.out.println("after send");
 	}
 
 
@@ -112,25 +110,19 @@ public class MailUtil {
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 	
-	/*private static Session getGmailSession() {
+	private static Session getGmailSession() {
 		final Properties props = new Properties();
-
-		// for receiving
-		props.setProperty("mail.pop3.host", "pop.gmail.com");
-		props.setProperty("mail.pop3.user", MyProperties.getResetPasswordMailUser());
-		props.setProperty("mail.pop3.password", MyProperties.getResetPasswordMailPassword());
-		props.setProperty("mail.pop3.port", "995");
-		props.setProperty("mail.pop3.auth", "true");
-		props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
 		// for sending
 		props.setProperty("mail.smtp.host", "smtp.gmail.com");
+		props.setProperty("mail.pop3.user", MyProperties.getResetPasswordMailUser());
+        props.setProperty("mail.pop3.password", MyProperties.getResetPasswordMailPassword());
 		props.setProperty("mail.smtp.auth", "true");
 		props.setProperty("mail.smtp.port", "465");
 		props.setProperty("mail.smtp.socketFactory.port", "465");
 		props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 		props.setProperty("mail.smtp.socketFactory.fallback", "false");
-
+		
 		return Session.getInstance(props, new javax.mail.Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
@@ -138,44 +130,7 @@ public class MailUtil {
 						props.getProperty("mail.pop3.password"));
 			}
 		});
-	}*/
-
-    private static Session getMailMiHdmSession() {
-        final Properties props = new Properties();
-
-        // for receiving
-        props.setProperty("mail.pop3.host", "pop3.mi.hdm-stuttgart.de");
-        props.setProperty("mail.pop3.user", MyProperties.getResetPasswordMailUser());
-        props.setProperty("mail.pop3.password", MyProperties.getResetPasswordMailPassword());
-        props.setProperty("mail.pop3.port", "995");
-        props.setProperty("mail.pop3.auth", "true");
-        props.setProperty("mail.pop3.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-
-        // for sending
-        //props.setProperty("mail.smtp.host", "smtp.mi.hdm-stuttgart.de");
-        //props.setProperty("mail.smtp.host", "smtp.hdm-stuttgart.de");
-        //props.setProperty("mail.smtp.host", "mx1.hdm-stuttgart.de");
-        props.setProperty("mail.smtp.host", "mail.mi.hdm-stuttgart.de");
-        
-        props.setProperty("mail.smtp.auth", "true");
-        props.setProperty("mail.smtp.port", "465");
-        //props.setProperty("mail.smtp.user", MyProperties.getResetPasswordMailUser());
-        //props.setProperty("mail.smtp.password", MyProperties.getResetPasswordMailPassword());
-        
-        props.setProperty("mail.smtp.socketFactory.port", "465");
-        props.setProperty("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-        props.setProperty("mail.smtp.socketFactory.fallback", "false");
-        props.put("mail.smtp.auth", "true");
-        //props.put("mail.smtp.starttls.enable", "true");
-        
-        return Session.getInstance(props, new javax.mail.Authenticator() {
-            @Override
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(props.getProperty("mail.pop3.user"),
-                        props.getProperty("mail.pop3.password"));
-            }
-        });
-    }
+	}
 
 
 
