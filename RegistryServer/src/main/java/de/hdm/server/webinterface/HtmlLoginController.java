@@ -313,19 +313,23 @@ public class HtmlLoginController extends HtmlController implements IHtmlLoginCon
 			// this exception will never been thrown, because RequestUtil will not throw an exception, if the query parameter userName is missing
 			e.printStackTrace();
 		} catch (DataAccessException e) {
-			e.printStackTrace();
+		    model.put(MODEL_VALUE_KEY_REQUESTED_NEW_PASSWORD, false);
+		    this.handleExpception(locale, null, e, model, request, response, "WEB_FORGOT_PASSWORD_PAGE_ERROR_MESSAGE_DATABASE");
+		    //e.printStackTrace();
+			//String userMessage = LanguageHandler.getWord(locale, "WEB_FORGOT_PASSWORD_PAGE_ERROR_MESSAGE_DATABASE");
+			//model.put(MODEL_VALUE_KEY_ERROR_MESSAGE, userMessage);
+		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+			//e.printStackTrace();
 			model.put(MODEL_VALUE_KEY_REQUESTED_NEW_PASSWORD, false);
-			String userMessage = LanguageHandler.getWord(locale, "WEB_FORGOT_PASSWORD_PAGE_ERROR_MESSAGE_DATABASE");
-			model.put(MODEL_VALUE_KEY_ERROR_MESSAGE, userMessage);
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvalidKeySpecException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			this.handleExpception(locale, null, e, model, request, response, "WEB_RESET_PASSWORD_PAGE_ERROR_MESSAGE_COMMON_POST");
+			//String userMessage = LanguageHandler.getWord(locale, "WEB_RESET_PASSWORD_PAGE_ERROR_MESSAGE_COMMON_POST");
+            //model.put(MODEL_VALUE_KEY_ERROR_MESSAGE, userMessage);
 		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
+			model.put(MODEL_VALUE_KEY_REQUESTED_NEW_PASSWORD, false);
+			this.handleExpception(locale, null, e, model, request, response, "WEB_RESET_PASSWORD_PAGE_ERROR_MESSAGE_MAIL");
+			//String userMessage = LanguageHandler.getWord(locale, "WEB_RESET_PASSWORD_PAGE_ERROR_MESSAGE_MAIL");
+            //model.put(MODEL_VALUE_KEY_ERROR_MESSAGE, userMessage);
 		}
 		return ViewUtil.render(request, model, Path.WebTemplate.FORGOT_PASSWORD, locale);
 	}
