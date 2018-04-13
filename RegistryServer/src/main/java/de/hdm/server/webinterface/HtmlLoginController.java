@@ -315,21 +315,12 @@ public class HtmlLoginController extends HtmlController implements IHtmlLoginCon
 		} catch (DataAccessException e) {
 		    model.put(MODEL_VALUE_KEY_REQUESTED_NEW_PASSWORD, false);
 		    this.handleExpception(locale, null, e, model, request, response, "WEB_FORGOT_PASSWORD_PAGE_ERROR_MESSAGE_DATABASE");
-		    //e.printStackTrace();
-			//String userMessage = LanguageHandler.getWord(locale, "WEB_FORGOT_PASSWORD_PAGE_ERROR_MESSAGE_DATABASE");
-			//model.put(MODEL_VALUE_KEY_ERROR_MESSAGE, userMessage);
 		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
-			//e.printStackTrace();
 			model.put(MODEL_VALUE_KEY_REQUESTED_NEW_PASSWORD, false);
 			this.handleExpception(locale, null, e, model, request, response, "WEB_RESET_PASSWORD_PAGE_ERROR_MESSAGE_COMMON_POST");
-			//String userMessage = LanguageHandler.getWord(locale, "WEB_RESET_PASSWORD_PAGE_ERROR_MESSAGE_COMMON_POST");
-            //model.put(MODEL_VALUE_KEY_ERROR_MESSAGE, userMessage);
 		} catch (MessagingException e) {
-			//e.printStackTrace();
 			model.put(MODEL_VALUE_KEY_REQUESTED_NEW_PASSWORD, false);
 			this.handleExpception(locale, null, e, model, request, response, "WEB_RESET_PASSWORD_PAGE_ERROR_MESSAGE_MAIL");
-			//String userMessage = LanguageHandler.getWord(locale, "WEB_RESET_PASSWORD_PAGE_ERROR_MESSAGE_MAIL");
-            //model.put(MODEL_VALUE_KEY_ERROR_MESSAGE, userMessage);
 		}
 		return ViewUtil.render(request, model, Path.WebTemplate.FORGOT_PASSWORD, locale);
 	}
