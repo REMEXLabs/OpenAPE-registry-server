@@ -56,8 +56,13 @@ public class RegistryServerDatabaseConnectionManager extends DatabaseConnectionM
 		properties.setDriverClassName(MyProperties.getRegistryDatabaseDriverClassName());
 		properties.setUsername(MyProperties.getRegistryDatabaseUserName());
 		properties.setPassword(MyProperties.getRegistryDatabasePassword());
-		properties.setMaxActive(MyProperties.getRegistryDatabaseMaxActiveConnections());
-		properties.setMaxIdle(MyProperties.getRegistryDatabaseMaxIdleConnections());
+		properties.setInitialSize(MyProperties.getRegistryDatabaseMinIdleConnections());
+        properties.setMinIdle(MyProperties.getRegistryDatabaseMinIdleConnections());
+        properties.setMaxIdle(MyProperties.getRegistryDatabaseMaxIdleConnections());
+        properties.setMaxActive(MyProperties.getRegistryDatabaseMaxActiveConnections());
+		properties.setTestWhileIdle(true);
+		properties.setTimeBetweenEvictionRunsMillis(MyProperties.getRegistryDatabaseTimeBetweenEvictionRunsInSeconds() * 1000);
+		properties.setTestOnBorrow(true);
 		this.getDataSource().setPoolProperties(properties);
 	}
 

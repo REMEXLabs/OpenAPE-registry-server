@@ -103,7 +103,6 @@ public class ViewUtil {
 		model.put("locale", locale);
 		
 		int userId = SessionUtil.getUserId(request);
-		System.out.println("userId = " + userId);
 		if(userId != -1){
 			IUser user = null;
 			try {

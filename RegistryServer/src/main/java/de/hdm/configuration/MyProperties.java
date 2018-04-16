@@ -33,8 +33,10 @@ import de.hdm.datatypes.ValueSpace;
  * registryDatabaseUserName=[User name for the registry database.]
  * registryDatabasePassword=[Password for the registry database.]
  * registryDatabaseDriverClassName=[Class name of the driver, which is needed to connect to the registry database.]
- * registryDatabaseMaxActiveConnections=[Maximum number of allowed active connections to the registry database.]
- * registryDatabaseMaxIdleConnections=[Maximum number of allowed idle connections to the registry database.]
+ * registryDatabaseMaxActiveConnections=[Maximum number of allowed active connections to the registry database. Note that this property has to be greater equal 1.]
+ * registryDatabaseMaxIdleConnections=[Maximum number of allowed idle connections to the registry database. Note that this property has to be smaller equal to the property "registryDatabaseMaxActiveConnections".]
+ * registryDatabaseMinIdleConnections=[Minimum number of idle connections to the registry database. This property defines also the initial database connection pool size. Note that this property has to be smaller equal to the property "registryDatabaseMaxIdleConnections".]
+ * registryDatabaseTimeBetweenEvictionRunsInSeconds=[Time in seconds between runs of the idle connection validation / cleaner thread in the database connection pool. It must be greater equal 1.]
  * cacheLanguages=[true if the language property files should be cached and false if not.]
  * registryServerUriUntilApi=[the part of the url to request a concept as json object until /api/record/...]
  * conceptIdGenerationPrefix=[String as prefix for the generated concept ids. For example "C".]
@@ -43,6 +45,8 @@ import de.hdm.datatypes.ValueSpace;
  * addNewUserToAnAllUserGroup=[true if new users should be added to an all users group and false if not.]
  * allUsersGroupId=[Id of the group "_AllUsers". This is the group, which contains all registered users.]
  * readRightForAllUsersGroupPerDefault=[If it is true the read access right check box of the "_AllUsers" group in the create concept web interface is checked by default and if it is false not.]
+ * anonymousUsersGroupId=[Id of the group "_AnonymousUsers". This group is used to define read access rights for the concepts for non registered users.]
+ * readRightForAnonymousUsersGroupPerDefault=[If it is true the read access right check box of the "_AnonymousUsers" group in the create concept web interface is checked by default and if it is false not.]
  * prefixForHashOfPassword=[Prefix for the hashed passwords. The Prefix will not be hashed with the password.]
  * suffixForPassword=[Suffix for the passwords. The suffix will be hashed together with the password.]
  * resetPasswordPeriodOfValidityInSeconds=[Period of validity in seconds for a reset password.]
@@ -96,9 +100,23 @@ public class MyProperties {
     private static int REGISTRY_DATABASE_MAX_ACTIVE_CONNECTIONS;
 
     /**
-     * Number of maximum idle connections to the database.
+     * Number of maximum idle connections to the database. Note that this property has to be smaller equal to
+     * {@link MyProperties#REGISTRY_DATABASE_MAX_ACTIVE_CONNECTIONS}.
      */
     private static int REGISTRY_DATABASE_MAX_IDLE_CONNECTIONS;
+
+    /**
+     * Number of minimum idle connections to the database. This property defines also the initial database connection
+     * pool size. Note that this property has to be smaller equal to
+     * {@link MyProperties#REGISTRY_DATABASE_MAX_IDLE_CONNECTIONS}.
+     */
+    private static int REGISTRY_DATABASE_MIN_IDLE_CONNECTIONS;
+    
+    /**
+     * Time in seconds between runs of the idle connection validation / cleaner thread in the database connection pool.
+     * It must be greater equal 1.
+     */
+    private static int REGISTRY_DATABASE_TIME_BETWEEN_EVICTION_RUNS_IN_SECONDS;
 
     /**
      * When it is true, all language property files are loaded at the beginning. Otherwise they are loaded on demand.
@@ -140,6 +158,18 @@ public class MyProperties {
      * {@link #ALL_USERS_GROUP_ID}.
      */
     private static boolean READ_RIGHT_FOR_ALL_USERS_GROUP_PER_DEFAULT;
+    
+    /**
+     * Id of the group "_AnonymousUsers". This group is used to define read access rights for the concepts for non registered users.
+     */
+    private static int ANONYMOUS_USERS_GROUP_ID;
+    
+    /**
+     * If it is true the read access right check box of the "_AnonymousUsers" group in the create concept web interface is
+     * checked by default and if it is false not. The "_AnonymousUsers" group is specified by the property
+     * {@link #ANONYMOUS_USERS_GROUP_ID}.
+     */
+    private static boolean READ_RIGHT_FOR_ANONYMOUS_USERS_GROUP_PER_DEFAULT;
 
     /**
      * Prefix for the hash of a password. It is not hashed with the password.
@@ -222,7 +252,11 @@ public class MyProperties {
 
             REGISTRY_DATABASE_MAX_IDLE_CONNECTIONS = loadPropertyAsInt(properties,
                     "registryDatabaseMaxIdleConnections");
+            
+            REGISTRY_DATABASE_MIN_IDLE_CONNECTIONS = loadPropertyAsInt(properties, "registryDatabaseMinIdleConnections");
 
+            REGISTRY_DATABASE_TIME_BETWEEN_EVICTION_RUNS_IN_SECONDS = loadPropertyAsInt(properties, "registryDatabaseTimeBetweenEvictionRunsInSeconds");
+            
             CACHE_LANGUAGES = loadPropertyAsBoolean(properties, "cacheLanguages");
 
             REGISTRY_SERVER_URI_UNTIL_API = loadPropertyAsString(properties, "registryServerUriUntilApi");
@@ -238,6 +272,10 @@ public class MyProperties {
 
             READ_RIGHT_FOR_ALL_USERS_GROUP_PER_DEFAULT = loadPropertyAsBoolean(properties,
                     "readRightForAllUsersGroupPerDefault");
+            
+            ANONYMOUS_USERS_GROUP_ID = loadPropertyAsInt(properties, "anonymousUsersGroupId");
+            
+            READ_RIGHT_FOR_ANONYMOUS_USERS_GROUP_PER_DEFAULT = loadPropertyAsBoolean(properties, "readRightForAnonymousUsersGroupPerDefault");
 
             PREFIX_FOR_HASH_OF_PASSWORD = loadPropertyAsString(properties, "prefixForHashOfPassword");
 
@@ -344,7 +382,28 @@ public class MyProperties {
     public static int getRegistryDatabaseMaxIdleConnections() {
         return REGISTRY_DATABASE_MAX_IDLE_CONNECTIONS;
     }
+    
+    /**
+     * Static getter for the minimum number of idle connections to the registry database.
+     * 
+     * @return minimum number of idle connections to the registry database.
+     */
+    public static int getRegistryDatabaseMinIdleConnections() {
+        return REGISTRY_DATABASE_MIN_IDLE_CONNECTIONS;
+    }
 
+    /**
+     * Static getter for the time in seconds between runs of the idle connection validation / cleaner thread in the
+     * database connection pool.
+     * 
+     * @return time in seconds between runs of the idle connection validation / cleaner thread in the database
+     *         connection pool.
+     */
+    public static int getRegistryDatabaseTimeBetweenEvictionRunsInSeconds() {
+        return REGISTRY_DATABASE_TIME_BETWEEN_EVICTION_RUNS_IN_SECONDS;
+    }
+    
+    
     /**
      * Static getter for the boolean property whether the language caching should be enabled or disabled.
      * 
@@ -394,7 +453,8 @@ public class MyProperties {
     }
 
     /**
-     * Static getter for the id of the group "_AllUsers".
+     * Static getter for the id of the group "_AllUsers". This group contains all registered users. It is used to define
+     * default access rights for the concepts.
      * 
      * @return id of the group "_AllUsers"
      */
@@ -412,6 +472,26 @@ public class MyProperties {
      */
     public static boolean isReadRightForAllUsersGroupPerDefault() {
         return READ_RIGHT_FOR_ALL_USERS_GROUP_PER_DEFAULT;
+    }
+    
+    /**
+     * Static getter for the id of the group "_AnonymousUsers". This group is used to define read access rights for the
+     * concepts for non registered users.
+     */
+    public static int getAnonymousUsersGroupId() {
+        return ANONYMOUS_USERS_GROUP_ID;
+    }
+    
+    /**
+     * Static getter for the boolean property whether read access right check box of the "_AnonymousUsers" group in the create
+     * concept web interface shall checked by default or not. If the property is true, it shall be checked and if it is
+     * false then not. The "_AnonymousUsers" group is specified by the property {@link #getAnonymousUsersGroupId()}.
+     * 
+     * @return true if the read access right check box of the "_AnonymousUsers" group should be checked by default and false
+     *         if not.
+     */
+    public static boolean isReadRightForAnonymousUsersGroupPerDefault() {
+        return READ_RIGHT_FOR_ANONYMOUS_USERS_GROUP_PER_DEFAULT;
     }
     
     /**
@@ -519,6 +599,29 @@ public class MyProperties {
     private static boolean loadPropertyAsBoolean(Properties properties, String propertyName){
         String propertyAsString = loadPropertyAsString(properties, propertyName);
         return Boolean.valueOf(propertyAsString);
+    }
+    
+    private static void superPropertyChecker() {
+        registryDatabasePropertiesChecker();
+    }
+    
+    private static void registryDatabasePropertiesChecker() {
+        if(REGISTRY_DATABASE_MAX_ACTIVE_CONNECTIONS < 1) {
+            handleInvalidPropertyValue("registryDatabaseMaxActiveConnections");
+        }
+        if(REGISTRY_DATABASE_MAX_IDLE_CONNECTIONS > REGISTRY_DATABASE_MAX_ACTIVE_CONNECTIONS) {
+            handleInvalidPropertyValue("registryDatabaseMaxIdleConnections");
+        }
+        if(REGISTRY_DATABASE_MIN_IDLE_CONNECTIONS > REGISTRY_DATABASE_MAX_IDLE_CONNECTIONS) {
+            handleInvalidPropertyValue("registryDatabaseMinIdleConnections");
+        }
+        if(REGISTRY_DATABASE_TIME_BETWEEN_EVICTION_RUNS_IN_SECONDS < 1) {
+            handleInvalidPropertyValue("registryDatabaseTimeBetweenEvictionRunsInSeconds");
+        }
+    }
+    
+    private static void handleInvalidPropertyValue(String propertyName) {
+        throw new RuntimeException("The value of the property " + propertyName + " is invalid / not allowed!");
     }
 
 
