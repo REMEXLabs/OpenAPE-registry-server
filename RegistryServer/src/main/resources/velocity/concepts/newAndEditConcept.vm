@@ -211,6 +211,7 @@
 	
 	#if($groups && $groups.isEmpty() == false)
 		<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_ACCESS_RIGHTS")</label>
+		
 		<table>
 			<thead>
 				<tr>
@@ -239,18 +240,20 @@
 								#set($readRights = false)
 							#end
 							<td align="center">#accessRightCheckBox("readRight", $group, $readRights)</td>
-							#if(!$updateRights)
-								#set($updateRights = false)
+							#if($mp.getAnonymousUsersGroupId() != $group.getId())
+								#if(!$updateRights)
+									#set($updateRights = false)
+								#end
+								<td align="center">#accessRightCheckBox("updateRight", $group, $updateRights)</td>
+								#if(!$deleteRights)
+									#set($deleteRights = false)
+								#end
+								<td align="center">#accessRightCheckBox("deleteRight", $group, $deleteRights)</td>
+								#if(!$changeRightsRights)
+									#set($changeRightsRights = false)
+								#end
+								<td align="center">#accessRightCheckBox("changeRightsRight", $group, $changeRightsRights)</td>
 							#end
-							<td align="center">#accessRightCheckBox("updateRight", $group, $updateRights)</td>
-							#if(!$deleteRights)
-								#set($deleteRights = false)
-							#end
-							<td align="center">#accessRightCheckBox("deleteRight", $group, $deleteRights)</td>
-							#if(!$changeRightsRights)
-								#set($changeRightsRights = false)
-							#end
-							<td align="center">#accessRightCheckBox("changeRightsRight", $group, $changeRightsRights)</td>
 						</tr>
 						#set($counter = ($counter + 1))
 					#end

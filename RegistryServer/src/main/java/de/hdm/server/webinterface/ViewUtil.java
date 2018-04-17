@@ -22,6 +22,7 @@ import java.util.Map;
 import org.apache.velocity.app.VelocityEngine;
 import org.eclipse.jetty.http.HttpStatus;
 
+import de.hdm.configuration.MyProperties;
 import de.hdm.databaseaccess.DaoFactory;
 import de.hdm.databaseaccess.DataAccessException;
 import de.hdm.databaseaccess.IUserDao;
@@ -101,6 +102,7 @@ public class ViewUtil {
 		model.put("lh", LanguageHandler.createSingleLanguageHandler(locale));
 		model.put("tf", new TemplateFiller());
 		model.put("locale", locale);
+		model.put("mp", MyProperties.class);
 		
 		int userId = SessionUtil.getUserId(request);
 		if(userId != -1){

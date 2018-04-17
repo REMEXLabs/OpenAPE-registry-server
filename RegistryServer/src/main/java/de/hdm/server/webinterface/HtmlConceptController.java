@@ -323,9 +323,16 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 			List<IGroup> groups = this.groupDao.selectAllGroups(null);
 			model.put(MODEL_VALUE_KEY_GROUPS, groups);
 			
-			// set read right for "_AllUsers" group per default if enabled
-			if(MyProperties.isReadRightForAllUsersGroupPerDefault()){
-			    String[] readRights = new String[]{String.valueOf(MyProperties.getAllUsersGroupId())};
+			// set read right for "_AllUsers" and "_AnonymousUsers" group per default if enabled
+			if(MyProperties.isReadRightForAllUsersGroupPerDefault() || MyProperties.isReadRightForAnonymousUsersGroupPerDefault()) {
+			    String[] readRights;
+			    if(MyProperties.isReadRightForAllUsersGroupPerDefault() && MyProperties.isReadRightForAnonymousUsersGroupPerDefault()) {
+			        readRights = new String[]{String.valueOf(MyProperties.getAllUsersGroupId()), String.valueOf(MyProperties.getAnonymousUsersGroupId())};
+			    }else if(MyProperties.isReadRightForAllUsersGroupPerDefault()){
+	                readRights = new String[]{String.valueOf(MyProperties.getAllUsersGroupId())};
+	            }else {
+	                readRights = new String[]{String.valueOf(MyProperties.getAnonymousUsersGroupId())};
+	            }
 			    model.put(MODEL_VALUE_KEY_READ_RIGHTS, readRights);
 			}
 			
