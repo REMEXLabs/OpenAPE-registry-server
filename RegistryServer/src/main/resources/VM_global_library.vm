@@ -226,7 +226,7 @@
 
 #macro(copyright)
 	<footer id="footer" text-align="center">
-		<p class="copyright">&copy; <a href="https://www.hdm-stuttgart.de/">Hochschule der Medien 2017</a> | <a href="https://gpii.eu/legal/de/impressum.html">Impressum</a> | <a href="https://gpii.eu/legal/de/datenschutz.html">Hinweise zum Datenschutz</a></p>
+		<p class="copyright">&copy; <a href="https://www.hdm-stuttgart.de/">Hochschule der Medien 2017</a> | <a href="https://gpii.eu/legal/en/imprint.html">Imprint/Disclaimer</a> | <a href="https://gpii.eu/legal/en/privacy.html">Privacy</a></p>
 		<p class="copyright">&copy; Design: <a href="https://html5up.net/editorial">Creative Commons Editorial</a> by <a href="https://html5up.net">HTML5 UP</a>, used under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY</a> / Altered from original</p>
 	</footer>
 #end
