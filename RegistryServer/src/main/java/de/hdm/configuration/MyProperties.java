@@ -299,6 +299,8 @@ public class MyProperties {
             e.printStackTrace();
             throw new RuntimeException("Properties file which contains the configuration could not be loaded!");
         }
+        
+        superPropertyChecker();
     }
 
 

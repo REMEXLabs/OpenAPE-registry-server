@@ -1258,6 +1258,15 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 				throw new AuthenticationException(message, false);
 			}
 			int groupId = Integer.valueOf(groupIdAsString);
+			
+			// this ensures that a user cannot assign another right than the read right to the _AnonymousUsersGroup
+			if(groupId == MyProperties.getAnonymousUsersGroupId()) {
+			    if(this.hasRight(updateRightsAsList, groupId)||this.hasRight(deleteRightsAsList, groupId)||this.hasRight(changeRightsRightsAsList, groupId)) {
+			        String message = "Someone tried to assign another access right than the read right to the _AnonymousUsersGroup with the group id " + groupIdAsString + "!";
+	                throw new AuthenticationException(message, false);
+			    }
+			}
+			
 			IGroupAccessRight groupAccessRight = new GroupAccessRight(groupId, conceptId, this.hasRight(readRightsAsList, groupId), this.hasRight(updateRightsAsList, groupId), this.hasRight(deleteRightsAsList, groupId), this.hasRight(changeRightsRightsAsList, groupId));
 			groupAccessRights.add(groupAccessRight);
 		}
