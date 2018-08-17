@@ -40,7 +40,7 @@
 		
 		<script src="/js/concepts/barrierFreeSidebar.js" type="text/javascript"></script>
 		<script src="/assets/js/remex-cookies.min.js" type="text/javascript"></script>
-		<script>remex_cookies_setLanguage('en')</script>
+		script>let remex_cookies_wp_language = 'en';</script>
 		
 	</head>
 	<body>
