@@ -19,8 +19,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.hdm.server.SuperRestInterface;
-import spark.Spark;
-import spark.debug.DebugScreen;
 
 /**
  * This is the main class of the registry server.
