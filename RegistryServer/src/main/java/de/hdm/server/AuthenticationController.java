@@ -30,7 +30,8 @@ import de.hdm.helpers.Checker;
 import de.hdm.helpers.TemplateFiller;
 import de.hdm.multiplelanguages.LanguageHandler;
 import spark.Request;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 /**
  * This class provides methods for authentication via user name and password or an api key. The registry server needs
  * this class for the web interface and the JSON Rest api.
@@ -52,9 +53,9 @@ public class AuthenticationController {
 	 * Data access object for the users.
 	 */
 	private static IUserDao userDao = DaoFactory.createDaoFactory(DaoFactory.Database.DEFAULT).createUserDao();
-	
 
 
+	private final static Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
 
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
@@ -151,20 +152,20 @@ public class AuthenticationController {
 	public static boolean authenticate(String password, IUser user) throws AuthenticationException{
 		Checker.checkNullAndEmptiness(password, "password");
 		Checker.checkNull(user, "user");
+
 		boolean passwordValid = false;
-		String hashOfPassword;
 		try {
-			hashOfPassword = user.getHashOfPassword().replaceFirst(MyProperties.getPrefixForHashOfPassword(), "");
-			if(PasswordEncoder.matches(password + MyProperties.getSuffixForPassword(), hashOfPassword)){
+			if(PasswordEncoder.matches(password, user.getHashOfPassword())){
 				passwordValid = true;
 			}
-		} catch (NoSuchAlgorithmException e) {
+		} catch (PasswordStorage.CannotPerformOperationException e) {
 			e.printStackTrace();
 			throw new AuthenticationException("Password could not be checked!", e, false);
-		} catch (InvalidKeySpecException e) {
+		} catch (PasswordStorage.InvalidHashException e) {
 			e.printStackTrace();
-			throw new AuthenticationException("Password could not be checked!", e, false);
+			throw new AuthenticationException("Password uses old hash format.", e, false);
 		}
+
 		return passwordValid;
 	}
 	
@@ -173,23 +174,15 @@ public class AuthenticationController {
 		Checker.checkNull(user, "user");
 		Checker.checkNullAndEmptiness(resetPassword, "resetPassword");
 		boolean resetPasswordValid = false;
-		//System.out.println("user.getExpiryDateOfResetPasswordInMilliseconds()=" + user.getExpiryDateOfResetPasswordInMilliseconds());
-		//System.out.println("System.currentTimeMillis()=" + System.currentTimeMillis());
 		if(user.getExpiryDateOfResetPasswordInMilliseconds() >= System.currentTimeMillis()){
-			//System.out.println("reset password link not expired");
-			//System.out.println("user.getHashOfResetPassword() = " + user.getHashOfResetPassword());
-			String hashOfResetPassword = user.getHashOfResetPassword().replaceFirst(MyProperties.getPrefixForHashOfPassword(), "");
 			try {
-				if(PasswordEncoder.matches(resetPassword + MyProperties.getSuffixForPassword(), hashOfResetPassword)){
+				if(PasswordEncoder.matches(resetPassword, user.getHashOfResetPassword())){
 					System.out.println("reset password link valid");
 					resetPasswordValid = true;
 				}else{
 					System.out.println("reset password link not valid");
 				}
-			} catch (NoSuchAlgorithmException e) {
-				e.printStackTrace();
-				throw new AuthenticationException("Reset password could not be checked!", e, false);
-			} catch (InvalidKeySpecException e) {
+			} catch (PasswordStorage.CannotPerformOperationException | PasswordStorage.InvalidHashException e) {
 				e.printStackTrace();
 				throw new AuthenticationException("Reset password could not be checked!", e, false);
 			}
@@ -216,12 +209,9 @@ public class AuthenticationController {
 	}
 	
 	// TODO java doc
-	public static String hashNewPassword(String newPassword) throws NoSuchAlgorithmException, InvalidKeySpecException{
+	public static String hashNewPassword(String newPassword) throws PasswordStorage.CannotPerformOperationException {
 		Checker.checkNullAndEmptiness(newPassword, "newPassword");
-		newPassword += MyProperties.getSuffixForPassword();
-		String hashOfNewPasword = PasswordEncoder.encode(newPassword);
-		hashOfNewPasword = MyProperties.getPrefixForHashOfPassword() + hashOfNewPasword;
-		return hashOfNewPasword;
+		return PasswordEncoder.encode(newPassword);
 	}
 	
 	// TODO java doc

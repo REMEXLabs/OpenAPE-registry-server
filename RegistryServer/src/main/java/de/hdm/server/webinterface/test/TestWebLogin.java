@@ -15,8 +15,6 @@
  ******************************************************************************/
 package de.hdm.server.webinterface.test;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
 import de.hdm.configuration.MyProperties;
 import de.hdm.databaseaccess.DaoFactory;
@@ -25,10 +23,11 @@ import de.hdm.databaseaccess.IUserDao;
 import de.hdm.datatypes.IUser;
 import de.hdm.datatypes.User;
 import de.hdm.server.PasswordEncoder;
+import de.hdm.server.PasswordStorage;
 
 public class TestWebLogin {
 
-	public static void main(String[] args) throws NoSuchAlgorithmException, InvalidKeySpecException, DataAccessException {
+	public static void main(String[] args) throws PasswordStorage.CannotPerformOperationException, PasswordStorage.InvalidHashException, DataAccessException {
 		IUser user = new User();
 		user.setUserName("toabl");
 		user.setFirstName("Tobias");
@@ -37,15 +36,15 @@ public class TestWebLogin {
 		user.setSuperAdmin(true);
 		user.setApiKey("apiKeyToAbl");
 		user.setInstitute("HDM");
-		user.setHashOfPassword(MyProperties.getPrefixForHashOfPassword() + PasswordEncoder.encode("12345" + MyProperties.getSuffixForPassword()));
+		user.setHashOfPassword(PasswordEncoder.encode("12345"));
 		
 		IUserDao userDao = DaoFactory.createDaoFactory(DaoFactory.Database.DEFAULT).createUserDao();
 		userDao.insertUser(null, user);
 		
 		String password = "12345";
-		String encodedPassword = PasswordEncoder.encode(password + MyProperties.getSuffixForPassword());
+		String encodedPassword = PasswordEncoder.encode(password);
 		System.out.println(encodedPassword);
-		System.out.println(PasswordEncoder.matches(password + MyProperties.getSuffixForPassword(), encodedPassword));
+		System.out.println(PasswordEncoder.matches(password, encodedPassword));
 	}
 
 }

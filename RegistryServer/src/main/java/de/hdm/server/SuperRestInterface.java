@@ -107,7 +107,7 @@ public class SuperRestInterface {
      */
     public SuperRestInterface(){
         SuperRestInterface.logger.info("Setting up Rest API");
-        Spark.staticFiles.location("/public");
+        Spark.staticFileLocation("/public");
         this.initBeforeFilters();
         this.initRestEndPointsForJsonAPI();
         this.initRestEndPointsForWebUserInterface();

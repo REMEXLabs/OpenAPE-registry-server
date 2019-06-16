@@ -1,232 +1,232 @@
 #**
-	Copyright 2016-2018 Research group REMEX, Hochschule der Medien (Stuttgart, Germany)
-	
-	Licensed under the Apache License, Version 2.0 (the "License");
-	you may not use this file except in compliance with the License.
-	You may obtain a copy of the License at
-	
-	    http://www.apache.org/licenses/LICENSE-2.0
-	
-	Unless required by applicable law or agreed to in writing, software
-	distributed under the License is distributed on an "AS IS" BASIS,
-	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-	See the License for the specific language governing permissions and
-	limitations under the License.
-*#
+ Copyright 2016-2018 Research group REMEX, Hochschule der Medien (Stuttgart, Germany)
+
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ *#
 
 
 
 #macro(individualPageTitle $key)
-	#set($individualPageTitle = $lh.getWord($key))
+    #set($individualPageTitle = $lh.getWord($key))
 #end
 
 #macro(infoAndErrorMessage)
-	#if($errorMessage)
-		<b><font color="red">$errorMessage</font></b>
-		</p>
-	#end
-	#if($infoMessage)
-		<b><font>$infoMessage</font></b>
-		</p>
-	#end
+    #if($errorMessage)
+    <b><font color="red">$errorMessage</font></b>
+    </p>
+    #end
+    #if($infoMessage)
+    <b><font>$infoMessage</font></b>
+    </p>
+    #end
 #end
 
 #macro(inputTextWithLabel $labelKey, $name, $value, $placeHolderKey, $required)
-	#if($labelKey)
-		<label>$lh.getWord($labelKey)</label>
-	#end
-	#inputText($name, $value, $placeHolderKey, $required)
+    #if($labelKey)
+    <label>$lh.getWord($labelKey)</label>
+    #end
+    #inputText($name, $value, $placeHolderKey, $required)
 #end
 
 #macro(inputText $name, $value, $placeHolderKey, $required)
-	<input type="text" name="$name" 
-	#if($value)
-		value="$value" 
-	#end
-	#if($placeHolderKey && $placeHolderKey != "")
-		placeholder="$lh.getWord($placeHolderKey)" 
-	#end
-	#if($required)
-		required
-	#end	
-	>
+<input type="text" name="$name"
+    #if($value)
+       value="$value"
+    #end
+    #if($placeHolderKey && $placeHolderKey != "")
+       placeholder="$lh.getWord($placeHolderKey)"
+    #end
+    #if($required)
+       required
+    #end
+>
 #end
 
 #macro(inputTextAreaWithLabel $labelKey, $name, $value, $placeHolderKey, $required, $rows)
-	#if($labelKey)
-		<label>$lh.getWord($labelKey)</label>
-	#end
-	#inputTextArea($name, $value, $placeHolderKey, $required, $rows)
+    #if($labelKey)
+    <label>$lh.getWord($labelKey)</label>
+    #end
+    #inputTextArea($name, $value, $placeHolderKey, $required, $rows)
 #end
 
 #macro(inputTextArea $name, $value, $placeHolderKey, $required, $rows)
-	<textarea name="$name" 
-	#if($value)
-		value="$value" 
-	#end
-	#if($placeHolderKey && $placeHolderKey != "")
-		placeholder="$lh.getWord($placeHolderKey)" 
-	#end
-	#if($required)
-		required 
-	#end	
+<textarea name="$name"
+    #if($value)
+          value="$value"
+    #end
+    #if($placeHolderKey && $placeHolderKey != "")
+          placeholder="$lh.getWord($placeHolderKey)"
+    #end
+    #if($required)
+          required
+    #end
 	rows="$rows">#if($value)$value#end</textarea>
 #end
 
 #macro(getValue $valueKey)
-	#if(!$groupName)
-		#set($valueKey = false)
-	#end
+    #if(!$groupName)
+        #set($valueKey = false)
+    #end
 #end
 
 #macro(test $key)
-	<b><font color="red">$lh.getWord($key)</font></b>
+<b><font color="red">$lh.getWord($key)</font></b>
 #end
 
 #macro(fillTableCell $content)
-	#if($content)
-		<td>$content</td>
-	#else
-		<td></td>
-	#end
+    #if($content)
+    <td>$content</td>
+    #else
+    <td></td>
+    #end
 #end
 
 #macro(checkBoxWithLabel $labelKey, $name, $checked)
-	<div class="6u$ 12u$(small)">
-		#if($checked)
-			<input type="checkbox" id="$name" name="$name" checked>
-		#else
-			<input type="checkbox" id="$name" name="$name">
-		#end
-		<label for="$name">$lh.getWord($labelKey)</label>
-	</div>
+<div class="6u$ 12u$(small)">
+    #if($checked)
+        <input type="checkbox" id="$name" name="$name" checked>
+    #else
+        <input type="checkbox" id="$name" name="$name">
+    #end
+    <label for="$name">$lh.getWord($labelKey)</label>
+</div>
 #end
 
 #macro(openedMenuHandler $menuName)
-	#if($openedMenu && $menuName == $openedMenu)
-		"opener active"
-	#else
-		"opener"
-	#end
+    #if($openedMenu && $menuName == $openedMenu)
+    "opener active"
+    #else
+    "opener"
+    #end
 #end
 
 #macro(conceptsTable $concepts, $noConceptsMessage)
-	<div class="table-wrapper">
-		#if($concepts && $concepts.isEmpty() == false)
-			<table>
-				<thead>
-					<tr>
-						<th>$lh.getWord("WEB_CONCEPTS_LIST_PAGE_COLUMN_NAME_ID")</th>
-						<th>$lh.getWord("WEB_CONCEPTS_LIST_PAGE_COLUMN_NAME_NAME")</th>
-						<th>$lh.getWord("WEB_CONCEPTS_LIST_PAGE_COLUMN_NAME_ACTION")</th>
-					</tr>
-					<tbody>
-						#foreach($concept in $concepts)
-							<tr>
-								<td>$concept.getId()</td>
-								<td>$concept.getNameByLocale($locale).getContent()</td>
-								<td>#if($concept.hasUserReadRight($user, $usersGroups))
-										<a href="/web/loggedIn/concepts/showConcept?conceptId=$concept.getId()">$lh.getWord("WEB_CONCEPTS_LIST_PAGE_LINK_DETAILS_NAME")</a>
-									#end
-									#if($concept.hasUserUpdateRight($user, $usersGroups))
-										 | <a href="/web/loggedIn/concepts/editConcept?conceptId=$concept.getId()">$lh.getWord("WEB_CONCEPTS_LIST_PAGE_LINK_EDIT_NAME")</a>
-									#end
-									#if($concept.hasUserDeleteRight($user, $usersGroups))
-										 | <a href="/web/loggedIn/concepts/deleteConcept?conceptId=$concept.getId()" onclick="return confirm('$lh.getWord("WEB_CONCEPTS_LIST_PAGE_LINK_REMOVE_CONFIRM_MESSAGE") $concept.getId()?')">$lh.getWord("WEB_CONCEPTS_LIST_PAGE_LINK_REMOVE_NAME")</a>
-									#end
-									#if($user.isSuperAdmin() || $concept.getOwners().contains($user.getId()))
-										 | <a href="/web/loggedIn/concepts/conceptLog?conceptId=$concept.getId()">$lh.getWord("WEB_CONCEPTS_LIST_PAGE_LINK_LOGS_NAME")</a>
-									#end
-								</td>
-							</tr>
-						#end
-					</tbody>
-				</thead>
-			</table>
-		#else
-			<b><font>$noConceptsMessage</font></b>
-		#end
-	</div>
+<div class="table-wrapper">
+    #if($concepts && $concepts.isEmpty() == false)
+        <table>
+            <thead>
+            <tr>
+                <th>$lh.getWord("WEB_CONCEPTS_LIST_PAGE_COLUMN_NAME_ID")</th>
+                <th>$lh.getWord("WEB_CONCEPTS_LIST_PAGE_COLUMN_NAME_NAME")</th>
+                <th>$lh.getWord("WEB_CONCEPTS_LIST_PAGE_COLUMN_NAME_ACTION")</th>
+            </tr>
+            <tbody>
+                #foreach($concept in $concepts)
+                <tr>
+                    <td>$concept.getId()</td>
+                    <td>$concept.getNameByLocale($locale).getContent()</td>
+                    <td>#if($concept.hasUserReadRight($user, $usersGroups))
+                        <a href="/web/loggedIn/concepts/showConcept?conceptId=$concept.getId()">$lh.getWord("WEB_CONCEPTS_LIST_PAGE_LINK_DETAILS_NAME")</a>
+                    #end
+                        #if($concept.hasUserUpdateRight($user, $usersGroups))
+                            | <a href="/web/loggedIn/concepts/editConcept?conceptId=$concept.getId()">$lh.getWord("WEB_CONCEPTS_LIST_PAGE_LINK_EDIT_NAME")</a>
+                        #end
+                        #if($concept.hasUserDeleteRight($user, $usersGroups))
+                            | <a href="/web/loggedIn/concepts/deleteConcept?conceptId=$concept.getId()" onclick="return confirm('$lh.getWord("WEB_CONCEPTS_LIST_PAGE_LINK_REMOVE_CONFIRM_MESSAGE") $concept.getId()?')">$lh.getWord("WEB_CONCEPTS_LIST_PAGE_LINK_REMOVE_NAME")</a>
+                        #end
+                        #if($user.isSuperAdmin() || $concept.getOwners().contains($user.getId()))
+                            | <a href="/web/loggedIn/concepts/conceptLog?conceptId=$concept.getId()">$lh.getWord("WEB_CONCEPTS_LIST_PAGE_LINK_LOGS_NAME")</a>
+                        #end
+                    </td>
+                </tr>
+                #end
+            </tbody>
+            </thead>
+        </table>
+    #else
+        <b><font>$noConceptsMessage</font></b>
+    #end
+</div>
 #end
 
 #macro(dropdownMenu $values, $names, $selectedValue, $required, $elementNameAndId)
-	<div class="row uniform">
-		<div class="12u$">
-			<div class="select-wrapper">
-				<select name="$elementNameAndId" id="$elementNameAndId" #if($required) required #end>
-					#foreach($i in [0..$values.size()])
-						#if($i < $values.size())
-							<option value="$values[$i]" #if($selectedValue && $selectedValue == $values[$i]) selected #end>$names[$i]</option>
-						#end
-					#end
-				</select>
-			</div>
-		</div>
-	</div>
+<div class="row uniform">
+    <div class="12u$">
+        <div class="select-wrapper">
+            <select name="$elementNameAndId" id="$elementNameAndId" #if($required) required #end>
+                #foreach($i in [0..$values.size()])
+                    #if($i < $values.size())
+                        <option value="$values[$i]" #if($selectedValue && $selectedValue == $values[$i]) selected #end>$names[$i]</option>
+                    #end
+                #end
+            </select>
+        </div>
+    </div>
+</div>
 #end
 
 #macro(contentFields  $languageCodes, $contents, $contentPlaceholder, $type, $rows, $required, $parentElementId)
-	<div id='$parentElementId'>
-		#if($languageCodes && $contents)
-			#foreach($i in [0..$contents.size()])
-				#if($i < $contents.size())
-					<script type="text/javascript">insertContentFields("$languageCodes[$i]", "$contents[$i]", "$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_LANGUAGE")", "$contentPlaceholder", $type, "$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_DELETE_BUTTON_TEXT")", $rows, $required);</script>
-				#end
-			#end
-		#else
-			<script type="text/javascript">insertContentFields(null, null, "$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_LANGUAGE")", "$contentPlaceholder", $type, "$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_DELETE_BUTTON_TEXT")", $rows, $required);</script>
-		#end
-	</div>
-	<div class="row uniform">
-		<div class="2u 12u$(small)">
-			<input type="button" name="add" value="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_ADD_BUTTON_TEXT")" onclick='insertContentFields(null, null, "$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_LANGUAGE")", "$contentPlaceholder", $type, "$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_DELETE_BUTTON_TEXT")", $rows, $required);'/>	
-		</div>
-	</div>
+<div id='$parentElementId'>
+    #if($languageCodes && $contents)
+        #foreach($i in [0..$contents.size()])
+            #if($i < $contents.size())
+                <script type="text/javascript">insertContentFields("$languageCodes[$i]", "$contents[$i]", "$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_LANGUAGE")", "$contentPlaceholder", $type, "$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_DELETE_BUTTON_TEXT")", $rows, $required);</script>
+            #end
+        #end
+    #else
+        <script type="text/javascript">insertContentFields(null, null, "$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_LANGUAGE")", "$contentPlaceholder", $type, "$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_DELETE_BUTTON_TEXT")", $rows, $required);</script>
+    #end
+</div>
+<div class="row uniform">
+    <div class="2u 12u$(small)">
+        <input type="button" name="add" value="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_ADD_BUTTON_TEXT")" onclick='insertContentFields(null, null, "$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_LANGUAGE")", "$contentPlaceholder", $type, "$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_DELETE_BUTTON_TEXT")", $rows, $required);'/>
+    </div>
+</div>
 #end
 
 #macro(accessRightCheckBox $name, $group, $rightsList)
-	<input type="checkbox" id="$name$counter" name="$name" value="$group.getId()"
-	#if($rightsList && $rightsList.contains("$group.getId()"))
-		 checked
-	#end
-	#if($editMode && !$groupAccessRightsEnabled)
-	 disabled
-	#end
-	/><label for="$name$counter"></label>	
+<input type="checkbox" id="$name$counter" name="$name" value="$group.getId()"
+    #if($rightsList && $rightsList.contains("$group.getId()"))
+       checked
+    #end
+    #if($editMode && !$groupAccessRightsEnabled)
+       disabled
+    #end
+/><label for="$name$counter"></label>
 #end
 
 #macro(contentTable $contents, $noContentMessage)
-	<div class="table-wrapper">
-		#if($contents && $contents.isEmpty() == false)
-			<table>
-				<thead>
-					<tr>
-						<th>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_COLUMN_NAME_LANGUAGE")</th>
-						<th>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_COLUMN_NAME_VALUE")</th>
-					</tr>
-					<tbody>
-						#foreach($content in $contents)
-							<tr>
-								#if(!$content.getLanguageCode())
-									<td></td>
-								#else
-									<td>$content.getLanguageCode()</td>
-								#end
-								<td>$content.getContentForHtmlContentTable()</td>
-							</tr>
-						#end
-					</tbody>
-				</thead>
-			</table>
-		#else
-			<p>-</p>
-		#end
-	</div>
+<div class="table-wrapper">
+    #if($contents && $contents.isEmpty() == false)
+        <table>
+            <thead>
+            <tr>
+                <th>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_COLUMN_NAME_LANGUAGE")</th>
+                <th>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_COLUMN_NAME_VALUE")</th>
+            </tr>
+            <tbody>
+                #foreach($content in $contents)
+                <tr>
+                    #if(!$content.getLanguageCode())
+                        <td></td>
+                    #else
+                        <td>$content.getLanguageCode()</td>
+                    #end
+                    <td>$content.getContentForHtmlContentTable()</td>
+                </tr>
+                #end
+            </tbody>
+            </thead>
+        </table>
+    #else
+        <p>-</p>
+    #end
+</div>
 #end
 
 #macro(copyright)
-	<footer id="footer" text-align="center">
-		<p class="copyright">&copy; <a href="https://www.hdm-stuttgart.de/">Hochschule der Medien 2017</a> | <a href="https://gpii.eu/legal/en/imprint.html">Imprint/Disclaimer</a> | <a href="https://gpii.eu/legal/en/privacy.html">Privacy</a></p>
-		<p class="copyright">&copy; Design: <a href="https://html5up.net/editorial">Creative Commons Editorial</a> by <a href="https://html5up.net">HTML5 UP</a>, used under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY</a> / Altered from original</p>
-	</footer>
+<footer id="footer" text-align="center">
+    <p class="copyright">&copy; <a href="https://www.hdm-stuttgart.de/">Hochschule der Medien 2017</a> | <a href="https://gpii.eu/legal/en/imprint.html">Imprint/Disclaimer</a> | <a href="https://gpii.eu/legal/en/privacy.html">Privacy</a></p>
+    <p class="copyright">&copy; Design: <a href="https://html5up.net/editorial">Creative Commons Editorial</a> by <a href="https://html5up.net">HTML5 UP</a>, used under <a href="https://creativecommons.org/licenses/by/3.0/">CC BY</a> / Altered from original</p>
+</footer>
 #end

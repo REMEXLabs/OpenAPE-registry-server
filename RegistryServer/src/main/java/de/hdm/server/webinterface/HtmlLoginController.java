@@ -24,6 +24,7 @@ import java.util.Map;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 
+import de.hdm.server.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,13 +36,6 @@ import de.hdm.databaseaccess.IUserDao;
 import de.hdm.datatypes.IUser;
 import de.hdm.exceptions.RegistryServerException;
 import de.hdm.multiplelanguages.LanguageHandler;
-import de.hdm.server.AuthenticationController;
-import de.hdm.server.AuthenticationException;
-import de.hdm.server.BadRequestException;
-import de.hdm.server.MailUtil;
-import de.hdm.server.Path;
-import de.hdm.server.RequestUtil;
-import de.hdm.server.SessionUtil;
 import spark.Request;
 import spark.Response;
 
@@ -127,7 +121,7 @@ public class HtmlLoginController extends HtmlController implements IHtmlLoginCon
 	@Override
 	public String getLoginPage(Request request, Response response) {
 		Locale locale = RequestUtil.getHeaderFieldAcceptLanguage(request);
-		
+
 		Map<String, Object> model = new HashMap<String, Object>();
 		if(SessionUtil.getSessionAttributeLoggedOut(request)){
 			model.put(MODEL_VALUE_KEY_INFO_MESSAGE, LanguageHandler.getWord(locale, "WEB_LOGIN_PAGE_MESSAGE_LOGOUT"));
@@ -139,7 +133,7 @@ public class HtmlLoginController extends HtmlController implements IHtmlLoginCon
 		model.put(MODEL_VALUE_KEY_AUTHENTICATION_FAILED, false);
 		model.put(MODEL_VALUE_KEY_UNKNOWN_USER_NAME, false);
 		model.put(MODEL_VALUE_KEY_INVALID_PASSWORD, false);
-		
+
 		return ViewUtil.render(request, model, Path.WebTemplate.LOGIN, locale);
 	}
 
@@ -315,7 +309,7 @@ public class HtmlLoginController extends HtmlController implements IHtmlLoginCon
 		} catch (DataAccessException e) {
 		    model.put(MODEL_VALUE_KEY_REQUESTED_NEW_PASSWORD, false);
 		    this.handleExpception(locale, null, e, model, request, response, "WEB_FORGOT_PASSWORD_PAGE_ERROR_MESSAGE_DATABASE");
-		} catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+		} catch (PasswordStorage.CannotPerformOperationException e) {
 			model.put(MODEL_VALUE_KEY_REQUESTED_NEW_PASSWORD, false);
 			this.handleExpception(locale, null, e, model, request, response, "WEB_RESET_PASSWORD_PAGE_ERROR_MESSAGE_COMMON_POST");
 		} catch (MessagingException e) {

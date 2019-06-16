@@ -15,10 +15,7 @@
  ******************************************************************************/
 package de.hdm.multiplelanguages;
 
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import de.hdm.configuration.MyProperties;
 import de.hdm.helpers.Checker;
@@ -68,8 +65,7 @@ public class LanguageHandler {
 	 */
 	static {
 		// add here additional languages
-		languages.put("English", new Locale("en", "GB"));
-		languages.put("German", new Locale("de", "DE"));
+
 	}
 
 
@@ -119,21 +115,29 @@ public class LanguageHandler {
 	 * @return instance of {@link #SingleLanguageHandler}
 	 */
 	public static SingleLanguageHandler createSingleLanguageHandler(Locale locale) {
-		//SingleLanguageHandler singleLanguageHandler = null;
 		ResourceBundle resourceBundle = null;
+
 		if (CACHE_ENABLED) {
 			resourceBundle = cache.get(locale);
-			//singleLanguageHandler = new SingleLanguageHandler(cache.get(locale));
 		}
-		if(resourceBundle == null){
-			resourceBundle = ResourceBundle.getBundle("language", locale);
-			if(CACHE_ENABLED){
-				cache.put(locale, resourceBundle);
+
+		if (resourceBundle == null) {
+			try {
+				resourceBundle = ResourceBundle.getBundle("language", locale);
+			}  catch (Exception e) {
+				resourceBundle = ResourceBundle.getBundle("language", new ResourceBundle.Control() {
+							@Override
+							public List<Locale> getCandidateLocales(String name, Locale locale) {
+								return Collections.singletonList(Locale.ROOT);
+							}
+						});
 			}
 		}
-		/*if(singleLanguageHandler == null){
-			singleLanguageHandler = new SingleLanguageHandler(ResourceBundle.getBundle("language", locale));
-		}*/
+
+		if (CACHE_ENABLED) {
+			cache.put(locale, resourceBundle);
+		}
+
 		return new SingleLanguageHandler(resourceBundle);
 	}
 	
@@ -218,6 +222,7 @@ public class LanguageHandler {
 	 */
 	private static Locale findLocale(String language) {
 		Locale locale = null;
+
 		if(language != null && language.isEmpty() == false){
 			locale = languages.get(language);	
 		}

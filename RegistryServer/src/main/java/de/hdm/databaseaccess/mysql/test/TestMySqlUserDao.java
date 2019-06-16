@@ -24,10 +24,11 @@ import de.hdm.databaseaccess.mysql.MySqlUserDao;
 import de.hdm.datatypes.IUser;
 import de.hdm.helpers.test.TestEntities;
 import de.hdm.server.AuthenticationController;
+import de.hdm.server.PasswordStorage;
 
 public class TestMySqlUserDao {
 
-	public static void main(String[] args) throws DataAccessException, NoSuchAlgorithmException, InvalidKeySpecException{
+	public static void main(String[] args) throws DataAccessException, PasswordStorage.CannotPerformOperationException {
 		MySqlUserDao m = new MySqlUserDao();
 		//List<IUser> users = TestEntities.createUsers();
 		//m.insertUser(null, users.get(0));
