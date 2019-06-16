@@ -7,17 +7,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="71d9c7d3-73e5-4b0d-aca1-7ec5b03cf48a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/RegistryServer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/RegistryServer/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/configuration/emptyConfig.properties" beforeDir="false" afterPath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/configuration/emptyConfig.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/databaseaccess/mysql/test/TestMySqlUserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/databaseaccess/mysql/test/TestMySqlUserDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/multiplelanguages/LanguageHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/multiplelanguages/LanguageHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/AuthenticationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/AuthenticationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/PasswordEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/PasswordEncoder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/Path.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/SuperRestInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/SuperRestInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/HtmlLoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/HtmlLoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/test/TestWebLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/test/TestWebLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/resources/VM_global_library.vm" beforeDir="false" afterPath="$PROJECT_DIR$/RegistryServer/src/main/resources/VM_global_library.vm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/resources/velocity/login/login.vm" beforeDir="false" afterPath="$PROJECT_DIR$/RegistryServer/src/main/resources/velocity/login/login.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/HtmlInfoAndErrorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/HtmlInfoAndErrorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/IHtmlInfoAndErrorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/IHtmlInfoAndErrorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/resources/public/assets/css/cookieconsent.min.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/resources/public/assets/js/cookieconsent.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/resources/public/assets/js/remex-cookies.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/resources/velocity/legalNotice.vm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/resources/velocity/loggedInLayout.vm" beforeDir="false" afterPath="$PROJECT_DIR$/RegistryServer/src/main/resources/velocity/loggedInLayout.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/resources/velocity/notLoggedInLayout.vm" beforeDir="false" afterPath="$PROJECT_DIR$/RegistryServer/src/main/resources/velocity/notLoggedInLayout.vm" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegistryServer/src/main/resources/velocity/privacyPolicy.vm" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/RegistryServer/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -50,11 +51,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/RegistryServerMain.java">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/resources/velocity/notLoggedInLayout.vm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="109" column="24" lean-forward="true" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
+            <state relative-caret-position="422">
+              <caret line="70" column="57" selection-start-line="70" selection-start-column="57" selection-end-line="70" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/resources/velocity/loggedInLayout.vm">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="39" column="53" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/HtmlInfoAndErrorController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="188">
+              <caret line="148" column="5" selection-start-line="148" selection-start-column="5" selection-end-line="148" selection-end-column="5" />
             </state>
           </provider>
         </entry>
@@ -62,8 +81,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/SuperRestInterface.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="78" column="69" lean-forward="true" selection-start-line="78" selection-start-column="69" selection-end-line="78" selection-end-column="69" />
+            <state relative-caret-position="7392">
+              <caret line="476" selection-start-line="476" selection-end-line="476" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -72,61 +91,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/HtmlLoginController.java">
+        <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/IHtmlInfoAndErrorController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="179" column="45" lean-forward="true" selection-start-line="179" selection-start-column="45" selection-end-line="179" selection-end-column="45" />
+            <state relative-caret-position="192">
+              <caret line="27" column="70" selection-start-line="27" selection-start-column="70" selection-end-line="27" selection-end-column="70" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/AuthenticationController.java">
+        <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/resources/VM_global_library.vm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="165" column="76" selection-start-line="165" selection-start-column="76" selection-end-line="165" selection-end-column="76" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/PasswordEncoder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="406">
-              <caret line="47" column="26" selection-start-line="47" selection-start-column="26" selection-end-line="47" selection-end-column="26" />
+            <state relative-caret-position="751">
+              <caret line="231" column="4" selection-start-line="231" selection-start-column="4" selection-end-line="231" selection-end-column="4" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="n#!!doc" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/ViewUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="94" column="25" selection-start-line="94" selection-start-column="25" selection-end-line="94" selection-end-column="25" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/configuration/config.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="33" selection-start-line="33" selection-end-line="36" selection-end-column="3" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/configuration/emptyConfig.properties">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -164,7 +144,11 @@
       <find>htmlUserController</find>
       <find>PasswordEncoder</find>
       <find>prefixForHashOfPassword</find>
+      <find>remex_cookies_wp_language</find>
       <find>handleRe</find>
+      <find>cook</find>
+      <find>cookies</find>
+      <find>getLegalNoticePage</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -177,7 +161,6 @@
         <option value="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/HtmlUserController.java" />
         <option value="$PROJECT_DIR$/RegistryServer/src/main/resources/logging.properties" />
         <option value="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/multiplelanguages/SingleLanguageHandler.java" />
-        <option value="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/SuperRestInterface.java" />
         <option value="$PROJECT_DIR$/RegistryServer/src/main/resources/VM_global_library.vm" />
         <option value="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/ViewUtil.java" />
         <option value="$PROJECT_DIR$/RegistryServer/src/main/java/language_en.properties" />
@@ -194,6 +177,12 @@
         <option value="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/AuthenticationController.java" />
         <option value="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/configuration/config.properties" />
         <option value="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/configuration/emptyConfig.properties" />
+        <option value="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/Path.java" />
+        <option value="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/HtmlInfoAndErrorController.java" />
+        <option value="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/SuperRestInterface.java" />
+        <option value="$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/IHtmlInfoAndErrorController.java" />
+        <option value="$PROJECT_DIR$/RegistryServer/src/main/resources/velocity/loggedInLayout.vm" />
+        <option value="$PROJECT_DIR$/RegistryServer/src/main/resources/velocity/notLoggedInLayout.vm" />
       </list>
     </option>
   </component>
@@ -241,6 +230,9 @@
     <option name="width" value="1680" />
     <option name="height" value="970" />
   </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -285,47 +277,7 @@
               <item name="RegistryServer" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="hdm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OpenAPE-registry-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OpenAPE-registry-server" type="462c0819:PsiDirectoryNode" />
-              <item name="RegistryServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="hdm" type="462c0819:PsiDirectoryNode" />
-              <item name="configuration" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OpenAPE-registry-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OpenAPE-registry-server" type="462c0819:PsiDirectoryNode" />
-              <item name="RegistryServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="hdm" type="462c0819:PsiDirectoryNode" />
-              <item name="databaseaccess" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OpenAPE-registry-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OpenAPE-registry-server" type="462c0819:PsiDirectoryNode" />
-              <item name="RegistryServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="hdm" type="462c0819:PsiDirectoryNode" />
-              <item name="multiplelanguages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OpenAPE-registry-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OpenAPE-registry-server" type="462c0819:PsiDirectoryNode" />
-              <item name="RegistryServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="Resource Bundle 'language'" type="a6c14932:ResourceBundleNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="OpenAPE-registry-server" type="b2602c69:ProjectViewProjectNode" />
@@ -334,6 +286,39 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OpenAPE-registry-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OpenAPE-registry-server" type="462c0819:PsiDirectoryNode" />
+              <item name="RegistryServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OpenAPE-registry-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OpenAPE-registry-server" type="462c0819:PsiDirectoryNode" />
+              <item name="RegistryServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="OpenAPE-registry-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="OpenAPE-registry-server" type="462c0819:PsiDirectoryNode" />
+              <item name="RegistryServer" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="OpenAPE-registry-server" type="b2602c69:ProjectViewProjectNode" />
@@ -343,16 +328,6 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="velocity" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="OpenAPE-registry-server" type="b2602c69:ProjectViewProjectNode" />
-              <item name="OpenAPE-registry-server" type="462c0819:PsiDirectoryNode" />
-              <item name="RegistryServer" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="velocity" type="462c0819:PsiDirectoryNode" />
-              <item name="login" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="OpenAPE-registry-server" type="b2602c69:ProjectViewProjectNode" />
@@ -386,6 +361,12 @@
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/RegistryServer/src/main/resources/public/assets/css" />
+      <recent name="$PROJECT_DIR$/RegistryServer/src/main/resources/public/assets/js" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -550,12 +531,12 @@
       <updated>1560671004729</updated>
       <workItem from="1560671006003" duration="3897000" />
       <workItem from="1560675218959" duration="33000" />
-      <workItem from="1560675321084" duration="11491000" />
+      <workItem from="1560675321084" duration="12270000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15421000" />
+    <option name="totallyTimeSpent" value="16200000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1680" height="970" extended-state="0" />
@@ -566,7 +547,7 @@
       <window_info id="UI Designer" order="2" />
       <window_info id="Capture Tool" order="3" />
       <window_info id="Favorites" order="4" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.2844933" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.2844933" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="0" show_stripe_button="false" />
@@ -594,7 +575,7 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.24969475" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
-      <window_info anchor="right" id="Maven" order="9" visible="true" weight="0.15323566" />
+      <window_info active="true" anchor="right" id="Maven" order="9" visible="true" weight="0.15323566" />
       <window_info anchor="right" id="Flutter Inspector" order="10" />
       <window_info anchor="right" id="Flutter Outline" order="11" />
     </layout>
@@ -674,18 +655,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/resources/VM_global_library.vm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="534">
-          <caret line="231" column="4" selection-start-line="231" selection-start-column="4" selection-end-line="231" selection-end-column="4" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#8030#8036#0#HTML" expanded="true" />
-            <element signature="e#8272#8278#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home/src.zip!/java/util/ResourceBundle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="193">
@@ -723,13 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/Path.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="208" column="53" selection-start-line="208" selection-start-column="53" selection-end-line="208" selection-end-column="78" />
         </state>
       </provider>
     </entry>
@@ -828,20 +790,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/RegistryServerMain.java">
+    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/RequestUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="109" column="24" lean-forward="true" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
+        <state relative-caret-position="188">
+          <caret line="292" column="25" selection-start-line="292" selection-start-column="25" selection-end-line="292" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/SuperRestInterface.java">
+    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/resources/public/assets/js/remex-cookies.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="78" column="69" lean-forward="true" selection-start-line="78" selection-start-column="69" selection-end-line="78" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state>
+          <caret column="2573" selection-start-column="2573" selection-end-column="2573" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/configuration/emptyConfig.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="64">
+          <caret line="11" column="73" selection-start-line="10" selection-start-column="67" selection-end-line="11" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/configuration/config.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="33" selection-start-line="33" selection-end-line="36" selection-end-column="3" />
         </state>
       </provider>
     </entry>
@@ -852,20 +825,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/RequestUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="292" column="25" selection-start-line="292" selection-start-column="25" selection-end-line="292" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/HtmlLoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="179" column="45" lean-forward="true" selection-start-line="179" selection-start-column="45" selection-end-line="179" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -886,17 +845,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/configuration/config.properties">
+    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/HtmlLoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="33" selection-start-line="33" selection-end-line="36" selection-end-column="3" />
+        <state relative-caret-position="354">
+          <caret line="179" column="45" lean-forward="true" selection-start-line="179" selection-start-column="45" selection-end-line="179" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/configuration/emptyConfig.properties">
+    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/RegistryServerMain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="35" column="18" selection-start-line="35" selection-start-column="18" selection-end-line="35" selection-end-column="18" />
+        <state relative-caret-position="393">
+          <caret line="109" column="24" lean-forward="true" selection-start-line="109" selection-start-column="24" selection-end-line="109" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/resources/velocity/privacyPolicy.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/resources/velocity/legalNotice.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-409">
+          <caret line="19" column="21" lean-forward="true" selection-start-line="19" selection-start-column="21" selection-end-line="19" selection-end-column="21" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/Path.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="226" column="104" selection-start-line="226" selection-start-column="104" selection-end-line="226" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/resources/VM_global_library.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="751">
+          <caret line="231" column="4" selection-start-line="231" selection-start-column="4" selection-end-line="231" selection-end-column="4" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/HtmlInfoAndErrorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="148" column="5" selection-start-line="148" selection-start-column="5" selection-end-line="148" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/SuperRestInterface.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7392">
+          <caret line="476" selection-start-line="476" selection-end-line="476" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/java/de/hdm/server/webinterface/IHtmlInfoAndErrorController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="27" column="70" selection-start-line="27" selection-start-column="70" selection-end-line="27" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/resources/velocity/loggedInLayout.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="39" column="53" selection-start-line="39" selection-start-column="53" selection-end-line="39" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/RegistryServer/src/main/resources/velocity/notLoggedInLayout.vm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="70" column="57" selection-start-line="70" selection-start-column="57" selection-end-line="70" selection-end-column="57" />
         </state>
       </provider>
     </entry>

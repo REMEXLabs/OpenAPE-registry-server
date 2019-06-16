@@ -37,10 +37,7 @@
 		<link rel="stylesheet" href="/assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="/assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="/assets/css/ie8.css" /><![endif]-->
-		
-		<script src="/js/concepts/barrierFreeSidebar.js" type="text/javascript"></script>
-		<script src="/assets/js/remex-cookies.min.js" type="text/javascript"></script>
-		script>let remex_cookies_wp_language = 'en';</script>
+		<link href="/assets/css/remex-cookies.min.css" rel="stylesheet"/>
 		
 	</head>
 	<body>
@@ -149,6 +146,9 @@
 		<script src="/assets/js/util.js"></script>
 		<!--[if lte IE 8]><script src="/assets/js/ie/respond.min.js"></script><![endif]-->
 		<script src="/assets/js/main.js"></script>
+		<script src="/js/concepts/barrierFreeSidebar.js"></script>
+		<script src="/assets/js/remex-cookies.min.js"></script>
+		<script>remex_cookies_setLanguage('en');</script>
 	</body>
 </html>
 #end

@@ -225,10 +225,7 @@ public class Path {
 		public static final String LOGGED_IN_INFO_AND_ERROR = "velocity/loggedInInfoAndError.vm";
 		
 		public static final String NOT_LOGGED_IN_INFO_AND_ERROR = "velocity/notLoggedInInfoAndError.vm";
-		
-		public static final String LEGAL_NOTICE = "/velocity/legalNotice.vm/";
-		
-		public static final String PRIVACY_POLICY = "/velocity/privacyPolicy.vm";
+
 
 		
 		// login and logout

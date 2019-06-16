@@ -148,18 +148,6 @@ public class HtmlInfoAndErrorController extends HtmlController implements IHtmlI
         return ViewUtil.render(request, model, Path.WebTemplate.NOT_LOGGED_IN_INFO_AND_ERROR, locale);
     }
 
-    @Override
-    public String getLegalNoticePage(Request request, Response response) {
-        Locale locale = RequestUtil.getHeaderFieldAcceptLanguage(request);
-        return ViewUtil.render(request, null, Path.WebTemplate.LEGAL_NOTICE, locale);
-    }
-
-    @Override
-    public String getPrivacyPolicyPage(Request request, Response response) {
-        Locale locale = RequestUtil.getHeaderFieldAcceptLanguage(request);
-        return ViewUtil.render(request, null, Path.WebTemplate.PRIVACY_POLICY, locale);
-    }
-
 	
 	
 

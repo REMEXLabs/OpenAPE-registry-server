@@ -26,9 +26,4 @@ public interface IHtmlInfoAndErrorController {
 	public String getLoggedInInfoAndErrorPage(Request request, Response response);
 	
 	public String getNotFoundPage(Request request, Response response);
-	
-	public String getLegalNoticePage(Request request, Response response);
-	
-	public String getPrivacyPolicyPage(Request request, Response response);
-
 }

@@ -474,21 +474,7 @@ public class SuperRestInterface {
             }
         });
         
-        // not needed by Stuttgart Media University
-        /*get(Path.Web.LEGAL_NOTICE, "application/html", new Route(){
-            @Override
-            public Object handle(Request request, Response response) throws Exception{
-                return htmlInfoAndErrorController.getLegalNoticePage(request, response);
-            }
-        });
-        
-        get(Path.Web.PRIVACY_POLICY, "application/html", new Route(){
-            @Override
-            public Object handle(Request request, Response response) throws Exception{
-                return htmlInfoAndErrorController.getPrivacyPolicyPage(request, response);
-            }
-        });*/
-         
+
         // show error page if no path was found in the url
         get("*", "application/html", new Route(){
             @Override
