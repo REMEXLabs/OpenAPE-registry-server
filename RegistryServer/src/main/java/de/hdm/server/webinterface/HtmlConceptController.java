@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2016-2018 Research group REMEX, Hochschule der Medien (Stuttgart, Germany)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -71,7 +71,7 @@ import spark.Request;
 import spark.Response;
 
 public class HtmlConceptController extends HtmlController implements IHtmlConceptController {
-	
+
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 	// attributes
@@ -82,105 +82,105 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 	 * Logger.
 	 */
 	private final static Logger logger = LoggerFactory.getLogger(HtmlConceptController.class);
-	
+
 	private static final String MODEL_VALUE_KEY_CONCEPTS = "concepts";
-	
+
 	private static final String MODEL_VALUE_KEY_GROUPS = "groups";
-	
+
 	private static final String MODEL_VALUE_KEY_USERS_GROUPS = "usersGroups";
-	
+
 	private static final String MODEL_VALUE_KEY_LOCALE = "locale";
-	
+
 	private static final String MODEL_VALUE_KEY_CONCEPT_ID = "id";
-	
+
 	private static final String MODEL_VALUE_KEY_LANGUAGE_CODE_NAMES = "languageCodeNames";
-	
+
 	private static final String MODEL_VALUE_KEY_NAMES = "names";
-	
+
 	private static final String MODEL_VALUE_KEY_LANGUAGE_CODE_DEFINITIONS = "languageCodeDefinitions";
-	
+
 	private static final String MODEL_VALUE_KEY_DEFINITIONS = "definitions";
-	
+
 	private static final String MODEL_VALUE_KEY_TYPE = "type";
-	
+
 	private static final String MODEL_VALUE_KEY_SUB_TYPE = "subType";
-	
+
 	private static final String MODEL_VALUE_KEY_DATA_TYPE = "dataType";
-	
+
 	private static final String MODEL_VALUE_KEY_ORIGIN = "origin";
-	
+
 	private static final String MODEL_VALUE_KEY_VALUE_SPACE = "valueSpace";
-	
+
 	private static final String MODEL_VALUE_KEY_VALUE_SPACE_VALID = "valueSpaceValid";
-	
+
 	private static final String MODEL_VALUE_KEY_OWNERS = "owners";
-	
+
 	private static final String MODEL_VALUE_KEY_AUTHORS = "authors";
-	
+
 	private static final String MODEL_VALUE_KEY_TRANSFORMATIONS = "transformations";
-	
+
 	private static final String MODEL_VALUE_KEY_TRANSFORMES_CONCEPT_ID_READ_RIGHT_MAP = "transformesReadRightsMap";
-	
+
 	private static final String MODEL_VALUE_KEY_TRANSFORMED_BY_CONCEPT_ID_READ_RIGHT_MAP = "transformedByReadRightsMap";
-	
+
 	private static final String MODEL_VALUE_KEY_REFINEMENTS = "refinements";
-	
+
 	private static final String MODEL_VALUE_KEY_REFINES_CONCEPT_ID_READ_RIGHT_MAP = "refinesReadRightsMap";
-	
+
 	private static final String MODEL_VALUE_KEY_REFINED_BY_CONCEPT_ID_READ_RIGHT_MAP = "refinedByReadRightsMap";
-	
+
 	private static final String MODEL_VALUE_KEY_LANGUAGE_CODE_NOTES = "languageCodeNotes";
-	
+
 	private static final String MODEL_VALUE_KEY_NOTES = "notes";
-	
+
 	private static final String MODEL_VALUE_KEY_LANGUAGE_CODE_EXAMPLES = "languageCodeExamples";
-	
+
 	private static final String MODEL_VALUE_KEY_EXAMPLES = "examples";
-	
+
 	private static final String MODEL_VALUE_KEY_READ_RIGHTS = "readRights";
-	
+
 	private static final String MODEL_VALUE_KEY_UPDATE_RIGHTS = "updateRights";
-	
+
 	private static final String MODEL_VALUE_KEY_DELETE_RIGHTS = "deleteRights";
-	
+
 	private static final String MODEL_VALUE_KEY_CHANGE_RIGHTS_RIGHTS = "changeRightsRights";
-	
+
 	private static final String MODEL_VALUE_KEY_EDIT_MODE = "editMode";
-	
+
 	private static final String MODEL_VALUE_KEY_GROUP_ACCESS_RIGHTS_ENABLED = "groupAccessRightsEnabled";
-	
+
 	private static final String MODEL_VALUE_KEY_CONCEPT = "concept";
-	
+
 	private static final String MODEL_VALUE_KEY_LOGS = "logs";
-	
+
 	private static final String MODEL_VALUE_KEY_USER_ID_TO_USER_MAPPING = "usersMap";
-	
+
 	private static final String MODEL_VALUE_KEY_REFINED_CONCEPTS = "refinedConcepts";
-	
+
 	private static final String MODEL_VALUE_KEY_TRANSFORMED_CONCEPTS = "transformedConcepts";
-	
+
 	private static final String MODEL_VALUE_KEY_SEARCH_TERM = "searchTerm";
-	
+
 	private static final String MODEL_VALUE_KEY_SEARCH_OPTION = "searchOption";
-	
+
 	private static final String MODEL_VALUE_KEY_SEARCH_OPTION_VALUE_ID = "id";
 
 	private static final String MODEL_VALUE_KEY_SEARCH_OPTION_VALUE_NAME = "name";
-	
+
 	private static final String MODEL_VALUE_KEY_SEARCH_OPTION_VALUE_ID_AND_NAME = "idAndName";
-	
+
 	private static final String MODEL_VALUE_KEY_UPDATE_RIGHT = "updateRight";
-	
+
 	/**
 	 * Data access object for the concepts.
 	 */
 	private IConceptDao conceptDao;
-	
+
 	/**
 	 * Data access object for the groups.
 	 */
 	private IGroupDao groupDao;
-	
+
 	/**
 	 * Data access object for the generated concept ids.
 	 */
@@ -190,30 +190,30 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 	 * Data access object for the users.
 	 */
 	private IUserDao userDao;
-	
+
 	/**
 	 * Data access object for the languages.
 	 */
 	private ILanguageDao languageDao;
-	
+
 	/**
 	 * Data access object for the logs.
 	 */
 	private ILogDao logDao;
-	
+
 	/**
 	 * Data access object for the group access rights.
 	 */
 	private IGroupAccessRightDao groupAccessRightDao;
-	
+
 	/**
 	 * Data access object for the ownerships.
 	 */
 	private IOwnershipDao ownershipDao;
 
 
-	
-	
+
+
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 	// constructors
@@ -236,14 +236,14 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 
 
 
-	
+
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 	// getters and setters
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 
-	
+
 
 
 	// *********************************************************************************************************************************************
@@ -252,36 +252,36 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 
-	
-	
+
+
 
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 	// override methods
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
-	
+
 	@Override
 	public String getAllConceptsPage(Request request, Response response) {
 		Locale locale = RequestUtil.getHeaderFieldAcceptLanguage(request);
 		Map<String, Object> model = new HashMap<String, Object>();
 		this.setOpenedMenu(request, model, MenuEnum.CONCEPTS);
-		
+
 		try {
 			// authentication
 			IUser user = AuthenticationController.ensureUserIsLoggedIn(request);
-			
+
 			List<IConcept> concepts = this.conceptDao.selectAllConcepts(null, user.getId());
-			
+
 			List<IGroup> usersGroups = this.groupDao.selectAllGroupsWhereUserIsMember(null, user.getId());
-			
+
 			model.put(MODEL_VALUE_KEY_LOCALE, locale);
 			model.put(MODEL_VALUE_KEY_CONCEPTS, concepts);
 			model.put(MODEL_VALUE_KEY_USERS_GROUPS, usersGroups);
 		} catch (Exception e) {
 			this.handleExpception(locale, null, e, model, request, response, "WEB_CONCEPTS_LIST_ALL_PAGE_ERROR_MESSAGE_COMMON");
 		}
-		
+
 		return ViewUtil.render(request, model, Path.WebTemplate.CONCEPTS_LIST_ALL, locale);
 	}
 
@@ -290,22 +290,22 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		Locale locale = RequestUtil.getHeaderFieldAcceptLanguage(request);
 		Map<String, Object> model = new HashMap<String, Object>();
 		this.setOpenedMenu(request, model, MenuEnum.CONCEPTS);
-		
+
 		try {
 			// authentication
 			IUser user = AuthenticationController.ensureUserIsLoggedIn(request);
-			
+
 			List<IConcept> concepts = this.conceptDao.selectAllConceptsOfUser(null, user.getId());
-			
+
 			List<IGroup> usersGroups = this.groupDao.selectAllGroupsWhereUserIsMember(null, user.getId());
-			
+
 			model.put(MODEL_VALUE_KEY_LOCALE, locale);
 			model.put(MODEL_VALUE_KEY_CONCEPTS, concepts);
 			model.put(MODEL_VALUE_KEY_USERS_GROUPS, usersGroups);
 		} catch (Exception e) {
 			this.handleExpception(locale, null, e, model, request, response, "WEB_CONCEPTS_LIST_MY_PAGE_ERROR_MESSAGE_COMMON");
 		}
-		
+
 		return ViewUtil.render(request, model, Path.WebTemplate.CONCEPTS_LIST_MY, locale);
 	}
 
@@ -314,15 +314,15 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		Locale locale = RequestUtil.getHeaderFieldAcceptLanguage(request);
 		Map<String, Object> model = new HashMap<String, Object>();
 		this.setOpenedMenu(request, model, MenuEnum.CONCEPTS);
-		
+
 		try {
 			// authentication
 			AuthenticationController.ensureUserIsLoggedIn(request);
-			
+
 			// load all groups
 			List<IGroup> groups = this.groupDao.selectAllGroups(null);
 			model.put(MODEL_VALUE_KEY_GROUPS, groups);
-			
+
 			// set read right for "_AllUsers" and "_AnonymousUsers" group per default if enabled
 			if(MyProperties.isReadRightForAllUsersGroupPerDefault() || MyProperties.isReadRightForAnonymousUsersGroupPerDefault()) {
 			    String[] readRights;
@@ -335,11 +335,11 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 	            }
 			    model.put(MODEL_VALUE_KEY_READ_RIGHTS, readRights);
 			}
-			
+
 		} catch (Exception e) {
 			this.handleExpception(locale, null, e, model, request, response, "WEB_CONCEPTS_NEW_CONCEPT_PAGE_ERROR_MESSAGE_COMMON_GET");
 		}
-		
+
 		return ViewUtil.render(request, model, Path.WebTemplate.CONCEPTS_NEW_AND_EDIT_CONCEPT, locale);
 	}
 
@@ -350,7 +350,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		Map<String, Object> model = new HashMap<String, Object>();
 		this.setOpenedMenu(request, model, MenuEnum.CONCEPTS);
 		IUnitOfWork unitOfWork = null;
-		
+
 		IUser user = null;
 		String conceptId = null;
 		String[] languageCodeNames = null;
@@ -374,11 +374,11 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		String[] updateRights = null;
 		String[] deleteRights = null;
 		String[] changeRightsRights = null;
-		
+
 		try {
 			// authentication
 			user = AuthenticationController.ensureUserIsLoggedIn(request);
-			
+
 			// get request parameters
 			conceptId = request.queryParams("id");
 			languageCodeNames = request.queryParamsValues("languageCodeName");
@@ -403,7 +403,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 			updateRights = request.queryParamsValues("updateRight");
 			deleteRights = request.queryParamsValues("deleteRight");
 			changeRightsRights = request.queryParamsValues("changeRightsRight");
-			
+
 			// check whether concept id is already in use
 			if(conceptId != null && !conceptId.isEmpty()){
 				if(this.conceptDao.existsConcept(null, conceptId)){
@@ -414,7 +414,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 					throw new BadRequestException(message, null, userMessage);
 				}
 			}
-			
+
 			// build new concept
 			IConcept newConcept = new Concept(conceptId);
 			if(conceptId == null || conceptId.isEmpty()){
@@ -438,30 +438,30 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 			newConcept.setNotes(this.checkContentAndConvert(languageCodeNotes, notes, "Note", false, newConcept.getId(), locale));
 			newConcept.setExamples(this.checkContentAndConvert(languageCodeExamples, examples, "Example", false, newConcept.getId(), locale));
 			newConcept.setGroupAccessRights(this.checkGroupAccessRightsAndConvert(groupIds, readRights, updateRights, deleteRights, changeRightsRights, newConcept.getId()));
-			
+
 			// insert new concept into the database
 			unitOfWork = this.conceptDao.createUnitOfWork();
 			unitOfWork.start();
 			this.conceptDao.insertConcept(unitOfWork, newConcept);
 			this.insertLog(unitOfWork, newConcept.getId(), user.getId(), ActionEnum.CREATE, true);
 			unitOfWork.finish();
-			
+
 			// create success message and redirect to create concept page
 			String successMessage = LanguageHandler.getWord(locale, "WEB_CONCEPTS_NEW_CONCEPT_PAGE_SUCCESS_MESSAGE");
 			successMessage = TemplateFiller.fillTemplate(successMessage, newConcept.getId());
 			SessionUtil.setSuccessMessage(request, successMessage);
 			response.redirect(Path.Web.CONCEPTS_SHOW_CONCEPT + "?conceptId=" + newConcept.getId());
-			
+
 		} catch (Exception e) {
 			this.insertFailLog(ActionEnum.CREATE, user, conceptId, e);
-			
+
 			try {
 				List<IGroup> groups = this.groupDao.selectAllGroups(null);
 				model.put(MODEL_VALUE_KEY_GROUPS, groups);
 			} catch (DataAccessException e1) {
 				e1.printStackTrace();
 			}
-			
+
 			model.put(MODEL_VALUE_KEY_CONCEPT_ID, conceptId);
 			model.put(MODEL_VALUE_KEY_LANGUAGE_CODE_NAMES, languageCodeNames);
             model.put(MODEL_VALUE_KEY_NAMES, this.prepareLineBreaksForJavaScript(this.convertStringArrayToList(names)));
@@ -477,17 +477,17 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 			model.put(MODEL_VALUE_KEY_TRANSFORMATIONS, transformations);
 			model.put(MODEL_VALUE_KEY_REFINEMENTS, refinements);
 			model.put(MODEL_VALUE_KEY_LANGUAGE_CODE_NOTES, languageCodeNotes);
-            model.put(MODEL_VALUE_KEY_NOTES, this.prepareLineBreaksForJavaScript(this.convertStringArrayToList(notes)));    
+            model.put(MODEL_VALUE_KEY_NOTES, this.prepareLineBreaksForJavaScript(this.convertStringArrayToList(notes)));
             model.put(MODEL_VALUE_KEY_LANGUAGE_CODE_EXAMPLES, languageCodeExamples);
-            model.put(MODEL_VALUE_KEY_EXAMPLES, this.prepareLineBreaksForJavaScript(this.convertStringArrayToList(examples)));  
+            model.put(MODEL_VALUE_KEY_EXAMPLES, this.prepareLineBreaksForJavaScript(this.convertStringArrayToList(examples)));
 			model.put(MODEL_VALUE_KEY_READ_RIGHTS, readRights);
 			model.put(MODEL_VALUE_KEY_UPDATE_RIGHTS, updateRights);
 			model.put(MODEL_VALUE_KEY_DELETE_RIGHTS, deleteRights);
 			model.put(MODEL_VALUE_KEY_CHANGE_RIGHTS_RIGHTS, changeRightsRights);
-			
+
 			this.handleExpception(locale, null, e, model, request, response, "WEB_CONCEPTS_NEW_CONCEPT_PAGE_ERROR_MESSAGE_COMMON_POST");
 		}
-		
+
 		return ViewUtil.render(request, model, Path.WebTemplate.CONCEPTS_NEW_AND_EDIT_CONCEPT, locale);
 	}
 
@@ -500,39 +500,39 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		IUnitOfWork unitOfWork = null;
 		IUser user = null;
 		String conceptId = null;
-		
+
 		try {
 			// authentication
 			user = AuthenticationController.ensureUserIsLoggedIn(request);
-			
+
 			// get request parameters
 			conceptId = request.queryParams("conceptId");
 			if(conceptId == null || conceptId.isEmpty()){
 				throw new AuthenticationException("User " + user.getId() + " called the edit concept page without the query parameter concept id!", false);
 			}
-			
+
 			// start unit of work
 			unitOfWork = this.conceptDao.createUnitOfWork();
 			unitOfWork.start();
-			
+
 			// load concept, which should be edited
 			IConcept concept = this.conceptDao.selectConcept(unitOfWork, conceptId);
 			if(concept == null){
 				throw new AuthenticationException("A concept with the id " + conceptId + " does not exist!", false);
 			}
-			
+
 			// throw exception if user has no update right
 			if(!user.isSuperAdmin() && !this.groupAccessRightDao.hasUserUpdateRightForConcept(null, user.getId(), conceptId) && !this.ownershipDao.isUserOwnerOfConcept(null, user.getId(), conceptId)){
 				// user has not right to update the concept
 				throw new AuthenticationException("User " + user.getId() + " tried to get the edit page for the concept " + conceptId + " without update right!", false);
 			}
-			
+
 			// insert log entry, that concept was red
 			this.insertLog(unitOfWork, System.currentTimeMillis(), conceptId, user.getId(), ActionEnum.READ, true);
-			
+
 			// finish unit of work
 			unitOfWork.finish();
-			
+
 			// fill model
 			model.put(MODEL_VALUE_KEY_EDIT_MODE, true);
 			if(!this.userDao.isUserSuperAdmin(null, user.getId()) && !this.groupAccessRightDao.hasUserChangeRightsRightForConcept(null, user.getId(), conceptId) && !this.ownershipDao.isUserOwnerOfConcept(null, user.getId(), conceptId)){
@@ -554,7 +554,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 				if(ValueSpace.isJsonSchemaValid(concept.getValueSpace().getJsonSchema())){
 				    model.put(MODEL_VALUE_KEY_VALUE_SPACE_VALID, true);
 				}
-			    model.put(MODEL_VALUE_KEY_VALUE_SPACE, concept.getValueSpace().getJsonSchema());	
+			    model.put(MODEL_VALUE_KEY_VALUE_SPACE, concept.getValueSpace().getJsonSchema());
 			}
 			model.put(MODEL_VALUE_KEY_OWNERS, this.ownersToStringValue(concept.getOwners()));
 			model.put(MODEL_VALUE_KEY_AUTHORS, this.listWithStringsToStringValue(concept.getAuthors()));
@@ -564,7 +564,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 			model.put(MODEL_VALUE_KEY_NOTES, this.prepareLineBreaksForJavaScript(this.putContentFromContentsToList(concept.getNotes())));
 			model.put(MODEL_VALUE_KEY_LANGUAGE_CODE_EXAMPLES, this.putLanguageCodeFromContentsToList(concept.getExamples()));
 			model.put(MODEL_VALUE_KEY_EXAMPLES, this.prepareLineBreaksForJavaScript(this.putContentFromContentsToList(concept.getExamples())));
-			
+
 			if(user.isSuperAdmin() || this.groupAccessRightDao.hasUserChangeRightsRightForConcept(null, user.getId(), conceptId) || this.ownershipDao.isUserOwnerOfConcept(null, user.getId(), conceptId)){
 				List<IGroup> groups = this.groupDao.selectAllGroups(null);
 				List[] lists = this.convertGroupAccessRightToList(concept);
@@ -574,12 +574,12 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 				model.put(MODEL_VALUE_KEY_DELETE_RIGHTS, lists[2]);
 				model.put(MODEL_VALUE_KEY_CHANGE_RIGHTS_RIGHTS, lists[3]);
 			}
-			
+
 		}catch (Exception e) {
 			this.insertFailLog(ActionEnum.UPDATE, user, conceptId, e);
 			this.handleExpception(locale, unitOfWork, e, model, request, response, "WEB_CONCEPTS_EDIT_CONCEPT_PAGE_ERROR_MESSAGE_COMMON_GET");
 		}
-		
+
 		return ViewUtil.render(request, model, Path.WebTemplate.CONCEPTS_NEW_AND_EDIT_CONCEPT, locale);
 	}
 
@@ -592,7 +592,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		IUnitOfWork unitOfWork = null;
 		IConceptComparer conceptComparer = new ConceptComparer();
 		IUser user = null;
-		
+
 		String conceptId = null;
 		String[] languageCodeNames = null;
 		String[] names = null;
@@ -615,33 +615,33 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		String[] updateRights = null;
 		String[] deleteRights = null;
 		String[] changeRightsRights = null;
-		
+
 		try {
 			// authentication
 			user = AuthenticationController.ensureUserIsLoggedIn(request);
-			
+
 			// get request parameters
 			conceptId = request.queryParams("conceptId");
 			if(conceptId == null || conceptId.isEmpty()){
 				throw new AuthenticationException("User " + user.getId() + " did an edit concept post without the query parameter concept id!", false);
 			}
-			
+
 			// start unit of work
 			unitOfWork = this.conceptDao.createUnitOfWork();
 			unitOfWork.start();
-			
+
 			// load concept, which should be edited
 			IConcept oldConcept = this.conceptDao.selectConcept(unitOfWork, conceptId);
 			if(oldConcept == null){
 				throw new AuthenticationException("A concept with the id " + conceptId + " does not exist!", false);
 			}
-			
+
 			// throw exception if user has no update right
 			if(!user.isSuperAdmin() && !this.groupAccessRightDao.hasUserUpdateRightForConcept(null, user.getId(), conceptId) && !this.ownershipDao.isUserOwnerOfConcept(null, user.getId(), conceptId)){
 				// user has not right to update the concept
 				throw new AuthenticationException("User " + user.getId() + " tried to update the concept " + conceptId + " without update right!", false);
 			}
-			
+
 			// build update concept
 			languageCodeNames = request.queryParamsValues("languageCodeName");
 			names = request.queryParamsValues("name");
@@ -660,13 +660,13 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 			notes = request.queryParamsValues("note");
 			languageCodeExamples = request.queryParamsValues("languageCodeExample");
 			examples = request.queryParamsValues("example");
-			
+
 			String[] groupIds = request.queryParamsValues("groupId");
 			readRights = request.queryParamsValues("readRight");
 			updateRights = request.queryParamsValues("updateRight");
 			deleteRights = request.queryParamsValues("deleteRight");
 			changeRightsRights = request.queryParamsValues("changeRightsRight");
-			
+
 			IConcept conceptToUpdate = new Concept(conceptId);
 			conceptToUpdate.setNames(this.checkContentAndConvert(languageCodeNames, names, "Name", true, conceptToUpdate.getId(), locale));
 			conceptToUpdate.setDefinitions(this.checkContentAndConvert(languageCodeDefinitions, definitions, "Definition", true, conceptToUpdate.getId(), locale));
@@ -686,7 +686,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 			}else{
 				conceptToUpdate.setGroupAccessRights(this.checkGroupAccessRightsAndConvert(groupIds, readRights, updateRights, deleteRights, changeRightsRights, conceptToUpdate.getId()));
 			}
-			
+
 			// check if the requesters version of the concept is based on the newest one
 			if(this.logDao.updatedSinceUserRed(unitOfWork, user.getId(), conceptId)){
 				// concept was already updated by another user, since requester has red it
@@ -695,31 +695,31 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 				userMessage = TemplateFiller.fillTemplate(userMessage, conceptId);
 				throw new BadRequestException(message, null, userMessage);
 			}
-			
+
 			// execute update in database
 			String note = conceptComparer.compareConcepts(oldConcept, conceptToUpdate);
 			this.conceptDao.updateConcept(unitOfWork, conceptToUpdate);
 			this.insertLog(unitOfWork, System.currentTimeMillis(), conceptId, user.getId(), ActionEnum.UPDATE, true, note);
-			
+
 			// finish unit of work
 			unitOfWork.finish();
-			
+
 			// create success message and redirect to create concept page
 			String successMessage = LanguageHandler.getWord(locale, "WEB_CONCEPTS_EDIT_CONCEPT_PAGE_SUCCESS_MESSAGE");
 			successMessage = TemplateFiller.fillTemplate(successMessage, conceptToUpdate.getId());
 			SessionUtil.setSuccessMessage(request, successMessage);
 			response.redirect(Path.Web.CONCEPTS_SHOW_CONCEPT + "?conceptId=" + conceptId);
-			
+
 		}catch (Exception e) {
 			this.insertFailLog(ActionEnum.UPDATE, user, conceptId, e);
-		
+
 			try {
 				List<IGroup> groups = this.groupDao.selectAllGroups(null);
 				model.put(MODEL_VALUE_KEY_GROUPS, groups);
 			} catch (DataAccessException e1) {
 				e1.printStackTrace();
 			}
-			
+
 			model.put(MODEL_VALUE_KEY_CONCEPT_ID, conceptId);
 			model.put(MODEL_VALUE_KEY_LANGUAGE_CODE_NAMES, languageCodeNames);
 			model.put(MODEL_VALUE_KEY_NAMES, this.prepareLineBreaksForJavaScript(this.convertStringArrayToList(names)));
@@ -735,14 +735,14 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 			model.put(MODEL_VALUE_KEY_TRANSFORMATIONS, transformations);
 			model.put(MODEL_VALUE_KEY_REFINEMENTS, refinements);
 			model.put(MODEL_VALUE_KEY_LANGUAGE_CODE_NOTES, languageCodeNotes);
-			model.put(MODEL_VALUE_KEY_NOTES, this.prepareLineBreaksForJavaScript(this.convertStringArrayToList(notes)));    
+			model.put(MODEL_VALUE_KEY_NOTES, this.prepareLineBreaksForJavaScript(this.convertStringArrayToList(notes)));
 			model.put(MODEL_VALUE_KEY_LANGUAGE_CODE_EXAMPLES, languageCodeExamples);
-			model.put(MODEL_VALUE_KEY_EXAMPLES, this.prepareLineBreaksForJavaScript(this.convertStringArrayToList(examples)));    
+			model.put(MODEL_VALUE_KEY_EXAMPLES, this.prepareLineBreaksForJavaScript(this.convertStringArrayToList(examples)));
 			model.put(MODEL_VALUE_KEY_READ_RIGHTS, readRights);
 			model.put(MODEL_VALUE_KEY_UPDATE_RIGHTS, updateRights);
 			model.put(MODEL_VALUE_KEY_DELETE_RIGHTS, deleteRights);
 			model.put(MODEL_VALUE_KEY_CHANGE_RIGHTS_RIGHTS, changeRightsRights);
-			
+
 			this.handleExpception(locale, unitOfWork, e, model, request, response, "WEB_CONCEPTS_EDIT_CONCEPT_PAGE_ERROR_MESSAGE_COMMON_POST");
 		}
 		return ViewUtil.render(request, model, Path.WebTemplate.CONCEPTS_NEW_AND_EDIT_CONCEPT, locale);
@@ -756,65 +756,65 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		IUnitOfWork unitOfWork = null;
 		String conceptId = null;
 		IUser user = null;
-		
+
 		try{
 			// authentication
 			user = AuthenticationController.ensureUserIsLoggedIn(request);
-			
+
 			// insert success message
 			this.handleSuccessMessage(request, model);
-			
+
 			// get request parameters
 			conceptId = request.queryParams("conceptId");
 			if(conceptId == null || conceptId.isEmpty()){
 				throw new AuthenticationException("User " + user.getId() + " did an show concept request without the query parameter concept id!", false);
 			}
-			
+
 			// load concept, which should be shown
 			IConcept concept = this.conceptDao.selectConcept(unitOfWork, conceptId);
 			if(concept == null){
 				throw new AuthenticationException("A concept with the id " + conceptId + " does not exist!", false);
 			}
-			
+
 			// throw exception if user has no update right
 			if(!user.isSuperAdmin() && !this.groupAccessRightDao.hasUserReadRightForConcept(null, user.getId(), conceptId) && !this.ownershipDao.isUserOwnerOfConcept(null, user.getId(), conceptId)){
 				// user has not right to update the concept
 				throw new AuthenticationException("User " + user.getId() + " tried to show the concept " + conceptId + " without read right!", false);
 			}
-			
+
 			// check, whether user has update right for the concept
 			// this is needed for the edit concept button
 			boolean updateRight = true;
 			if(!user.isSuperAdmin() && !concept.getOwners().contains(user.getId())){
 				updateRight = this.groupAccessRightDao.hasUserUpdateRightForConcept(null, user.getId(), conceptId);
 			}
-			
+
 			// fill model with concept attributes which has to be converted into a string for presentation
 			model.put(MODEL_VALUE_KEY_OWNERS, this.ownersToUsersList(concept.getOwners()));
 			model.put(MODEL_VALUE_KEY_TYPE, this.convertConceptTypeToString(concept.getType()));
 			model.put(MODEL_VALUE_KEY_SUB_TYPE, this.convertConceptSubTypeToString(concept.getSubType()));
 			model.put(MODEL_VALUE_KEY_DATA_TYPE, this.convertConceptDataTypeToString(concept.getDataType()));
 			model.put(MODEL_VALUE_KEY_TRANSFORMES_CONCEPT_ID_READ_RIGHT_MAP, this.conceptIdsAndReadRight(concept.getConceptsWhichAreTransformedByThisConcept(), user, concept));
-			model.put(MODEL_VALUE_KEY_TRANSFORMED_BY_CONCEPT_ID_READ_RIGHT_MAP, this.conceptIdsAndReadRight(concept.getConceptsWhichTransformThisConcept(), user, concept));	
+			model.put(MODEL_VALUE_KEY_TRANSFORMED_BY_CONCEPT_ID_READ_RIGHT_MAP, this.conceptIdsAndReadRight(concept.getConceptsWhichTransformThisConcept(), user, concept));
 			model.put(MODEL_VALUE_KEY_REFINES_CONCEPT_ID_READ_RIGHT_MAP, this.conceptIdsAndReadRight(concept.getConceptsWhichAreRefinedByThisConcept(), user, concept));
 			model.put(MODEL_VALUE_KEY_REFINED_BY_CONCEPT_ID_READ_RIGHT_MAP, this.conceptIdsAndReadRight(concept.getConceptsWhichRefineThisConcept(), user, concept));
 			model.put(MODEL_VALUE_KEY_UPDATE_RIGHT, updateRight);
 			model.put(MODEL_VALUE_KEY_CONCEPT, concept);
-			
+
 		}catch(Exception e){
 			this.insertFailLog(ActionEnum.READ, user, conceptId, e);
 			this.handleExpception(locale, unitOfWork, e, model, request, response, "WEB_CONCEPTS_SHOW_CONCEPT_PAGE_ERROR_MESSAGE_COMMON");
 		}
-		
+
 		return ViewUtil.render(request, model, Path.WebTemplate.CONCEPTS_SHOW_CONCEPT, locale);
 	}
-	
+
 	@Override
 	public String getSearchConceptPage(Request request, Response response) {
 		Locale locale = RequestUtil.getHeaderFieldAcceptLanguage(request);
 		Map<String, Object> model = new HashMap<String, Object>();
 		this.setOpenedMenu(request, model, MenuEnum.CONCEPTS);
-		
+
 		try{
 			// authentication
 			AuthenticationController.ensureUserIsLoggedIn(request);
@@ -823,7 +823,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}finally{
 			model.put(MODEL_VALUE_KEY_SEARCH_OPTION, MODEL_VALUE_KEY_SEARCH_OPTION_VALUE_ID_AND_NAME);
 		}
-		
+
 		return ViewUtil.render(request, model, Path.WebTemplate.CONCEPTS_SEARCH, locale);
 	}
 
@@ -839,15 +839,15 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		try{
 			// authentication
 			IUser user = AuthenticationController.ensureUserIsLoggedIn(request);
-			
+
 			// get request parameters
 			searchTerm = request.queryParams("searchTerm");
 			searchOption = request.queryParams("searchOption");
-			
+
 			// check parameters
 			this.checkSearchTerm(searchTerm, locale);
 			this.checkSearchOption(searchOption);
-			
+
 			// search concept(s)
 			if(searchOption.equals(MODEL_VALUE_KEY_SEARCH_OPTION_VALUE_ID)){
 				searchInIds = true;
@@ -858,62 +858,62 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 				searchInNames = true;
 			}
 			List<IConcept> concepts = this.conceptDao.searchConcepts(null, user.getId(), searchTerm, searchInIds, searchInNames);
-			
+
 			// load user's groups
 			List<IGroup> usersGroups = this.groupDao.selectAllGroupsWhereUserIsMember(null, user.getId());
-			
+
 			// fill model with values which are needed in success case
 			model.put(MODEL_VALUE_KEY_CONCEPTS, concepts);
 			model.put(MODEL_VALUE_KEY_LOCALE, locale);
 			model.put(MODEL_VALUE_KEY_USERS_GROUPS, usersGroups);
-			
+
 		}catch(Exception e){
 			this.handleExpception(locale, null, e, model, request, response, "WEB_CONCEPTS_SEARCH_CONCEPT_PAGE_ERROR_MESSAGE_COMMON_POST");
 		}finally{
 			// fill model with values which are needed in error and success case
 			model.put(MODEL_VALUE_KEY_SEARCH_TERM, searchTerm);
-			model.put(MODEL_VALUE_KEY_SEARCH_OPTION, searchOption);			
+			model.put(MODEL_VALUE_KEY_SEARCH_OPTION, searchOption);
 		}
-		
+
 		return ViewUtil.render(request, model, Path.WebTemplate.CONCEPTS_SEARCH, locale);
 	}
-	
+
 	@Override
 	public String getConceptLogPage(Request request, Response response) {
 		Locale locale = RequestUtil.getHeaderFieldAcceptLanguage(request);
 		Map<String, Object> model = new HashMap<String, Object>();
 		this.setOpenedMenu(request, model, MenuEnum.CONCEPTS);
 		String conceptId = null;
-		
+
 		try{
 			// authentication
 			IUser user = AuthenticationController.ensureUserIsLoggedIn(request);
-			
+
 			// get parameters
 			conceptId = request.queryParams("conceptId");
 			if(conceptId == null || conceptId.isEmpty()){
 				throw new AuthenticationException("User " + user.getId() + " did an show concept log request without the query parameter concept id!", false);
 			}
-			
+
 			// rights check
 			if(!user.isSuperAdmin() && !this.ownershipDao.isUserOwnerOfConcept(null, user.getId(), conceptId)){
 				throw new AuthenticationException("User " + user.getId() + " did an show concept log request for the concept " + conceptId + " though he is neither a super admin nor an owner of it!", false);
 			}
-			
+
 			// load logs
 			List<ILog> logs = this.logDao.selectAllLogsForConcept(null, conceptId, true);
-			
+
 			// fill model
 			model.put(MODEL_VALUE_KEY_LOGS, logs);
 			model.put(MODEL_VALUE_KEY_USER_ID_TO_USER_MAPPING, this.getAllUserIdsAndUsers());
-			
+
 		}catch(Exception e){
 			this.handleExpception(locale, null, e, model, request, response, "WEB_CONCEPTS_CONCEPT_LOG_PAGE_ERROR_MESSAGE_COMMON");
 		}
-		
+
 		return ViewUtil.render(request, model, Path.WebTemplate.CONCEPTS_CONCEPT_LOG, locale);
 	}
-	
+
 	@Override
 	public String handleDeleteConcept(Request request, Response response){
 		Locale locale = RequestUtil.getHeaderFieldAcceptLanguage(request);
@@ -922,32 +922,32 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		IUser user = null;
 		String conceptId = null;
 		IUnitOfWork unitOfWork = null;
-		
+
 		try{
 			// authentication
 			user = AuthenticationController.ensureUserIsLoggedIn(request);
-			
+
 			// get parameters
 			conceptId = request.queryParams("conceptId");
 			if(conceptId == null || conceptId.isEmpty()){
 				throw new AuthenticationException("User " + user.getId() + " did an show concept log request without the query parameter concept id!", false);
 			}
-			
+
 			unitOfWork = this.conceptDao.createUnitOfWork();
 			unitOfWork.start();
-			
+
 			if(!this.conceptDao.existsConcept(unitOfWork, conceptId)){
 				String message = "A concept with the id " + conceptId + " does not exist!";
 				String userMessage = LanguageHandler.getWord(locale, "WEB_CONCEPTS_DELETE_CONCEPT_PAGE_ERROR_MESSAGE_CONCEPT_DOES_NOT_EXIST");
 				userMessage = TemplateFiller.fillTemplate(userMessage, conceptId);
 				throw new BadRequestException(message, null, userMessage);
 			};
-			
+
 			// rights check
 			if(!user.isSuperAdmin() && !this.groupAccessRightDao.hasUserDeleteRightForConcept(unitOfWork, user.getId(), conceptId) && !this.ownershipDao.isUserOwnerOfConcept(unitOfWork, user.getId(), conceptId)){
 				throw new AuthenticationException("User " + user.getId() + " did a delete concept request for the concept " + conceptId + " without delete right!", false);
 			}
-			
+
 			List<IConcept> refinements = this.conceptDao.selectConceptsWhichRefineConcept(unitOfWork, conceptId);
 			List<IConcept> transformations = this.conceptDao.selectConceptsWhichTransformConcept(unitOfWork, conceptId);
 			if(!refinements.isEmpty() || !transformations.isEmpty()){
@@ -963,20 +963,20 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 				successMessage = TemplateFiller.fillTemplate(successMessage, conceptId);
 				model.put(MODEL_VALUE_KEY_INFO_MESSAGE, successMessage);
 			}
-			
+
 			unitOfWork.finish();
-			
+
 		}catch(Exception e){
 		    this.insertFailLog(ActionEnum.DELETE, user, conceptId, e);
 			this.handleExpception(locale, null, e, model, request, response, "WEB_CONCEPTS_CONCEPT_LOG_PAGE_ERROR_MESSAGE_COMMON");
 		}
-		
+
 		return ViewUtil.render(request, model, Path.WebTemplate.CONCEPTS_DELETE_CONCEPT, locale);
 	}
-	
-	
-	
-	
+
+
+
+
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 	// public methods
@@ -1004,7 +1004,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 	private void insertFailLog(ActionEnum action, IUser user, String conceptId, Exception exception){
 		int userId = -1;
 		if(user != null){
-			userId = user.getId();	
+			userId = user.getId();
 		}
 		if(conceptId != null && conceptId.isEmpty()){
 			conceptId = null;
@@ -1015,7 +1015,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 			e1.printStackTrace();
 		}
 	}
-	
+
 	private void setCounterConceptIdIfNeeded(IUnitOfWork unitOfWork, IConcept newConcept, Locale locale) throws DataAccessException, BadRequestException {
 		if(newConcept.getId() == null || newConcept.getId().isEmpty()){
 	        String generatedConceptId = null;
@@ -1035,11 +1035,11 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 			if(newConcept.getGroupAccessRights() != null){
 				for(IGroupAccessRight n : newConcept.getGroupAccessRights()){
 					n.setConceptId(generatedConceptId);
-				}	
+				}
 			}
 		}
 	}
-	
+
 	private String checkOriginAndReturnIt(String origin, Locale locale) throws BadRequestException{
 		if(origin == null || origin.isEmpty()){
 			String message = "Parameter origin is missing!";
@@ -1048,7 +1048,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}
 		return origin;
 	}
-	
+
 	private IValueSpace checkValueSpaceAndConvert(String valueSpaceAsString, Locale locale, Map<String, Object> model, IConcept concept) throws BadRequestException{
 		IValueSpace valueSpace = null;
 		if(valueSpaceAsString != null && valueSpaceAsString.isEmpty() == false){
@@ -1064,7 +1064,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}
 		return valueSpace;
 	}
-	
+
 	private TypeEnum checkTypeAndConvert(String typeAsString, Locale locale) throws BadRequestException, AuthenticationException{
 		if(typeAsString == null || typeAsString.isEmpty()){
 			String message = "The parameter type is null or empty!";
@@ -1079,7 +1079,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 			throw new AuthenticationException(message, false);
 		}
 	}
-	
+
 	private SubTypeEnum checkSubTypeAndConvert(String subTypeAsString, Locale locale) throws BadRequestException, AuthenticationException{
 		if(subTypeAsString == null || subTypeAsString.isEmpty()){
 			String message = "The parameter subType is null or empty!";
@@ -1094,7 +1094,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 			throw new AuthenticationException(message, false);
 		}
 	}
-	
+
 	private DataTypeEnum checkDataTypeAndConvert(String dataTypeAsString, Locale locale) throws BadRequestException, AuthenticationException{
 		if(dataTypeAsString == null || dataTypeAsString.isEmpty()){
 			String message = "The parameter dataType is null or empty!";
@@ -1109,17 +1109,17 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 			throw new AuthenticationException(message, false);
 		}
 	}
-	
+
 	private List<Integer> checkOwnersAndConvert(String ownersAsString, Locale locale) throws DataAccessException, BadRequestException{
 		Map<String, IUser> users = this.getAllUserNamesAndUsers();
 		List<Integer> ownersList = new ArrayList<Integer>();
-		
+
 		if(ownersAsString != null && ownersAsString.isEmpty() == false && ownersAsString.equals("User name[linebreak]") == false){
 			String[] lines = ownersAsString.split(new String(new char[]{13, 10}));
-			for(String line : lines){				
+			for(String line : lines){
 				// check whether group member exists or not
 				if(users.containsKey(line)){
-					ownersList.add(users.get(line).getId());	
+					ownersList.add(users.get(line).getId());
 				}else{
 					String message = "Unknown userName = " + line + "!";
 					String userMessage = LanguageHandler.getWord(locale, "WEB_CONCEPTS_NEW_CONCEPT_PAGE_ERROR_MESSAGE_UNKNOWN_OWNER");
@@ -1135,7 +1135,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}
 		return ownersList;
 	}
-	
+
 	private Map<String, IUser> getAllUserNamesAndUsers() throws DataAccessException{
 		List<IUser> usersAsList = this.userDao.selectUsers(null);
 		Map<String, IUser> usersAsMap = new HashMap<String, IUser>();
@@ -1144,12 +1144,12 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}
 		return usersAsMap;
 	}
-	
+
 	private List<String> checkAuthorsAndConvert(String authorsAsString, Locale locale) throws BadRequestException{
 		List<String> authorsAsList = new ArrayList<String>();
 		if(authorsAsString != null && authorsAsString.isEmpty() == false){
 			String[] lines = authorsAsString.split(new String(new char[]{13, 10}));
-			for(String line : lines){				
+			for(String line : lines){
 				if(line.isEmpty() == false){
 					authorsAsList.add(line);
 				}
@@ -1163,12 +1163,12 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}*/
 		return authorsAsList;
 	}
-	
+
 	private List<String> checkConceptIdsAndConvert(String conceptIdsAsString, Locale locale) throws DataAccessException, BadRequestException{
 		List<String> conceptIdsAsList = new ArrayList<String>();
 		if(conceptIdsAsString != null && conceptIdsAsString.isEmpty() == false){
 			String[] lines = conceptIdsAsString.split(new String(new char[]{13, 10}));
-			for(String line : lines){				
+			for(String line : lines){
 				if(line.isEmpty() == false){
 					if(this.conceptDao.existsConcept(null, line)){
 						conceptIdsAsList.add(line);
@@ -1183,7 +1183,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}
 		return conceptIdsAsList;
 	}
-	
+
 	@SuppressWarnings("rawtypes")
 	private List checkContentAndConvert(String[] languageCodes, String[] contents, String contentType, boolean required, String conceptId, Locale locale) throws BadRequestException, DataAccessException{
 		List<IContent> contentsAsList = new ArrayList<IContent>();
@@ -1196,7 +1196,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 				}else if(contentType.equals("Definition")){
 				    userMessage = LanguageHandler.getWord(locale, "WEB_CONCEPTS_NEW_AND_EDIT_CONCEPT_PAGE_ERROR_MESSAGE_MISSING_DEFINITION");
 				}
-				throw new BadRequestException(message, null, userMessage);	
+				throw new BadRequestException(message, null, userMessage);
 			}else{
 				return contentsAsList;
 			}
@@ -1243,7 +1243,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}// end for loop
 		return contentsAsList;
 	}
-	
+
 	private List<IGroupAccessRight> checkGroupAccessRightsAndConvert(String[] groupIds, String[] readRights, String[] updateRights, String[] deleteRights, String[] changeRightsRights, String conceptId) throws AuthenticationException{
 		List<IGroupAccessRight> groupAccessRights = new ArrayList<IGroupAccessRight>();
 		List<String> groupIdsAsList = this.checkArrayAndConvert(groupIds);
@@ -1251,14 +1251,14 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		List<String> updateRightsAsList = this.checkArrayAndConvert(updateRights);
 		List<String> deleteRightsAsList = this.checkArrayAndConvert(deleteRights);
 		List<String> changeRightsRightsAsList = this.checkArrayAndConvert(changeRightsRights);
-		
+
 		for(String groupIdAsString : groupIdsAsList){
 			if(Checker.isStringInteger(groupIdAsString) == false){
 				String message = "Group access right parameters contain " + groupIdAsString + " as group id, which is an invalid group id!";
 				throw new AuthenticationException(message, false);
 			}
 			int groupId = Integer.valueOf(groupIdAsString);
-			
+
 			// this ensures that a user cannot assign another right than the read right to the _AnonymousUsersGroup
 			if(groupId == MyProperties.getAnonymousUsersGroupId()) {
 			    if(this.hasRight(updateRightsAsList, groupId)||this.hasRight(deleteRightsAsList, groupId)||this.hasRight(changeRightsRightsAsList, groupId)) {
@@ -1266,13 +1266,13 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 	                throw new AuthenticationException(message, false);
 			    }
 			}
-			
+
 			IGroupAccessRight groupAccessRight = new GroupAccessRight(groupId, conceptId, this.hasRight(readRightsAsList, groupId), this.hasRight(updateRightsAsList, groupId), this.hasRight(deleteRightsAsList, groupId), this.hasRight(changeRightsRightsAsList, groupId));
 			groupAccessRights.add(groupAccessRight);
 		}
 		return groupAccessRights;
 	}
-	
+
 	private List<String> checkArrayAndConvert(String[] array){
 		List<String> list;
 		if(array == null){
@@ -1282,7 +1282,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}
 		return list;
 	}
-	
+
 	private boolean hasRight(List<String> list, int groupId){
 		boolean result = false;
 		if(list.contains(String.valueOf(groupId))){
@@ -1290,15 +1290,15 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}
 		return result;
 	}
-	
+
 	private void insertLog(IUnitOfWork unitOfWork, String conceptId, int userId, ActionEnum type, boolean success) throws DataAccessException{
 		this.insertLog(unitOfWork, System.currentTimeMillis(), conceptId, userId, type, success, null);
 	}
-	
+
 	private void insertLog(IUnitOfWork unitOfWork, long timeStamp, String conceptId, int userId, ActionEnum type, boolean success) throws DataAccessException{
 		this.insertLog(unitOfWork, timeStamp, conceptId, userId, type, success, null);
 	}
-	
+
 	private void insertLog(IUnitOfWork unitOfWork, long timeStamp, String conceptId, int userId, ActionEnum type, boolean success, String note) throws DataAccessException{
 		ILog log = new Log();
 		log.setAction(type);
@@ -1309,7 +1309,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		log.setNote(note);
 		this.logDao.insertLog(unitOfWork, log);
 	}
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private List<String> putLanguageCodeFromContentsToList(List contents) {
 		List<String> languageCodes = new ArrayList<String>();
@@ -1331,7 +1331,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}
 		return listWithContents;
 	}
-	
+
 	private String listWithStringsToStringValue(List<String> list){
 		String stringValue = "";
 		for(String s : list){
@@ -1339,7 +1339,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}
 		return stringValue;
 	}
-	
+
 	private String ownersToStringValue(List<Integer> owners) throws DataAccessException {
 		Map<Integer, IUser> users = this.getAllUserIdsAndUsers();
 		String ownersAsString = "";
@@ -1352,7 +1352,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}
 		return ownersAsString;
 	}
-	
+
 	private List<IUser> ownersToUsersList(List<Integer> owners) throws DataAccessException {
 		Map<Integer, IUser> usersAsMap = this.getAllUserIdsAndUsers();
 		List<IUser> usersAsList = new ArrayList<IUser>();
@@ -1364,7 +1364,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}
 		return usersAsList;
 	}
-	
+
 	private Map<Integer, IUser> getAllUserIdsAndUsers() throws DataAccessException{
 		List<IUser> usersAsList = this.userDao.selectUsers(null);
 		Map<Integer, IUser> usersAsMap = new HashMap<Integer, IUser>();
@@ -1373,7 +1373,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}
 		return usersAsMap;
 	}
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private List[] convertGroupAccessRightToList(IConcept concept){
 		List[] lists = {new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>()};
@@ -1393,12 +1393,12 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}
 		return lists;
 	}
-	
+
 	private String convertConceptTypeToString(TypeEnum type){
 		String typeAsString;
 		switch(type){
 		case NEED_AND_PREFERENCE:
-			typeAsString = "NeedAndPreference";
+			typeAsString = "PreferenceStatement";
 			break;
 		case CONTEXT_DESCRIPTION:
 			typeAsString = "ContextDescription";
@@ -1411,28 +1411,22 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}
 		return typeAsString;
 	}
-	
+
 	private String convertConceptSubTypeToString(SubTypeEnum subType){
 		String subTypeAsString;
 		switch(subType){
 		case TERM:
 			subTypeAsString = "Term";
 			break;
-		case ALIAS:
-			subTypeAsString = "Alias";
-			break;
 		case TRANSFORM:
 			subTypeAsString = "Transform";
-			break;
-		case TRANSLATION:
-			subTypeAsString = "Translation";
 			break;
 		default:
 			throw new RuntimeException("The subtype " + subType.toString() + " is unknown for this method!");
 		}
 		return subTypeAsString;
 	}
-	
+
 	private String convertConceptDataTypeToString(DataTypeEnum dataType){
 		String dataTypeAsString;
 		switch(dataType){
@@ -1450,7 +1444,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}
 		return dataTypeAsString;
 	}
-	
+
     private void checkSearchTerm(String searchTerm, Locale locale) throws AuthenticationException, BadRequestException {
         if (searchTerm == null) {
             throw new AuthenticationException("The parameter searchTerm must not be null!", false);
@@ -1462,7 +1456,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
             throw new BadRequestException(message, null, userMessage);
         }
     }
-	
+
 	private void checkSearchOption(String searchOption) throws AuthenticationException {
 		if(searchOption.equals(MODEL_VALUE_KEY_SEARCH_OPTION_VALUE_ID)){
 			return;
@@ -1474,7 +1468,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 			throw new AuthenticationException("The value (" + searchOption + ") of the parameter searchOption is invalid!", false);
 		}
 	}
-	
+
 	private Map<String, Boolean> conceptIdsAndReadRight(List<String> listWithConceptIds, IUser user, IConcept concept) throws DataAccessException{
 		Map<String, Boolean> transformationsMap = new HashMap<String, Boolean>();
 		for(String conceptId : listWithConceptIds){
@@ -1494,21 +1488,21 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 	    }
 	    return list;
 	}
-	
+
 	private List<String> prepareLineBreaksForJavaScript(List<String> stringList){
 		if(stringList != null){
 		    for(int i = 0; i < stringList.size(); i++){
 	            String tmp = stringList.get(i).replace(new String(new char[]{13, 10}), "\\n");
 	            stringList.remove(i);
 	            stringList.add(i, tmp);
-	        }    
+	        }
 		}
 		return stringList;
 	}
-	
 
-	
-	
+
+
+
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 	// inner classes

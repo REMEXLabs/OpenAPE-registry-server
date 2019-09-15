@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2016-2018 Research group REMEX, Hochschule der Medien (Stuttgart, Germany)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,7 +41,6 @@ public class TestEntities {
 		String concept1Id = "id1";
 		IConcept concept1 = new Concept(concept1Id);
 		concept1.setType(TypeEnum.NEED_AND_PREFERENCE);
-		concept1.setSubType(SubTypeEnum.ALIAS);
 		concept1.setOrigin("common");
 		List<IDefinition> definitions1 = new ArrayList<IDefinition>();
 		definitions1.add(new Definition("DE", concept1Id, "definition1"));
@@ -69,10 +68,9 @@ public class TestEntities {
 		owners1.add(2);
 		owners1.add(3);
 		concept1.setOwners(owners1);
-		
+
 		IConcept concept2 = new Concept("id2");
 		concept2.setType(TypeEnum.NEED_AND_PREFERENCE);
-		concept2.setSubType(SubTypeEnum.ALIAS);
 		concept2.setOrigin("common");
 		List<IDefinition> definitions2 = new ArrayList<IDefinition>();
 		definitions2.add(new Definition("DE", concept1Id, "definition2"));
@@ -100,10 +98,9 @@ public class TestEntities {
 		owners2.add(2);
 		owners2.add(3);
 		concept2.setOwners(owners2);
-		
+
 		IConcept concept3 = new Concept("id3");
 		concept3.setType(TypeEnum.NEED_AND_PREFERENCE);
-		concept3.setSubType(SubTypeEnum.ALIAS);
 		concept3.setOrigin("common");
 		List<IDefinition> definitions3 = new ArrayList<IDefinition>();
 		definitions3.add(new Definition(null, concept1Id, "definition3"));
@@ -131,7 +128,7 @@ public class TestEntities {
 		owners3.add(2);
 		owners3.add(3);
 		concept3.setOwners(owners3);
-		
+
 		List<IConcept> concepts = new ArrayList<IConcept>();
 		concepts.add(concept1);
 		concepts.add(concept2);
@@ -150,7 +147,7 @@ public class TestEntities {
 		user1.setHashOfResetPassword(null);
 		user1.setApiKey("apiKey1");
 		user1.setSuperAdmin(true);
-		
+
 		User user2 = new User();
 		user2.setUserName("userName2");
 		user2.setFirstName("firstName2");
@@ -161,7 +158,7 @@ public class TestEntities {
 		user2.setHashOfResetPassword(null);
 		user2.setApiKey("apiKey2");
 		user2.setSuperAdmin(false);
-		
+
 		User user3 = new User();
 		user3.setUserName("userName3");
 		user3.setFirstName("firstName3");
@@ -172,12 +169,12 @@ public class TestEntities {
 		user3.setHashOfResetPassword(null);
 		user3.setApiKey(null);
 		user3.setSuperAdmin(false);
-		
+
 		List<IUser> users = new ArrayList<IUser>();
 		users.add(user1);
 		users.add(user2);
 		users.add(user3);
-		
+
 		return users;
 	}
 
@@ -185,8 +182,8 @@ public class TestEntities {
 		GroupAccessRight g1 = new GroupAccessRight(1, "id1", true, true, false, false);
 		GroupAccessRight g2 = new GroupAccessRight(1, "id2", true, true, false, false);
 		GroupAccessRight g3 = new GroupAccessRight(1, "id3", false, false, false, false);
-		
-		
+
+
 		List<IGroupAccessRight> groupAccessRights = new ArrayList<IGroupAccessRight>();
 		groupAccessRights.add(g1);
 		groupAccessRights.add(g2);

@@ -1,12 +1,12 @@
 #**
 	Copyright 2016-2018 Research group REMEX, Hochschule der Medien (Stuttgart, Germany)
-	
+
 	Licensed under the Apache License, Version 2.0 (the "License");
 	you may not use this file except in compliance with the License.
 	You may obtain a copy of the License at
-	
+
 	    http://www.apache.org/licenses/LICENSE-2.0
-	
+
 	Unless required by applicable law or agreed to in writing, software
 	distributed under the License is distributed on an "AS IS" BASIS,
 	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -31,7 +31,7 @@
 	<p>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_GUIDE")</p>
 #end
 <form id="newConceptForm" method="post">
-	
+
 	#if(!$editMode)
 		<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_ID")</label>
 		<div class="row uniform">
@@ -39,7 +39,7 @@
 				#if(!$id)
 					#set($id = "")
 				#end
-				<input type="text" id="id" name="id" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_ID")", value="$id">	
+				<input type="text" id="id" name="id" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_ID")", value="$id">
 			</div>
 		</div>
 	#else
@@ -49,12 +49,12 @@
 				#if(!$id)
 					#set($id = "")
 				#end
-				<input type="text" id="id" name="id" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_ID")", value="$id" disabled>	
+				<input type="text" id="id" name="id" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_ID")", value="$id" disabled>
 			</div>
 		</div>
 	#end
 	</p>
-	
+
 	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_NAME")</label>
 	#if(!$languageCodeNames)
 		#set($languageCodeNames = false)
@@ -65,7 +65,7 @@
 	#contentFields($languageCodeNames, $names, $lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_NAME"), 0, 1, true, "names")
 	</p>
 	</p>
-	
+
 	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_DEFINITION")</label>
 	#if(!$languageCodeDefinitions)
 		#set($languageCodeDefinitions = false)
@@ -75,25 +75,25 @@
 	#end
 	#contentFields($languageCodeDefinitions, $definitions, $lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_DEFINITION"), 1, 3, true, "definitions")
 	</p>
-	
+
 	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_TYPE")</label>
 	#set($values = ["", "NEED_AND_PREFERENCE", "CONTEXT_DESCRIPTION", "RESOURCE_DESCRIPTION"])
-	#set($names = [$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_TYPE"), "NeedAndPreference", "ContextDescription", "ResourceDesription"])
+	#set($names = [$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_TYPE"), "PreferenceStatement", "ContextDescription", "ResourceDesription"])
 	#if(!$type)
 		#set($type = false)
 	#end
 	#dropdownMenu($values, $names, $type, true, "type")
 	</p>
-	
+
 	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_SUBTYPE")</label>
-	#set($values = ["", "TERM", "ALIAS", "TRANSFORM", "TRANSLATION"])
-	#set($names = [$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_SUBTYPE"), "Term", "Alias", "Transform", "Translation"])
+	#set($values = ["", "TERM", "TRANSFORM"])
+	#set($names = [$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_SUBTYPE"), "Term", "Transform"])
 	#if(!$subType)
 		#set($subType = false)
 	#end
 	#dropdownMenu($values, $names, $subType, true, "subType")
 	</p>
-	
+
 	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_DATATYPE")</label>
 	#set($values = ["", "BOOLEAN", "NUMBER", "STRING"])
 	#set($names = [$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_DATATYPE"), "Boolean", "Number", "String"])
@@ -102,18 +102,18 @@
 	#end
 	#dropdownMenu($values, $names, $dataType, true, "dataType")
 	</p>
-	
+
 	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_ORIGIN")</label>
 	<div class="row uniform">
 		<div class="12u 12u$(small)">
 			#if(!$origin)
 				#set($origin = "")
 			#end
-			<input type="text" name="origin" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_ORIGIN")", value="$origin">	
+			<input type="text" name="origin" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_ORIGIN")", value="$origin">
 		</div>
 	</div>
 	</p>
-	
+
 	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_VALUE_SPACE")</label>
 	<div class="row uniform">
 		<div class="12u$">
@@ -144,7 +144,7 @@
 		</div>
 	</div>
 	</p>
-	
+
 	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_OWNERS")</label>
 	<div class="row uniform">
 		<div class="12u 12u$(small)">
@@ -155,7 +155,7 @@
 		</div>
 	</div>
 	</p>
-	
+
 	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_AUTHORS")</label>
 	<div class="row uniform">
 		<div class="12u 12u$(small)">
@@ -166,7 +166,7 @@
 		</div>
 	</div>
 	</p>
-	
+
 	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_TRANSFORMATIONS")</label>
 	<div class="row uniform">
 		<div class="12u 12u$(small)">
@@ -177,7 +177,7 @@
 		</div>
 	</div>
 	</p>
-	
+
 	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_REFINEMENTS")</label>
 	<div class="row uniform">
 		<div class="12u 12u$(small)">
@@ -188,7 +188,7 @@
 		</div>
 	</div>
 	</p>
-	
+
 	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_NOTES")</label>
 	#if(!$languageCodeNotes)
 		#set($languageCodeNotes = false)
@@ -198,7 +198,7 @@
 	#end
 	#contentFields($languageCodeNotes, $notes, $lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_NOTE"), 2, 3, false, "notes")
 	</p>
-	
+
 	<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_EXAMPLES")</label>
 	#if(!$languageCodeExamples)
 		#set($languageCodeExamples = false)
@@ -208,10 +208,10 @@
 	#end
 	#contentFields($languageCodeExamples, $examples, $lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_EXAMPLE"), 3, 3, false, "examples")
 	</p>
-	
+
 	#if($groups && $groups.isEmpty() == false)
 		<label>$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_LABEL_ACCESS_RIGHTS")</label>
-		
+
 		<table>
 			<thead>
 				<tr>
@@ -261,7 +261,7 @@
 			</thead>
 		</table>
 	#end
-	
+
 	<input type="submit" value="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_SUBMIT_BUTTON_TEXT")">
 
 </form>

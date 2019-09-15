@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2016-2018 Research group REMEX, Hochschule der Medien (Stuttgart, Germany)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -52,9 +52,9 @@ import de.hdm.multiplelanguages.LanguageHandler;
 
 /**
  * This class converts concepts, requests and responses from and to JSON for the registry server.
- * 
+ *
  * This class is thread safe.
- * 
+ *
  * @author Tobias Ableitner
  *
  */
@@ -65,88 +65,78 @@ public class JsonHandler implements IJsonHandler{
 	// attributes
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
-		
+
 	/**
 	 * JSON value for concept type {@link TypeEnum#NEED_AND_PREFERENCE}.
 	 */
-	private static final String CONCEPT_TYPE_NEED_AND_PREFERENCE_AS_JSON_VALUE = "NeedAndPreference";
-	
+	private static final String CONCEPT_TYPE_NEED_AND_PREFERENCE_AS_JSON_VALUE = "PreferenceStatement";
+
 	/**
 	 * JSON value for concept type {@link TypeEnum#CONTEXT_DESCRIPTION}.
 	 */
 	private static final String CONCEPT_TYPE_CONTEXT_DESCRIPTION_AS_JSON_VALUE = "ContextDescription";
-	
+
 	/**
 	 * JSON value for concept type {@link TypeEnum#RESOURCE_DESCRIPTION}.
 	 */
 	private static final String CONCEPT_TYPE_RESOURCE_DESCRIPTION_AS_JSON_VALUE = "ResourceDescription";
-	
+
 	/**
 	 * JSON value for concept sub type {@link SubTypeEnum#TERM}.
 	 */
 	private static final String CONCEPT_SUB_TYPE_TERM_AS_JSON_VALUE = "term";
-	
-	/**
-	 * JSON value for concept sub type {@link SubTypeEnum#ALIAS}.
-	 */
-	private static final String CONCEPT_SUB_TYPE_ALIAS_AS_JSON_VALUE = "alias";
-	
+
 	/**
 	 * JSON value for concept sub type {@link SubTypeEnum#TRANSFORM}.
 	 */
 	private static final String CONCEPT_SUB_TYPE_TRANSFORM_AS_JSON_VALUE = "transform";
-	
-	/**
-	 * JSON value for concept sub type {@link SubTypeEnum#TRANSLATION}.
-	 */
-	private static final String CONCEPT_SUB_TYPE_TRANSLATION_AS_JSON_VALUE = "translation";
-	
+
 	/**
 	 * JSON value for concept data type {@link DataTypeEnum#BOOLEAN}.
 	 */
 	private static final String CONCEPT_DATA_TYPE_BOOLEAN_AS_JSON_VALUE = "Boolean";
-	
+
 	/**
 	 * JSON value for concept data type {@link DataTypeEnum#NUMBER}.
 	 */
 	private static final String CONCEPT_DATA_TYPE_NUMBER_AS_JSON_VALUE = "Number";
-	
+
 	/**
 	 * JSON value for concept data type {@link DataTypeEnum#STRING}.
 	 */
 	private static final String CONCEPT_DATA_TYPE_STRING_AS_JSON_VALUE = "String";
-	
+
 	/**
 	 * Integer constant for content type name.
 	 */
 	private static final int CONTENT_TYPE_NAME = 1;
-	
+
 	/**
 	 * Integer constant for content type definition.
 	 */
 	private static final int CONTENT_TYPE_DEFINITION = 2;
-	
+
 	/**
 	 * Integer constant for content type example.
 	 */
 	private static final int CONTENT_TYPE_EXAMPLE = 3;
-	
+
 	/**
 	 * Integer constant for content type note.
 	 */
 	private static final int CONTENT_TYPE_NOTE = 4;
-	
+
 	/**
 	 * The users preferred language for messages / error messages.
 	 */
 	private Locale locale;
-	
+
 	/**
      * Data access object for the languages.
      */
     private ILanguageDao languageDao;
 
-	
+
 
 
 	// *********************************************************************************************************************************************
@@ -164,8 +154,8 @@ public class JsonHandler implements IJsonHandler{
 		this.languageDao = DaoFactory.createDaoFactory(DaoFactory.Database.DEFAULT).createLanguageDao();
 	}
 
-	
-	
+
+
 
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
@@ -176,8 +166,8 @@ public class JsonHandler implements IJsonHandler{
 	private void setLocale(Locale locale){
 		this.locale = locale;
 	}
-	
-	
+
+
 
 
 	// *********************************************************************************************************************************************
@@ -186,8 +176,8 @@ public class JsonHandler implements IJsonHandler{
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 
-	
-	
+
+
 
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
@@ -256,7 +246,7 @@ public class JsonHandler implements IJsonHandler{
 		Checker.checkNull(concepts, "concepts");
 		return this.fillJsonArrayWithConcepts(concepts).toJSONString();
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see de.hdm.json.IJsonHandler#createPostAndPutConceptSuccessJsonResponse(de.hdm.datatypes.IConcept, java.lang.String)
@@ -271,7 +261,7 @@ public class JsonHandler implements IJsonHandler{
 		jsonObject.put(JsonFieldNames.RECORD, this.conceptToJsonObject(concept));
 		return jsonObject.toJSONString();
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see de.hdm.json.IJsonHandler#createGetConceptsSuccessJsonResponse(java.util.List, de.hdm.databaseaccess.IConceptFilter, long, int)
@@ -290,7 +280,7 @@ public class JsonHandler implements IJsonHandler{
 		jsonObject.put(JsonFieldNames.RETRIEVED_AT, this.timeStampToString(retrievedAt));
 		return jsonObject.toJSONString();
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see de.hdm.json.IJsonHandler#createGetConceptSuccessJsonResponse(de.hdm.datatypes.IConcept, long)
@@ -305,7 +295,7 @@ public class JsonHandler implements IJsonHandler{
 		jsonObject.put(JsonFieldNames.RETRIEVED_AT, this.timeStampToString(retrievedAt));
 		return jsonObject.toJSONString();
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see de.hdm.json.IJsonHandler#createDeleteConceptSuccessJsonResponse(java.lang.String)
@@ -318,10 +308,10 @@ public class JsonHandler implements IJsonHandler{
 		jsonObject.put(JsonFieldNames.MESSAGE, message);
 		return jsonObject.toJSONString();
 	}
-	
 
-	
-	
+
+
+
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 	// public methods
@@ -345,7 +335,7 @@ public class JsonHandler implements IJsonHandler{
 	// private methods
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
-	
+
 	@SuppressWarnings("unchecked")
 	private IConcept jsonObjectToConcept(JSONObject conceptAsJson, boolean conceptIdFieldRequired) throws JsonHandlerException, DataAccessException{
 		String conceptId = this.getString(conceptAsJson, JsonFieldNames.CONCEPT_ID, conceptIdFieldRequired, true);
@@ -354,7 +344,7 @@ public class JsonHandler implements IJsonHandler{
 		concept.setSubType(this.convertJsonValueToConceptSubType(this.getString(conceptAsJson, JsonFieldNames.SUBTYPE, true, true)));
 		concept.setOrigin(this.getString(conceptAsJson, JsonFieldNames.ORIGIN, false, false));
 		concept.setDefinitions(this.convertJsonArrayToListWithContents(this.getJsonArray(conceptAsJson, JsonFieldNames.DEFINITION, true, true), conceptId, CONTENT_TYPE_DEFINITION));
-		concept.setNames(this.convertJsonArrayToListWithContents(this.getJsonArray(conceptAsJson, JsonFieldNames.TERM_LABEL, true, true), conceptId, CONTENT_TYPE_NAME));	
+		concept.setNames(this.convertJsonArrayToListWithContents(this.getJsonArray(conceptAsJson, JsonFieldNames.TERM_LABEL, true, true), conceptId, CONTENT_TYPE_NAME));
 		concept.setDataType(this.convertJsonValueToConceptDataType(this.getString(conceptAsJson, JsonFieldNames.DATATYPE, true, true)));
 		//concept.setValueSpace(new ValueSpace(this.getString(conceptAsJson, JsonFieldNames.VALUE_SPACE, false, false)));
 		concept.setValueSpace(this.convertJsonValueToValueSpace(conceptAsJson));
@@ -367,7 +357,7 @@ public class JsonHandler implements IJsonHandler{
 		concept.setGroupAccessRights(this.convertJsonArrayToListWithGroupAccessRights(conceptId, this.getJsonArray(conceptAsJson, JsonFieldNames.GROUP_ACCESS_RIGHTS, false, false)));
 		return concept;
 	}
-	
+
 	private JSONObject getJsonObject(JSONObject jsonObject, String jsonKey, boolean isRequired, boolean nullNotAllowed) throws JsonHandlerException{
 		Object o = this.getObjectFromJSON(jsonObject, jsonKey, isRequired, nullNotAllowed);
 		if(o != null && o instanceof JSONObject == false){
@@ -377,7 +367,7 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return (JSONObject)o;
 	}
-	
+
 	private JSONArray getJsonArray(JSONObject jsonObject, String jsonKey, boolean isRequired, boolean nullNotAllowed) throws JsonHandlerException{
 		Object o = this.getObjectFromJSON(jsonObject, jsonKey, isRequired, nullNotAllowed);
 		if(o != null && o instanceof JSONArray == false){
@@ -387,7 +377,7 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return (JSONArray)o;
 	}
-	
+
 	private String getString(JSONObject jsonObject, String jsonKey, boolean isRequired, boolean nullNotAllowed) throws JsonHandlerException{
 		Object o = this.getObjectFromJSON(jsonObject, jsonKey, isRequired, nullNotAllowed);
 		if(o != null && o instanceof String == false){
@@ -397,7 +387,7 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return (String)o;
 	}
-	
+
 	private boolean getBoolean(JSONObject jsonObject, String jsonKey) throws JsonHandlerException{
 		Object o = this.getObjectFromJSON(jsonObject, jsonKey, true, true);
 		if(o == null || o instanceof Boolean == false){
@@ -407,17 +397,17 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return (Boolean)o;
 	}
-	
+
 	private int getInteger(JSONObject jsonObject, String jsonKey) throws JsonHandlerException{
 		long groupIdAsLong = (long)this.getObjectFromJSON(jsonObject, jsonKey, true, true);
-		if (groupIdAsLong < Integer.MIN_VALUE || groupIdAsLong > Integer.MAX_VALUE) { 
+		if (groupIdAsLong < Integer.MIN_VALUE || groupIdAsLong > Integer.MAX_VALUE) {
 	    	String message = "The value " + groupIdAsLong + " in the json field " + jsonKey + " is invalid! It must be an integer!";
 			String userMessage = TemplateFiller.fillTemplate(LanguageHandler.getWord(this.locale, "ERROR_BAD_REQUEST_INVALID_JSON_DATA_WITH_VALID_VALUES"), String.valueOf(groupIdAsLong), jsonKey, "One integer");
 			throw new JsonHandlerException(message, null, userMessage);
 	    }
 		return Math.toIntExact(groupIdAsLong);
 	}
-	
+
 	private Object getObjectFromJSON(JSONObject jsonObject, String jsonKey, boolean isRequired, boolean nullNotAllowed) throws JsonHandlerException{
 		Object returnObject = jsonObject.get(jsonKey);
 		boolean fieldExists = jsonObject.containsKey(jsonKey);
@@ -433,9 +423,9 @@ public class JsonHandler implements IJsonHandler{
 				throw new JsonHandlerException(message, null, userMessage);
 			}
 		}
-		return returnObject; 
+		return returnObject;
 	}
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private JSONObject conceptToJsonObject(IConcept concept){
 		JSONObject conceptAsJson = new JSONObject();
@@ -447,7 +437,7 @@ public class JsonHandler implements IJsonHandler{
 		conceptAsJson.put(JsonFieldNames.TERM_LABEL, this.convertConceptContentToJSONArray((List)concept.getNames()));
 		conceptAsJson.put(JsonFieldNames.DATATYPE, this.convertConceptDataTypeToJsonValue(concept.getDataType()));
 		if(concept.getValueSpace() != null && concept.getValueSpace().getJsonSchema() != null){
-		    conceptAsJson.put(JsonFieldNames.VALUE_SPACE, concept.getValueSpace().getJsonSchema());    
+		    conceptAsJson.put(JsonFieldNames.VALUE_SPACE, concept.getValueSpace().getJsonSchema());
 		}
 		conceptAsJson.put(JsonFieldNames.TRANSFORMATION_OF, this.fillJsonArrayWithStrings(concept.getConceptsWhichAreTransformedByThisConcept()));
 		conceptAsJson.put(JsonFieldNames.REFINES, this.fillJsonArrayWithStrings(concept.getConceptsWhichAreRefinedByThisConcept()));
@@ -455,7 +445,7 @@ public class JsonHandler implements IJsonHandler{
 		conceptAsJson.put(JsonFieldNames.EXAMPLES, this.convertConceptContentToJSONArray((List)concept.getExamples()));
 		conceptAsJson.put(JsonFieldNames.AUTHORS, this.fillJsonArrayWithStrings(concept.getAuthors()));
 		if(concept.getUpdatedInMilliseconds() != -1){
-			conceptAsJson.put(JsonFieldNames.UPDATED, this.timeStampToString(concept.getUpdatedInMilliseconds()));	
+			conceptAsJson.put(JsonFieldNames.UPDATED, this.timeStampToString(concept.getUpdatedInMilliseconds()));
 		}
 		conceptAsJson.put(JsonFieldNames.OWNERS, this.fillJsonArrayWithIntegers(concept.getOwners()));
 		if(concept.getGroupAccessRights() != null && concept.getGroupAccessRights().isEmpty() == false){
@@ -464,7 +454,7 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return conceptAsJson;
 	}
-	
+
 	private IValueSpace convertJsonValueToValueSpace(JSONObject jsonObject) throws JsonHandlerException{
 	    JSONObject valueSpaceAsJsonObject = this.getJsonObject(jsonObject, JsonFieldNames.VALUE_SPACE, false, false);
 	    IValueSpace valueSpace = null;
@@ -479,7 +469,7 @@ public class JsonHandler implements IJsonHandler{
 	    }
 	    return valueSpace;
 	}
-	
+
 	private TypeEnum convertJsonValueToConceptType(String typeAsString) throws JsonHandlerException{
 		TypeEnum type;
 		switch(typeAsString){
@@ -494,12 +484,12 @@ public class JsonHandler implements IJsonHandler{
 			break;
 		default:
 			String message = "The concept type " + typeAsString + " is not valid!";
-			String userMessage = TemplateFiller.fillTemplate(LanguageHandler.getWord(this.locale, "ERROR_BAD_REQUEST_INVALID_JSON_DATA_WITH_VALID_VALUES"), typeAsString, JsonFieldNames.TYPE, "\"NeedAndPreference\", \"ContextDescription\", \"ResourceDescription\"");
+			String userMessage = TemplateFiller.fillTemplate(LanguageHandler.getWord(this.locale, "ERROR_BAD_REQUEST_INVALID_JSON_DATA_WITH_VALID_VALUES"), typeAsString, JsonFieldNames.TYPE, "\"PreferenceStatement\", \"ContextDescription\", \"ResourceDescription\"");
 			throw new JsonHandlerException(message, null, userMessage);
 		}
 		return type;
 	}
-	
+
 	private String convertConceptTypeToJsonValue(TypeEnum type){
 		String typeAsString;
 		switch(type){
@@ -517,51 +507,39 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return typeAsString;
 	}
-	
+
 	private SubTypeEnum convertJsonValueToConceptSubType(String subTypeAsString) throws JsonHandlerException{
 		SubTypeEnum subType;
 		switch(subTypeAsString){
 		case CONCEPT_SUB_TYPE_TERM_AS_JSON_VALUE:
 			subType = SubTypeEnum.TERM;
 			break;
-		case CONCEPT_SUB_TYPE_ALIAS_AS_JSON_VALUE:
-			subType = SubTypeEnum.ALIAS;
-			break;
 		case CONCEPT_SUB_TYPE_TRANSFORM_AS_JSON_VALUE:
 			subType = SubTypeEnum.TRANSFORM;
 			break;
-		case CONCEPT_SUB_TYPE_TRANSLATION_AS_JSON_VALUE:
-			subType = SubTypeEnum.TRANSLATION;
-			break;
 		default:
 			String message = "The concept subtype " + subTypeAsString + " is not valid!";
-			String userMessage = TemplateFiller.fillTemplate(LanguageHandler.getWord(this.locale, "ERROR_BAD_REQUEST_INVALID_JSON_DATA_WITH_VALID_VALUES"), subTypeAsString, JsonFieldNames.SUBTYPE, "\"term\", \"alias\", \"transform\" and \"translation\"");
+			String userMessage = TemplateFiller.fillTemplate(LanguageHandler.getWord(this.locale, "ERROR_BAD_REQUEST_INVALID_JSON_DATA_WITH_VALID_VALUES"), subTypeAsString, JsonFieldNames.SUBTYPE, "\"term\" and \"transform\"");
 			throw new JsonHandlerException(message, null, userMessage);
 		}
 		return subType;
 	}
-	
+
 	private String convertConceptSubTypeToJsonValue(SubTypeEnum subType){
 		String subTypeAsString;
 		switch(subType){
 		case TERM:
 			subTypeAsString = CONCEPT_SUB_TYPE_TERM_AS_JSON_VALUE;
 			break;
-		case ALIAS:
-			subTypeAsString = CONCEPT_SUB_TYPE_ALIAS_AS_JSON_VALUE;
-			break;
 		case TRANSFORM:
 			subTypeAsString = CONCEPT_SUB_TYPE_TRANSFORM_AS_JSON_VALUE;
-			break;
-		case TRANSLATION:
-			subTypeAsString = CONCEPT_SUB_TYPE_TRANSLATION_AS_JSON_VALUE;
 			break;
 		default:
 			throw new RuntimeException("The subtype " + subType.toString() + " is unknown for this method!");
 		}
 		return subTypeAsString;
 	}
-	
+
 	private DataTypeEnum convertJsonValueToConceptDataType(String dataTypeAsString) throws JsonHandlerException{
 		DataTypeEnum dataType;
 		switch(dataTypeAsString){
@@ -581,7 +559,7 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return dataType;
 	}
-	
+
 	private String convertConceptDataTypeToJsonValue(DataTypeEnum dataType){
 		String dataTypeAsString;
 		switch(dataType){
@@ -599,7 +577,7 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return dataTypeAsString;
 	}
-	
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private List convertJsonArrayToListWithContents(JSONArray jsonArray, String conceptId, int contentType) throws JsonHandlerException, DataAccessException{
 		List list = new ArrayList();
@@ -638,7 +616,7 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return list;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private JSONArray convertConceptContentToJSONArray(List<IContent> contents){
 		JSONArray jsonArray = new JSONArray();
@@ -647,14 +625,14 @@ public class JsonHandler implements IJsonHandler{
 			if(n.getLanguageCode() == null){
 				jsonObject.put(JsonFieldNames.CONTENT_LANGUAGE_CODE, "");
 			}else{
-				jsonObject.put(JsonFieldNames.CONTENT_LANGUAGE_CODE, n.getLanguageCode());	
+				jsonObject.put(JsonFieldNames.CONTENT_LANGUAGE_CODE, n.getLanguageCode());
 			}
 			jsonObject.put(JsonFieldNames.CONTENT_VALUE, n.getContent());
 			jsonArray.add(jsonObject);
 		}
 		return jsonArray;
 	}
-		
+
 	@SuppressWarnings("unchecked")
 	private List<String> convertJsonArrayToListWithStrings(JSONArray jsonArray){
 		List<String> list = new ArrayList<String>();
@@ -664,7 +642,7 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return list;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private List<Integer> convertJsonArrayToListWithIntegers(JSONArray jsonArray, String jsonKey) throws JsonHandlerException{
 		List<Integer> list = new ArrayList<Integer>();
@@ -672,7 +650,7 @@ public class JsonHandler implements IJsonHandler{
 		while(iterator.hasNext()){
 			long tmp = iterator.next();
 			if (tmp >= Integer.MIN_VALUE && tmp <= Integer.MAX_VALUE) {
-				list.add(Math.toIntExact(tmp));    
+				list.add(Math.toIntExact(tmp));
 		    }else{
 		    	String message = "The value " + tmp + " it the json array is invalid! It must be an integer!";
 				String userMessage = TemplateFiller.fillTemplate(LanguageHandler.getWord(this.locale, "ERROR_BAD_REQUEST_INVALID_JSON_DATA_IN_JSON_ARRAY_WITH_VALID_VALUES"), String.valueOf(tmp), jsonKey, "Integer");
@@ -681,7 +659,7 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return list;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private JSONArray fillJsonArrayWithConcepts(List<IConcept> concepts){
 		JSONArray conceptsAsJsonArray = new JSONArray();
@@ -690,29 +668,29 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return conceptsAsJsonArray;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private JSONArray fillJsonArrayWithStrings(List<String> list){
 		JSONArray jsonArray = new JSONArray();
 		if(list != null){
 			for(String n : list){
 				jsonArray.add(n);
-			}	
+			}
 		}
 		return jsonArray;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private JSONArray fillJsonArrayWithIntegers(List<Integer> list){
 		JSONArray jsonArray = new JSONArray();
 		if(list != null){
 			for(int n : list){
 				jsonArray.add(n);
-			}	
+			}
 		}
 		return jsonArray;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private JSONArray fillJsonArrayWithConceptTypes(List<TypeEnum> conceptTypes){
 		JSONArray jsonArray = new JSONArray();
@@ -721,7 +699,7 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return jsonArray;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private JSONArray fillJsonArrayWithJsonObjects(List<JSONObject> jsonObjects){
 		JSONArray jsonArray = new JSONArray();
@@ -730,12 +708,12 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return jsonArray;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private JSONObject conceptFilterToJson(IConceptFilter conceptFilter){
 		JSONObject jsonObject = new JSONObject();
 		if(conceptFilter.getOffset() != -1){
-			jsonObject.put(JsonFieldNames.CONCEPT_FILTER_OFFSET, conceptFilter.getOffset());	
+			jsonObject.put(JsonFieldNames.CONCEPT_FILTER_OFFSET, conceptFilter.getOffset());
 		}else{
 			jsonObject.put(JsonFieldNames.CONCEPT_FILTER_OFFSET, "");
 		}
@@ -756,7 +734,7 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return jsonObject;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private List<JSONObject> groupAccessRightsToJsonArray(List<IGroupAccessRight> groupAccessRights) {
 		JSONArray jsonArray = new JSONArray();
@@ -765,7 +743,7 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return jsonArray;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private JSONObject groupAccessRigtToJsonObject(IGroupAccessRight groupAccessRight){
 		JSONObject jsonObject = new JSONObject();
@@ -776,7 +754,7 @@ public class JsonHandler implements IJsonHandler{
 		jsonObject.put(JsonFieldNames.GROUP_ACCESS_RIGHT_CHANGE_RIGHTS_RIGHT, groupAccessRight.hasChangeRightsRight());
 		return jsonObject;
 	}
-	
+
 	private List<IGroupAccessRight> convertJsonArrayToListWithGroupAccessRights(String conceptId, JSONArray jsonArray) throws JsonHandlerException{
 		List<IGroupAccessRight> groupAccessRights = new ArrayList<IGroupAccessRight>();
 		if(jsonArray != null){
@@ -788,7 +766,7 @@ public class JsonHandler implements IJsonHandler{
 		}
 		return groupAccessRights;
 	}
-	
+
 	private IGroupAccessRight jsonObjectToGroupAccessRight(String conceptId, JSONObject jsonObject) throws JsonHandlerException{
 		int groupId = this.getInteger(jsonObject, JsonFieldNames.GROUP_ACCESS_RIGHT_GROUP_ID);
 		boolean readRight = this.getBoolean(jsonObject, JsonFieldNames.GROUP_ACCESS_RIGHT_READ_RIGHT);
@@ -797,7 +775,7 @@ public class JsonHandler implements IJsonHandler{
 		boolean changeRightsRight = this.getBoolean(jsonObject, JsonFieldNames.GROUP_ACCESS_RIGHT_CHANGE_RIGHTS_RIGHT);
 		return new GroupAccessRight(groupId, conceptId, readRight, updateRight, deleteRight, changeRightsRight);
 	}
-	
+
 	private String timeStampToString(long timeStamp){
 		GregorianCalendar gregorianCalendar = new GregorianCalendar();
 		gregorianCalendar.setTimeInMillis(timeStamp);
@@ -805,10 +783,10 @@ public class JsonHandler implements IJsonHandler{
 		String result = GregorianCalendarHelper.convertDateAndTimeToString(gregorianCalendar, "-", "T", ":", true, ".") + "Z";
 		return result;
 	}
-	
-	
-	
-	
+
+
+
+
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 	// inner classes

@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2016-2018 Research group REMEX, Hochschule der Medien (Stuttgart, Germany)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -46,16 +46,16 @@ public abstract class HtmlController {
 	 * Logger.
 	 */
 	private final static Logger logger = LoggerFactory.getLogger(HtmlController.class);
-	
+
 	protected static final String MODEL_VALUE_KEY_INFO_MESSAGE = "infoMessage";
-	
+
 	protected static final String MODEL_VALUE_KEY_ERROR_MESSAGE = "errorMessage";
-	
+
 	protected static final String MODEL_VALUE_KEY_OPENED_MENU = "openedMenu";
 
 
 
-	
+
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 	// constructors
@@ -71,7 +71,7 @@ public abstract class HtmlController {
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 
-	
+
 
 
 	// *********************************************************************************************************************************************
@@ -80,8 +80,8 @@ public abstract class HtmlController {
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 
-	
-	
+
+
 
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
@@ -114,7 +114,7 @@ public abstract class HtmlController {
 			model.put(MODEL_VALUE_KEY_INFO_MESSAGE, successMessage);
 		}
 	}
-	
+
 	protected void handleAuthenticationException(Request request, Response response, AuthenticationException e, Locale locale){
 	    request.session().invalidate();
 	    if(e != null && e.isRedirect()){
@@ -126,17 +126,17 @@ public abstract class HtmlController {
 		    SessionUtil.setRedirect(request, redirect);
 		    response.redirect(Path.Web.LOGIN);
 		}else{
-		    SessionUtil.setErrorMessage(request, LanguageHandler.getWord(locale, "WEB_UNALLOWED_REQUEST_ERROR_MESSAGE"));
+		    SessionUtil.setErrorMessage(request, LanguageHandler.getWord(locale, "WEB_DISALLOWED_REQUEST_ERROR_MESSAGE"));
 		    response.redirect(Path.Web.NOT_LOGGED_IN_INFO_AND_ERROR);
 		}
-		
+
 	}
-	
+
 	/*protected static void handleUserIsNotLoggedInStatic(Request request, Response response){
 		SessionUtil.setRedirect(request, request.pathInfo());
 		response.redirect(Path.Web.LOGIN);
 	}*/
-	
+
 	protected void abortUnitOfWork(IUnitOfWork unitOfWork){
 		if(unitOfWork != null && unitOfWork.getState() == UnitOfWorkStateEnum.STARTED){
 			try {
@@ -147,31 +147,31 @@ public abstract class HtmlController {
 			}
 		}
 	}
-	
+
 	protected void handleSuccess(Locale locale, Request request, Response response, String templateKey, String value, String redirect){
 		String successMessage = LanguageHandler.getWord(locale, templateKey);
 		if(value != null){
-			successMessage = TemplateFiller.fillTemplate(successMessage, value);	
+			successMessage = TemplateFiller.fillTemplate(successMessage, value);
 		}
 		SessionUtil.setSuccessMessage(request, successMessage);
 		response.redirect(redirect);
 	}
-	
+
 	protected void setOpenedMenu(Request request, Map<String, Object> model, MenuEnum openedMenu){
 		SessionUtil.setOpenedMenu(request, openedMenu);
 		model.put(MODEL_VALUE_KEY_OPENED_MENU, openedMenu.toString());
 	}
-		
+
 	protected void handleExpception(Locale locale, IUnitOfWork unitOfWork, Exception exception, Map<String, Object> model, Request request, Response response, String userMessageTemplateKey){
         exception.printStackTrace();
         logger.error(exception.getMessage());
-        
+
         this.abortUnitOfWork(unitOfWork);
-        
+
         this.setResponseStatusCodeInErrorCase(response, exception);
-        
+
         if(exception instanceof AuthenticationException){
-            this.handleAuthenticationException(request, response, (AuthenticationException)exception, locale);    
+            this.handleAuthenticationException(request, response, (AuthenticationException)exception, locale);
         }else if(exception instanceof RegistryServerException == false || ((RegistryServerException)exception).isShowUserMessage()){
             // create user message if not existing
             String userMessage = null;
@@ -188,7 +188,7 @@ public abstract class HtmlController {
             }
         }
     }
-	
+
    protected void setResponseStatusCodeInErrorCase(Response response, Exception exception){
         if(exception instanceof AuthenticationException){
             response.status(403); // status code Forbidden
@@ -198,8 +198,8 @@ public abstract class HtmlController {
     }
 
 
-	
-	
+
+
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 	// private methods

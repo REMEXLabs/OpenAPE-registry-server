@@ -1,12 +1,12 @@
 /*******************************************************************************
  * Copyright 2016-2018 Research group REMEX, Hochschule der Medien (Stuttgart, Germany)
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *     http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -30,9 +30,9 @@ import spark.Request;
 
 /**
  * This class provides utility methods to handle a JSON http request.
- * 
+ *
  * This class is thread safe.
- * 
+ *
  * @author Tobias Ableitner
  *
  */
@@ -47,7 +47,7 @@ public class RequestUtil {
 	/**
 	 * Value of the uri query parameter for the concept type {@link TypeEnum#NEED_AND_PREFERENCE}.
 	 */
-	private static final String CONCEPT_TYPE_NEED_AND_PREFERENCE_AS_URI_QUERY_PARAMETER_VALUE = "NeedAndPreference";
+	private static final String CONCEPT_TYPE_NEED_AND_PREFERENCE_AS_URI_QUERY_PARAMETER_VALUE = "PreferenceStatement";
 
 	/**
 	 * Value of the uri query parameter for the concept type {@link TypeEnum#CONTEXT_DESCRIPTION}.
@@ -127,7 +127,7 @@ public class RequestUtil {
 
 	/**
 	 * Extracts the path parameter concept id.
-	 * 
+	 *
 	 * @param locale
 	 *            user's preferred language for error messages
 	 * @param request
@@ -148,7 +148,7 @@ public class RequestUtil {
 
 	/**
 	 * Extracts the query parameter api key.
-	 * 
+	 *
 	 * @param locale
 	 *            user's preferred language for error messages
 	 * @param request
@@ -163,7 +163,7 @@ public class RequestUtil {
 
 	/**
 	 * Extracts the query parameter updated.
-	 * 
+	 *
 	 * @param locale
 	 *            user's preferred language for error messages
 	 * @param request
@@ -195,7 +195,7 @@ public class RequestUtil {
 	/**
 	 * Extracts the query parameters type. This query parameter can occur multiple times in one request. Thus the
 	 * value(s) are returned as list.
-	 * 
+	 *
 	 * @param locale
 	 *            user's preferred language for error messages
 	 * @param request
@@ -222,7 +222,7 @@ public class RequestUtil {
 
 	/**
 	 * Extracts the query parameter offset.
-	 * 
+	 *
 	 * @param locale
 	 *            user's preferred language for error messages
 	 * @param request
@@ -237,7 +237,7 @@ public class RequestUtil {
 
 	/**
 	 * Extracts the query parameter limit.
-	 * 
+	 *
 	 * @param locale
 	 *            user's preferred language for error messages
 	 * @param request
@@ -252,7 +252,7 @@ public class RequestUtil {
 
 	/**
 	 * Extracts user's preferred language.
-	 * 
+	 *
 	 * @param request
 	 *            the request
 	 * @return user's preferred language
@@ -261,72 +261,72 @@ public class RequestUtil {
 		HttpServletRequest httpServletRequest = request.raw();
 		return httpServletRequest.getLocale();
 	}
-	
+
 	public static String getQueryParameterLoginUserName(Locale locale, Request request) throws BadRequestException{
 		return getQueryParameter(locale, request, "userName", false);
 	}
-	
+
 	public static String getQueryParameterLoginPassword(Locale locale, Request request) throws BadRequestException{
 		return getQueryParameter(locale, request, "password", false);
 	}
-	
+
 	public static String getQueryParameterForgotPasswordUserName(Request request) throws BadRequestException{
 		return getQueryParameter(null, request, "userName", false);
 	}
-	
+
 	public static String getQueryParameterForgotPasswordUserName(Locale locale, Request request) throws BadRequestException{
 		return getQueryParameter(locale, request, "userNameOrMailAddress", false);
 	}
-	
+
 	public static String getQueryParameterResetPasswordUserName(Locale locale, Request request) throws BadRequestException{
 		return getQueryParameter(locale, request, "userName", true);
 	}
-	
+
 	public static String getQueryParameterResetPasswordResetPassword(Locale locale, Request request) throws BadRequestException{
 		return getQueryParameter(locale, request, "resetPassword", true);
 	}
-	
+
 	public static String getQueryParameterResetPasswordPassword1(Locale locale, Request request) throws BadRequestException{
 		return getQueryParameter(locale, request, "password1", false);
 	}
-	
+
 	public static String getQueryParameterResetPasswordPassword2(Locale locale, Request request) throws BadRequestException{
 		return getQueryParameter(locale, request, "password2", false);
 	}
-	
+
 	public static String getQueryParameterGroupName(Locale locale, Request request) throws BadRequestException{
 		return getQueryParameter(locale, request, "groupName", true);
 	}
-	
+
 	public static String getQueryParameterGroupMembers(Locale locale, Request request) throws BadRequestException{
 		return getQueryParameter(locale, request, "groupMembers", false);
 	}
-	
+
 	public static int getQueryParameterGroupId(Locale locale, Request request) throws BadRequestException{
 		return getQueryParameterPositiveInteger(locale, request, "groupId", true);
 	}
-	
+
 	public static String getQueryParameterUserNameForNewUser(Locale locale, Request request)throws BadRequestException{
 		return getQueryParameter(locale, request, "userName", false);
 	}
-	
+
 	public static String getQueryParameterFirstNameForNewUser(Locale locale, Request request)throws BadRequestException{
 		return getQueryParameter(locale, request, "firstName", false);
 	}
-	
+
 	public static String getQueryParameterLastNameForNewUser(Locale locale, Request request)throws BadRequestException{
 		return getQueryParameter(locale, request, "lastName", false);
 	}
-	
+
 	public static String getQueryParameterInstituteForNewUser(Locale locale, Request request)throws BadRequestException{
 		return getQueryParameter(locale, request, "institute", false);
 	}
-	
+
 	public static String getQueryParameterMailAddressForNewUser(Locale locale, Request request)throws BadRequestException{
 		return getQueryParameter(locale, request, "mailAddress", false);
 	}
-	
-	
+
+
 
 
 	// *********************************************************************************************************************************************
@@ -352,7 +352,7 @@ public class RequestUtil {
 		}
 		return result;
 	}
-	
+
 	public static String getStringFromRadioButtons(Request request, String parameterName) throws BadRequestException{
 		String parameterValueAsString = request.queryParams(parameterName);
 		if(parameterValueAsString == null || parameterValueAsString.isEmpty()){
@@ -360,7 +360,7 @@ public class RequestUtil {
 		}
 		return parameterValueAsString;
 	}
-	
+
 	public static boolean getBooleanFromRadioButtons(Request request, String parameterName) throws BadRequestException{
 		boolean result;
 		String parameterValueAsString = request.queryParams(parameterName);
@@ -373,7 +373,7 @@ public class RequestUtil {
 		}
 		return result;
 	}
-	
+
 	public static int getQueryParameterPositiveInteger(Locale locale, Request request, String parameterName,
 			boolean throwExceptionIfMissing) throws BadRequestException {
 		String integerAsString = getQueryParameter(locale, request, parameterName, throwExceptionIfMissing);
@@ -398,7 +398,7 @@ public class RequestUtil {
 			boolean throwExceptionIfMissing) throws BadRequestException {
 		return getQueryParameter(locale, request, parameterName, throwExceptionIfMissing, true);
 	}
-	
+
 	public static String getQueryParameterOrNullIfEmpty(Request request, String parameterName) throws BadRequestException{
 		String parameter = getQueryParameter(null, request, parameterName, false, false);
 		if(parameter.isEmpty()){
@@ -406,7 +406,7 @@ public class RequestUtil {
 		}
 		return parameter;
 	}
-	
+
 	public static String getQueryParameter(Locale locale, Request request, String parameterName,
 			boolean throwExceptionIfMissing, boolean withUserMessage) throws BadRequestException {
 		String parameter = request.queryParams(parameterName);
@@ -452,7 +452,7 @@ public class RequestUtil {
 
 	/**
 	 * Converts the date and time stamp from the request into an instance of {@link GregorianCalendar}.
-	 * 
+	 *
 	 * @param dateTimeString
 	 *            the date and time stamp as string
 	 * @return date and time stamp as instance of {@link GregorianCalendar}
@@ -461,10 +461,10 @@ public class RequestUtil {
 		return GregorianCalendarHelper.convertDateTimeStringFromRequestToGregorianCalendar(dateTimeString, "-", "T",
 				":");
 	}
-	
 
 
-	
+
+
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 	// inner classes
