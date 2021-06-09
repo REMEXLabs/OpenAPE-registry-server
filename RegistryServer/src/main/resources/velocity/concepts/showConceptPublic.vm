@@ -1,0 +1,157 @@
+#**
+	Copyright 2016-2018 Research group REMEX, Hochschule der Medien (Stuttgart, Germany)
+	
+	Licensed under the Apache License, Version 2.0 (the "License");
+	you may not use this file except in compliance with the License.
+	You may obtain a copy of the License at
+	
+	    http://www.apache.org/licenses/LICENSE-2.0
+	
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the License is distributed on an "AS IS" BASIS,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the License for the specific language governing permissions and
+	limitations under the License.
+*#
+
+
+
+#individualPageTitle("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_TITLE")
+#parse("/velocity/notLoggedInLayout.vm")
+#@notLoggedInLayout()
+<script src="/js/concepts/newAndEditConcept.js" type="text/javascript"></script>
+#infoAndErrorMessage()
+#if($concept)
+	<label>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_LABEL_ID")</label>
+	<p>$concept.getId()</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_LABEL_NAME")</label>
+	#contentTable($concept.getNames(), $lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_NO_NAME_MESSAGE"))
+	
+	<label>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_LABEL_DEFINITION")</label>
+	#contentTable($concept.getDefinitions(), $lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_NO_DEFINITION_MESSAGE"))
+	
+	<label>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_LABEL_TYPE")</label>
+	<p>$type</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_LABEL_SUBTYPE")</label>
+	<p>$subType</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_LABEL_DATATYPE")</label>
+	<p>$dataType</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_LABEL_ORIGIN")</label>
+	<p>$concept.getOrigin()</p>
+	
+	<label>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_LABEL_VALUE_SPACE")</label>
+	
+	#if($concept.getValueSpace())
+		#if($concept.getValueSpace().isJsonSchemaValid($concept.getValueSpace().getJsonSchema()))
+			<textarea name="valueSpace" id="valueSpace" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_VALUE_SPACE")" rows="10" readonly></textarea>		
+			<script type="text/javascript">insertFormattedValueSpace($concept.getValueSpace().getJsonSchema())</script>
+		#else
+			<b><font color="red">$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_ERROR_MESSAGE_INVALID_VALUE_SPACE")</font></b>
+			<textarea name="valueSpace" id="valueSpace" placeholder="$lh.getWord("WEB_CONCEPTS_NEW_CONCEPT_PAGE_PLACEHOLDER_VALUE_SPACE")" rows="10" readonly>$concept.getValueSpace().getJsonSchema()</textarea>			
+		#end
+		</p>
+	#else
+		<p>-</p>
+	#end
+	
+	
+	<label>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_LABEL_OWNERS")</label>
+	#if($owners.isEmpty())
+		<p>-</p>
+	#else
+		<ul>
+			#foreach($owner in $owners)
+				<li>$owner.getUserName()</li>
+			#end
+		</ul>
+	#end
+	
+	<label>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_LABEL_AUTHORS")</label>
+	#if($concept.getAuthors().isEmpty())
+		<p>-</p>
+	#else
+		<ul>
+			#foreach($author in $concept.getAuthors())
+				<li>$author</li>
+			#end
+		</ul>
+	#end
+	
+	<label>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_LABEL_TRANSFORMS")</label>
+	#if($concept.getConceptsWhichAreTransformedByThisConcept().isEmpty())
+		<p>-</p>
+	#else
+		<ul>
+			#foreach($conceptId in $concept.getConceptsWhichAreTransformedByThisConcept())
+				#if($transformesReadRightsMap.get($conceptId))
+					<li><a href="/web/loggedIn/concepts/showConcept?conceptId=$conceptId">$conceptId</a></li>
+				#else
+					<li>$conceptId</li>
+				#end
+			#end
+		</ul>
+	#end
+	
+	<label>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_LABEL_TRANSFORMED_BY")</label>
+	#if($concept.getConceptsWhichTransformThisConcept().isEmpty())
+		<p>-</p>
+	#else
+		<ul>
+			#foreach($conceptId in $concept.getConceptsWhichTransformThisConcept())
+				#if($transformedByReadRightsMap.get($conceptId))
+					<li><a href="/web/loggedIn/concepts/showConcept?conceptId=$conceptId">$conceptId</a></li>
+				#else
+					<li>$conceptId</li>
+				#end
+			#end
+		</ul>
+	#end
+	
+	<label>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_LABEL_REFINES")</label>
+	#if($concept.getConceptsWhichAreRefinedByThisConcept().isEmpty())
+		<p>-</p>
+	#else
+		<ul>
+			#foreach($conceptId in $concept.getConceptsWhichAreRefinedByThisConcept())
+				#if($refinesReadRightsMap.get($conceptId))
+					<li><a href="/web/loggedIn/concepts/showConcept?conceptId=$conceptId">$conceptId</a></li>
+				#else
+					<li>$conceptId</li>
+				#end
+			#end
+		</ul>
+	#end
+	
+	<label>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_LABEL_REFINED_BY")</label>
+	#if($concept.getConceptsWhichRefineThisConcept().isEmpty())
+		<p>-</p>
+	#else
+		<ul>
+			#foreach($conceptId in $concept.getConceptsWhichRefineThisConcept())
+				#if($refinedByReadRightsMap.get($conceptId))
+					<li><a href="/web/loggedIn/concepts/showConcept?conceptId=$conceptId">$conceptId</a></li>
+				#else
+					<li>$conceptId</li>
+				#end
+			#end
+		</ul>
+	#end
+	
+	<label>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_LABEL_NOTES")</label>
+	#contentTable($concept.getNotes(), $lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_NO_NOTE_MESSAGE"))
+	
+	<label>$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_LABEL_EXAMPLES")</label>
+	#contentTable($concept.getExamples(), $lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_NO_EXAMPLE_MESSAGE"))
+	
+	#if($updateRight)
+		<form>
+			<input type="button" value='$lh.getWord("WEB_CONCEPTS_SHOW_CONCEPT_PAGE_BUTTON_TEXT_EDIT")' onclick="window.location.href='/web/loggedIn/concepts/editConcept?conceptId=$concept.getId()'">
+		</form>
+	#end
+	
+#end
+#end
