@@ -369,5 +369,7 @@ public interface IConcept {
      * @return true if the user has change rights access for this concept and false if not.
      */
     public boolean hasUserChangeRightsRight(IUser user, List<IGroup> usersGroups);
+    
+    public boolean isPublic();
 
 }

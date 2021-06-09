@@ -182,7 +182,11 @@ public class Path {
 		
 		public static final String CONCEPTS_SHOW_CONCEPT = "/web/loggedIn/concepts/showConcept";
 		
+		public static final String CONCEPTS_SHOW_CONCEPT_PUBLIC = "/web/concepts/showConceptPublic";
+		
 		public static final String CONCEPTS_LIST_ALL = "/web/loggedIn/concepts/allConcepts/";
+		
+		public static final String CONCEPTS_LIST_ALL_PUBLIC = "/web/concepts/allConceptsPublic/";
 		
 		public static final String CONCEPTS_LIST_MY = "/web/loggedIn/concepts/myConcepts/";
 		
@@ -229,7 +233,7 @@ public class Path {
 
 		
 		// login and logout
-		public static final String LOGIN = "velocity/login/login.vm";
+		public static final String LOGIN = "velocity/login/login2.vm";
 		
 		public static final String FORGOT_PASSWORD = "velocity/login/forgotPassword.vm";
 		
@@ -245,7 +249,11 @@ public class Path {
 		
 		public static final String CONCEPTS_SHOW_CONCEPT = "velocity/concepts/showConcept.vm";
 		
+		public static final String CONCEPTS_SHOW_CONCEPT_PUBLIC = "velocity/concepts/showConceptPublic.vm";
+		
 		public static final String CONCEPTS_LIST_ALL = "velocity/concepts/allConcepts.vm";
+		
+		public static final String CONCEPTS_LIST_ALL_PUBLIC = "velocity/concepts/allConceptsPublic.vm";
 		
 		public static final String CONCEPTS_LIST_MY = "velocity/concepts/myConcepts.vm";
 		

@@ -284,6 +284,26 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 
 		return ViewUtil.render(request, model, Path.WebTemplate.CONCEPTS_LIST_ALL, locale);
 	}
+	
+	@Override
+    public String getAllConceptsPublicPage(Request request, Response response) {
+	    Locale locale = RequestUtil.getHeaderFieldAcceptLanguage(request);
+        Map<String, Object> model = new HashMap<String, Object>();
+        
+        try {
+            // no authentication
+            
+            List<IConcept> concepts = this.conceptDao.selectAllPublicConcepts(null);
+
+            model.put(MODEL_VALUE_KEY_LOCALE, locale);
+            model.put(MODEL_VALUE_KEY_CONCEPTS, concepts);
+        } catch (Exception e) {
+            // TODO change error message
+            this.handleExpception(locale, null, e, model, request, response, "WEB_CONCEPTS_LIST_ALL_PAGE_ERROR_MESSAGE_COMMON");
+        }
+
+        return ViewUtil.render(request, model, Path.WebTemplate.CONCEPTS_LIST_ALL_PUBLIC, locale);
+    }
 
 	@Override
 	public String getMyConceptsPage(Request request, Response response) {
@@ -808,6 +828,59 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 
 		return ViewUtil.render(request, model, Path.WebTemplate.CONCEPTS_SHOW_CONCEPT, locale);
 	}
+	
+	@Override
+    public String getShowConceptPublicPage(Request request, Response response) {
+	    Locale locale = RequestUtil.getHeaderFieldAcceptLanguage(request);
+        Map<String, Object> model = new HashMap<String, Object>();
+        this.setOpenedMenu(request, model, MenuEnum.CONCEPTS);
+        IUnitOfWork unitOfWork = null;
+        String conceptId = null;
+        
+        try{
+            // no authentication needed
+
+            // insert success message
+            this.handleSuccessMessage(request, model);
+
+            // get request parameters
+            conceptId = request.queryParams("conceptId");
+            if(conceptId == null || conceptId.isEmpty()){
+                // TODO throw exception
+                //throw new AuthenticationException("User " + user.getId() + " did an show concept request without the query parameter concept id!", false);
+            }
+            
+            // load concept, which should be shown
+            IConcept concept = this.conceptDao.selectConcept(unitOfWork, conceptId);
+            if(concept == null){
+                throw new AuthenticationException("A concept with the id " + conceptId + " does not exist!", false);
+            }
+
+            // throw exception if concept is not public
+            if(!concept.isPublic()) {
+                throw new AuthenticationException("The concept with the id " + conceptId + " is not public!", false);
+            }
+            
+            // fill model with concept attributes which has to be converted into a string for presentation
+            model.put(MODEL_VALUE_KEY_OWNERS, this.ownersToUsersList(concept.getOwners()));
+            model.put(MODEL_VALUE_KEY_TYPE, this.convertConceptTypeToString(concept.getType()));
+            model.put(MODEL_VALUE_KEY_SUB_TYPE, this.convertConceptSubTypeToString(concept.getSubType()));
+            model.put(MODEL_VALUE_KEY_DATA_TYPE, this.convertConceptDataTypeToString(concept.getDataType()));
+            model.put(MODEL_VALUE_KEY_TRANSFORMES_CONCEPT_ID_READ_RIGHT_MAP, this.conceptIdsAndPublicity(concept.getConceptsWhichAreTransformedByThisConcept()));
+            model.put(MODEL_VALUE_KEY_TRANSFORMED_BY_CONCEPT_ID_READ_RIGHT_MAP, this.conceptIdsAndPublicity(concept.getConceptsWhichTransformThisConcept()));
+            model.put(MODEL_VALUE_KEY_REFINES_CONCEPT_ID_READ_RIGHT_MAP, this.conceptIdsAndPublicity(concept.getConceptsWhichAreRefinedByThisConcept()));
+            model.put(MODEL_VALUE_KEY_REFINED_BY_CONCEPT_ID_READ_RIGHT_MAP, this.conceptIdsAndPublicity(concept.getConceptsWhichRefineThisConcept()));
+            model.put(MODEL_VALUE_KEY_UPDATE_RIGHT, false);
+            model.put(MODEL_VALUE_KEY_CONCEPT, concept);
+
+        }catch(Exception e){
+            this.insertFailLog(ActionEnum.READ, null, conceptId, e);
+            // TODO
+            this.handleExpception(locale, unitOfWork, e, model, request, response, "WEB_CONCEPTS_SHOW_CONCEPT_PAGE_ERROR_MESSAGE_COMMON");
+        }
+
+        return ViewUtil.render(request, model, Path.WebTemplate.CONCEPTS_SHOW_CONCEPT_PUBLIC, locale);
+    }
 
 	@Override
 	public String getSearchConceptPage(Request request, Response response) {
@@ -1480,6 +1553,15 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 		}
 		return transformationsMap;
 	}
+	
+	private Map<String, Boolean> conceptIdsAndPublicity(List<String> listWithConceptIds) throws DataAccessException{
+        Map<String, Boolean> resultsMap = new HashMap<String, Boolean>();
+        for(String conceptId : listWithConceptIds){
+            boolean isPublic = this.groupAccessRightDao.isConceptPublic(null, conceptId);
+          resultsMap.put(conceptId, isPublic);
+        }
+        return resultsMap;
+    }
 
 	private List<String> convertStringArrayToList(String[] stringArray){
 	    List<String> list = null;

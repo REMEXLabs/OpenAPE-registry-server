@@ -127,7 +127,7 @@
                     <td>$concept.getNameByLocale($locale).getContent()</td>
                     <td>#if($concept.hasUserReadRight($user, $usersGroups))
                         <a href="/web/loggedIn/concepts/showConcept?conceptId=$concept.getId()">$lh.getWord("WEB_CONCEPTS_LIST_PAGE_LINK_DETAILS_NAME")</a>
-                    #end
+                    	#end
                         #if($concept.hasUserUpdateRight($user, $usersGroups))
                             | <a href="/web/loggedIn/concepts/editConcept?conceptId=$concept.getId()">$lh.getWord("WEB_CONCEPTS_LIST_PAGE_LINK_EDIT_NAME")</a>
                         #end

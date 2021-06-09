@@ -25,13 +25,16 @@ public class TestMySqlConceptDao {
 
 	public static void main(String[] args) throws DataAccessException {
 		MySqlConceptDao m = new MySqlConceptDao();
-		IConcept concept = m.selectConcept(null, "idX18");
-		System.out.println(concept.getValueSpace().getJsonSchema());
+		//IConcept concept = m.selectConcept(null, "idX18");
+		//System.out.println(concept.getValueSpace().getJsonSchema());
 		
-		/*List<IConcept> concepts = m.selectConceptsWhichRefineConcept(null, "id111");
+		//List<IConcept> concepts = m.selectConceptsWhichRefineConcept(null, "id111");
+		System.out.println("start");
+		List<IConcept> concepts = m.selectAllConcepts(null, 1);
+        System.out.println("after database request");
 		for(IConcept concept : concepts){
 			System.out.println(concept.getId());
-		}*/
+		}
 		
 		//m.insertConcept(null, TestEntities.createConcepts().get(0));
 		//m.insertConcept(null, TestEntities.createConcepts().get(1));

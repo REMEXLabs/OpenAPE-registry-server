@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import de.hdm.server.SuperRestInterface;
+import spark.debug.DebugScreen;
 
 /**
  * This is the main class of the registry server.
@@ -101,7 +102,8 @@ public class RegistryServerMain {
 		//Spark.port(4567);
 		//Spark.staticFileLocation("/public");
 		// staticFiles.expireTime(600L);
-		//DebugScreen.enableDebugScreen();
+		// TODO
+        DebugScreen.enableDebugScreen();
 
 		// Set up before-filters (called before each get/post)
 		// before("*", Filters.addTrailingSlashes);

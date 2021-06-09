@@ -202,5 +202,20 @@ public interface IGroupAccessRightDao extends IDao {
 	 */
 	public boolean hasUserChangeRightsRightForConcept(IUnitOfWork unitOfWork, int userId, String conceptId)
 			throws DataAccessException;
+	
+	/**
+     * Checks, whether the concept is public or readable by anonymous users.
+     * 
+     * @param unitOfWork
+     *            the unit of work to which the call of this method should belong or null, if this method call is not
+     *            part of an unit of work.
+     * @param conceptId
+     *            the id of the concept which access rights for anonymous users should be checked. It must not be null or empty. Otherwise an
+     *            {@link IllegalArgumentException} will be thrown.
+     * @return true if a concept with the id, which is defined by the parameter conceptId, exists and is public or false if the concept does not exist or is not public.
+     * @throws DataAccessException
+     *             if a problem with the database occurs.
+     */
+    public boolean isConceptPublic(IUnitOfWork unitOfWork, String conceptId) throws DataAccessException;
 
 }

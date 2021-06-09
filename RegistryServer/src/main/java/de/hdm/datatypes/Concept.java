@@ -18,6 +18,7 @@ package de.hdm.datatypes;
 import java.util.List;
 import java.util.Locale;
 
+import de.hdm.configuration.MyProperties;
 import de.hdm.helpers.Checker;
 
 /**
@@ -576,6 +577,18 @@ public class Concept implements IConcept {
 	@Override
 	public boolean hasUserChangeRightsRight(IUser user, List<IGroup> usersGroups) {
 	    return this.hasUserRight(user, usersGroups, IGroupAccessRight.CHANGE_RIGHTS_RIGHT);
+	}
+	
+	@Override
+	public boolean isPublic() {
+        boolean isPublic = false;
+	    for(IGroupAccessRight groupAccessRight : this.groupAccessRights){
+            if(groupAccessRight.getGroupId() == MyProperties.getAnonymousUsersGroupId()){
+                isPublic = true;
+                break;
+            }
+        }
+        return isPublic;
 	}
 	
 	

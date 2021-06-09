@@ -25,7 +25,7 @@ public class TestMySqlGroupAccessRight {
 	public static void main(String[] args) throws DataAccessException {
 		IGroupAccessRightDao gard = new MySqlGroupAccessRightDao();
 		
-		gard.deleteGroupAccessRight(null, 1, "id1");
+		/*gard.deleteGroupAccessRight(null, 1, "id1");
 		
 		gard.insertGroupAccessRight(null, TestEntities.createGroupAccessRights().get(0));
 		gard.insertGroupAccessRight(null, TestEntities.createGroupAccessRights().get(1));
@@ -35,7 +35,10 @@ public class TestMySqlGroupAccessRight {
 		System.out.println(gard.hasUserReadRightForConcept(null, 1, "id1"));
 		System.out.println(gard.hasUserUpdateRightForConcept(null, 1, "id1"));
 		System.out.println(gard.hasUserDeleteRightForConcept(null, 1, "id1"));
-		System.out.println(gard.hasUserChangeRightsRightForConcept(null, 1, "id1"));
+		System.out.println(gard.hasUserChangeRightsRightForConcept(null, 1, "id1"));*/
+		
+		System.out.println(gard.isConceptPublic(null, "common_pitch"));
+		System.out.println(gard.isConceptPublic(null, "zinser_fontSize"));
 
 	}
 

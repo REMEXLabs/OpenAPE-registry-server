@@ -23,6 +23,8 @@ public interface IHtmlConceptController {
 	
 	public String getAllConceptsPage(Request request, Response response);
 	
+	public String getAllConceptsPublicPage(Request request, Response response);
+	
 	public String getMyConceptsPage(Request request, Response response);
 	
 	public String getNewConceptPage(Request request, Response response);
@@ -35,6 +37,8 @@ public interface IHtmlConceptController {
 	
 	public String getShowConceptPage(Request request, Response response);
 	
+	public String getShowConceptPublicPage(Request request, Response response);
+	
 	public String getSearchConceptPage(Request request, Response response);
 	
 	public String handleSearchConceptPage(Request request, Response response);
@@ -42,5 +46,5 @@ public interface IHtmlConceptController {
 	public String getConceptLogPage(Request request, Response response);
 	
 	public String handleDeleteConcept(Request request, Response response);
-	
+
 }

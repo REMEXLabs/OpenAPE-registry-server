@@ -111,6 +111,19 @@ public interface IConceptDao extends IDao {
 	public List<IConcept> selectAllConcepts(IUnitOfWork unitOfWork, int userId) throws DataAccessException;
 	
 	/**
+     * Selects all public concepts from database. Public means, that the anonymous users group has read right for the concept.
+     * 
+     * @param unitOfWork
+     *            the unit of work to which the call of this method should belong or null, if this method call is not
+     *            part of an unit of work.
+     * @return list of concepts. If there are no public concepts, an empty list will
+     *         be returned.
+     * @throws DataAccessException
+     *             if a problem with the database occurs.
+     */
+    public List<IConcept> selectAllPublicConcepts(IUnitOfWork unitOfWork) throws DataAccessException;
+	
+	/**
 	 * Selects all concepts from database, where the user, defined by the parameter userId, is owner.
 	 * 
 	 * @param unitOfWork

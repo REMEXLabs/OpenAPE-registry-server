@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import de.hdm.configuration.MyProperties;
 import de.hdm.databaseaccess.DaoFactory;
 import de.hdm.databaseaccess.DataAccessException;
 import de.hdm.databaseaccess.IConceptDao;
@@ -202,6 +203,25 @@ public class MySqlConceptDao extends MySqlDao implements IConceptDao {
 		String sql = this.createSqlForSelectConcepts(userId, null);
 		return this.executeConceptsSelection(unitOfWork, sql);	
 	}
+	
+	/*
+     * (non-Javadoc)
+     * @see de.hdm.databaseaccess.IConceptDao#selectAllPublicConcepts(de.hdm.databaseaccess.IUnitOfWork)
+     */
+	@Override
+    public List<IConcept> selectAllPublicConcepts(IUnitOfWork unitOfWork) throws DataAccessException {
+	    /*
+	     * String sql = "(Concept.id IN (SELECT Ownership.conceptId FROM Ownership WHERE userId = ";
+        sql += String.valueOf(userId) + ") OR Concept.id IN ";
+        sql += "(SELECT GroupAccessRight.conceptId FROM GroupAccessRight WHERE GroupAccessRight.readRight = true AND GroupAccessRight.groupId IN (SELECT UserBelongsToGroup.groupId FROM UserBelongsToGroup WHERE UserBelongsToGroup.userId = ";
+        sql += String.valueOf(userId) + ")))";
+        sql += "OR (SELECT superAdmin FROM User WHERE id = " + userId + ")";
+        
+	     */
+	    String sql = SELECT_CONCEPT;
+        sql += " WHERE Concept.id IN (SELECT GroupAccessRight.conceptId FROM GroupAccessRight WHERE GroupAccessRight.readRight = true AND GroupAccessRight.groupId = " + MyProperties.getAnonymousUsersGroupId() + ")";
+        return this.executeConceptsSelection(unitOfWork, sql);
+    }
 	
 	/*
 	 * (non-Javadoc)

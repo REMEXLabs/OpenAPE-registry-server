@@ -271,7 +271,7 @@ public class SuperRestInterface {
         get(Path.Web.RESET_PASSWORD, "application/html", new Route(){
             @Override
             public Object handle(Request request, Response response) throws Exception{
-                System.out.println("in get(Path.Web.RESET_PASSWORD, \"application/html\", new Route()");
+                //System.out.println("in get(Path.Web.RESET_PASSWORD, \"application/html\", new Route()");
                 return htmlLoginController.getResetPasswordPage(request, response);
             }
         });
@@ -279,7 +279,7 @@ public class SuperRestInterface {
         post(Path.Web.RESET_PASSWORD, "application/html", new Route(){
             @Override
             public Object handle(Request request, Response response) throws Exception{
-                System.out.println("in post(Path.Web.RESET_PASSWORD, \"application/html\", new Route()");
+                //System.out.println("in post(Path.Web.RESET_PASSWORD, \"application/html\", new Route()");
                 return htmlLoginController.handleResetPasswordPost(request, response);
             }
         });
@@ -302,6 +302,13 @@ public class SuperRestInterface {
             @Override
             public Object handle(Request request, Response response) throws Exception{
                 return htmlConceptController.getAllConceptsPage(request, response);
+            }
+        });
+        
+        get(Path.Web.CONCEPTS_LIST_ALL_PUBLIC, "application/html", new Route(){
+            @Override
+            public Object handle(Request request, Response response) throws Exception{
+                return htmlConceptController.getAllConceptsPublicPage(request, response);
             }
         });
         
@@ -358,6 +365,14 @@ public class SuperRestInterface {
             @Override
             public Object handle(Request request, Response response) throws Exception{
                 return htmlConceptController.getShowConceptPage(request, response);
+            }
+        });
+        
+        get(Path.Web.CONCEPTS_SHOW_CONCEPT_PUBLIC, "application/html", new Route(){
+            @Override
+            public Object handle(Request request, Response response) throws Exception{
+                System.out.println("route found");
+                return htmlConceptController.getShowConceptPublicPage(request, response);
             }
         });
         
@@ -479,7 +494,7 @@ public class SuperRestInterface {
         get("*", "application/html", new Route(){
             @Override
             public Object handle(Request request, Response response) throws Exception{
-                System.out.println("get(\"*\", \"application/html\", new Route()");
+                //System.out.println("get(\"*\", \"application/html\", new Route()");
                 return htmlInfoAndErrorController.getNotFoundPage(request, response);
             }
         });

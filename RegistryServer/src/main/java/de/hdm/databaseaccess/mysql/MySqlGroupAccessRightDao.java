@@ -22,6 +22,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdm.configuration.MyProperties;
 import de.hdm.databaseaccess.DataAccessException;
 import de.hdm.databaseaccess.IGroupAccessRightDao;
 import de.hdm.databaseaccess.IUnitOfWork;
@@ -252,6 +253,38 @@ public class MySqlGroupAccessRightDao extends MySqlDao implements IGroupAccessRi
 			throws DataAccessException {
 		return this.hasUserRightForConcept(unitOfWork, userId, conceptId, "changeRightsRight", "change rights right");
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 *  
+	 * @seede.hdm.databaseaccess.IGroupAccessRightDao#isConceptPublic(de.hdm.databaseaccess.IUnitOfWork,
+     * int, java.lang.String) 
+	 */
+	@Override
+    public boolean isConceptPublic(IUnitOfWork unitOfWork, String conceptId) throws DataAccessException {
+        Checker.checkNullAndEmptiness(conceptId, "conceptId");
+	    boolean isPublic = false;
+	    String sql = "SELECT readRight FROM GroupAccessRight WHERE GroupAccessRight.conceptId = ? AND GroupAccessRight.groupId = ?";
+        Connection connection = null;
+        try {
+            connection = this.getConnection(unitOfWork);
+            PreparedStatement selectIsPublicStatement = connection.prepareStatement(sql);
+            selectIsPublicStatement.setString(1, conceptId);
+            selectIsPublicStatement.setInt(2, MyProperties.getAnonymousUsersGroupId());
+            ResultSet resultSet = selectIsPublicStatement.executeQuery();
+            while (resultSet.next() && isPublic == false) {
+                isPublic = resultSet.getBoolean(1);
+            }
+            resultSet.close();
+            selectIsPublicStatement.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new DataAccessException("Could not check whether the concept " + conceptId + "is public on account of an error with the database!", e);
+        } finally {
+            this.closeConnection(unitOfWork, connection);
+        }
+        return isPublic;
+    }
 
 
 
