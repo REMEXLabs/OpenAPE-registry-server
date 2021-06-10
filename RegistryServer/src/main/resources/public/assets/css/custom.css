@@ -1,0 +1,10 @@
+@media screen and (min-width: 981px) {
+	.align-col-md {
+		position: relative;
+	}
+
+	.align-bottom-md {
+		position: absolute;
+		bottom: 0;
+	}
+}
