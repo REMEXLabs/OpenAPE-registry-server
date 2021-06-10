@@ -23,7 +23,7 @@
 <section>*#
 <div class="row gtr-200">
 
-	<div class="col-6 col-12-medium">
+	<div class="col-6 col-12-medium align-col-md">
 		<header class="main">
 			<h1>$lh.getWord("WEB_LOGIN_PAGE_HEADING")</h1>
 		</header>
@@ -64,17 +64,20 @@
 			#end
 			<input type="password" name="password" placeholder="$lh.getWord("WEB_LOGIN_PAGE_PLACEHOLDER_PASSWORD")" value="" required>
 			</p>
+
+			<p>
+			#if($userName)
+				<a href="/web/forgotPassword/?userName=$userName">$lh.getWord("WEB_LOGIN_PAGE_LINK_NAME_FORGOT_PASSWORD")</a>
+			#else
+				<a href="/web/forgotPassword/">$lh.getWord("WEB_LOGIN_PAGE_LINK_NAME_FORGOT_PASSWORD")</a>
+			#end
+			</p>
 		
-			<input type="submit" value="$lh.getWord("WEB_LOGIN_PAGE_SUBMIT_BUTTON_TEXT")">
+			<input class="align-bottom" type="submit" value="$lh.getWord("WEB_LOGIN_PAGE_SUBMIT_BUTTON_TEXT")">
 		</form>
-		#if($userName)
-			<a href="/web/forgotPassword/?userName=$userName">$lh.getWord("WEB_LOGIN_PAGE_LINK_NAME_FORGOT_PASSWORD")</a>
-		#else
-			<a href="/web/forgotPassword/">$lh.getWord("WEB_LOGIN_PAGE_LINK_NAME_FORGOT_PASSWORD")</a>
-		#end
 	</div>
 	
-	<div class="col-6 col-12-medium">
+	<div class="col-6 col-12-medium align-col-md">
 		<header class="main">
 			<h1>$lh.getWord("WEB_START_PAGE_PUBLIC_CONCEPTS_HEADING")</h1>
 		</header>
@@ -85,7 +88,7 @@
 		#**<p>Test</p>*#
 		
 		<form action="/web/concepts/allConceptsPublic/">
-		    <input type="submit" value="$lh.getWord("WEB_START_PAGE_PUBLIC_CONCEPTS_LINK_BUTTON")" />
+		    <input class="align-bottom" type="submit" value="$lh.getWord("WEB_START_PAGE_PUBLIC_CONCEPTS_LINK_BUTTON")" />
 		</form>
 	</div>
 
