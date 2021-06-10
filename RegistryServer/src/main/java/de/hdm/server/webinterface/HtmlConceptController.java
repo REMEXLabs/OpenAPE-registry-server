@@ -56,6 +56,7 @@ import de.hdm.datatypes.Note;
 import de.hdm.datatypes.SubTypeEnum;
 import de.hdm.datatypes.TypeEnum;
 import de.hdm.datatypes.ValueSpace;
+import de.hdm.exceptions.RegistryServerException;
 import de.hdm.helpers.Checker;
 import de.hdm.helpers.TemplateFiller;
 import de.hdm.multiplelanguages.LanguageHandler;
@@ -170,6 +171,8 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 	private static final String MODEL_VALUE_KEY_SEARCH_OPTION_VALUE_ID_AND_NAME = "idAndName";
 
 	private static final String MODEL_VALUE_KEY_UPDATE_RIGHT = "updateRight";
+	
+	private static final String MODEL_VALUE_KEY_INDIVIDUAL_PAGE_TITLE = "individualPageTitle";
 
 	/**
 	 * Data access object for the concepts.
@@ -298,8 +301,7 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
             model.put(MODEL_VALUE_KEY_LOCALE, locale);
             model.put(MODEL_VALUE_KEY_CONCEPTS, concepts);
         } catch (Exception e) {
-            // TODO change error message
-            this.handleExpception(locale, null, e, model, request, response, "WEB_CONCEPTS_LIST_ALL_PAGE_ERROR_MESSAGE_COMMON");
+            this.handleExpception(locale, null, e, model, request, response, "WEB_CONCEPTS_PUBLIC_LIST_ALL_PAGE_ERROR_MESSAGE_COMMON");
         }
 
         return ViewUtil.render(request, model, Path.WebTemplate.CONCEPTS_LIST_ALL_PUBLIC, locale);
@@ -846,22 +848,30 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
             // get request parameters
             conceptId = request.queryParams("conceptId");
             if(conceptId == null || conceptId.isEmpty()){
-                // TODO throw exception
-                //throw new AuthenticationException("User " + user.getId() + " did an show concept request without the query parameter concept id!", false);
+               throw new RegistryServerException("An anonymous user did a show concept request without the query parameter concept id!", null, "WEB_CONCEPTS_SHOW_CONCEPT_PUBLIC_PAGE_ERROR_MESSAGE_MISSING_CONCEPT_ID");
             }
             
             // load concept, which should be shown
             IConcept concept = this.conceptDao.selectConcept(unitOfWork, conceptId);
             if(concept == null){
-                throw new AuthenticationException("A concept with the id " + conceptId + " does not exist!", false);
+                String message = "A concept with the id " + conceptId + " does not exist!";
+                String userMessage = LanguageHandler.getWord(locale, "WEB_CONCEPTS_SHOW_CONCEPT_PUBLIC_PAGE_ERROR_MESSAGE_NO_PUPLIC_OR_UNKNOWN_CONCEPT_ID");
+                userMessage = TemplateFiller.fillTemplate(userMessage, conceptId);
+                throw new RegistryServerException(message, null, userMessage);
             }
 
             // throw exception if concept is not public
             if(!concept.isPublic()) {
-                throw new AuthenticationException("The concept with the id " + conceptId + " is not public!", false);
-            }
+                String message = "The concept with the id " + conceptId + " is not public!";
+                String userMessage = LanguageHandler.getWord(locale, "WEB_CONCEPTS_SHOW_CONCEPT_PUBLIC_PAGE_ERROR_MESSAGE_NO_PUPLIC_OR_UNKNOWN_CONCEPT_ID");
+                userMessage = TemplateFiller.fillTemplate(userMessage, conceptId);
+                throw new RegistryServerException(message, null, userMessage);
+             }
             
             // fill model with concept attributes which has to be converted into a string for presentation
+            String individualPageTitle = LanguageHandler.getWord(locale, "WEB_CONCEPTS_SHOW_CONCEPT_PUBLIC_PAGE_TITLE");
+            individualPageTitle = TemplateFiller.fillTemplate(individualPageTitle, concept.getNameByLocale(locale).getContent());
+            model.put(MODEL_VALUE_KEY_INDIVIDUAL_PAGE_TITLE, individualPageTitle);        
             model.put(MODEL_VALUE_KEY_OWNERS, this.ownersToUsersList(concept.getOwners()));
             model.put(MODEL_VALUE_KEY_TYPE, this.convertConceptTypeToString(concept.getType()));
             model.put(MODEL_VALUE_KEY_SUB_TYPE, this.convertConceptSubTypeToString(concept.getSubType()));
@@ -875,7 +885,6 @@ public class HtmlConceptController extends HtmlController implements IHtmlConcep
 
         }catch(Exception e){
             this.insertFailLog(ActionEnum.READ, null, conceptId, e);
-            // TODO
             this.handleExpception(locale, unitOfWork, e, model, request, response, "WEB_CONCEPTS_SHOW_CONCEPT_PAGE_ERROR_MESSAGE_COMMON");
         }
 

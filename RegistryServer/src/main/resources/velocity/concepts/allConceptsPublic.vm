@@ -16,9 +16,11 @@
 
 
 
-#individualPageTitle("WEB_CONCEPTS_LIST_ALL_PAGE_TITLE")
+#individualPageTitle("WEB_CONCEPTS_PUBLIC_LIST_ALL_PAGE_TITLE")
 #parse("/velocity/notLoggedInLayout.vm")
 #@notLoggedInLayout()
+<h2>$lh.getWord("WEB_CONCEPTS_PUBLIC_LIST_ALL_PAGE_TITLE")</h2>
+<p>$lh.getWord("WEB_CONCEPTS_PUBLIC_LIST_ALL_PAGE_GUIDE")</p>
 #infoAndErrorMessage()
 <div class="table-wrapper">
     #if($concepts && $concepts.isEmpty() == false)
@@ -41,7 +43,7 @@
             </thead>
         </table>
     #else
-        <b><font>$noConceptsMessage</font></b>
+        <b><font>$lh.getWord("WEB_CONCEPTS_PUBLIC_LIST_ALL_PAGE_MESSAGE_NO_CONCEPTS")</font></b>
     #end
 </div>
 #end
