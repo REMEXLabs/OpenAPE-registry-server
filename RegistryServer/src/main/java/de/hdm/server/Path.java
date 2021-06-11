@@ -233,7 +233,7 @@ public class Path {
 
 		
 		// login and logout
-		public static final String LOGIN = "velocity/login/login2.vm";
+		public static final String LOGIN = "velocity/login/login.vm";
 		
 		public static final String FORGOT_PASSWORD = "velocity/login/forgotPassword.vm";
 		

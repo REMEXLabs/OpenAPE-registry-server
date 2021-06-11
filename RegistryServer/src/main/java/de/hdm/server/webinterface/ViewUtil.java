@@ -93,7 +93,8 @@ public class ViewUtil {
 	// *********************************************************************************************************************************************
 
 	public static String render(Request request, Map<String, Object> model, String templatePath, Locale locale){
-		Checker.checkNull(request, "request");
+		//System.out.println("in render templatePath = " + templatePath);
+	    Checker.checkNull(request, "request");
 		if(model == null){
 			model = new HashMap<String, Object>();
 		}

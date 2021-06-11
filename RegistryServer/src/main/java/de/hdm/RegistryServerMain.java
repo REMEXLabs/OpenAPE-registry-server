@@ -102,8 +102,7 @@ public class RegistryServerMain {
 		//Spark.port(4567);
 		//Spark.staticFileLocation("/public");
 		// staticFiles.expireTime(600L);
-		// TODO
-        DebugScreen.enableDebugScreen();
+		//DebugScreen.enableDebugScreen();
 
 		// Set up before-filters (called before each get/post)
 		// before("*", Filters.addTrailingSlashes);

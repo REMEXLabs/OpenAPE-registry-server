@@ -93,13 +93,15 @@ public class SessionUtil {
 	}
 	
 	public static void setUserId(Request request, int userId){
-		Checker.checkNull(request, "request");
+		//System.out.println("in setUserId userdId = " + userId);
+	    Checker.checkNull(request, "request");
 		Checker.checkUserId(userId);
 		request.session().attribute(USER_ID, userId);
 	}
 	
 	public static int getUserId(Request request){
-		Checker.checkNull(request, "request");
+		//System.out.println("in getUserId");
+	    Checker.checkNull(request, "request");
 		Object tmp = request.session().attribute(USER_ID);
 		int userId = -1;
 		if(tmp != null){

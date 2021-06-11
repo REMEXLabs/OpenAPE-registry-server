@@ -370,6 +370,7 @@ public interface IConcept {
      */
     public boolean hasUserChangeRightsRight(IUser user, List<IGroup> usersGroups);
     
+    // TODO Java doc
     public boolean isPublic();
 
 }

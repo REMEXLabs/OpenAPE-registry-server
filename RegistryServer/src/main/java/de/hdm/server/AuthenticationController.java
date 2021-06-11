@@ -16,12 +16,9 @@
 package de.hdm.server;
 
 import java.math.BigInteger;
-import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
 import java.util.Locale;
 
-import de.hdm.configuration.MyProperties;
 import de.hdm.databaseaccess.DaoFactory;
 import de.hdm.databaseaccess.DataAccessException;
 import de.hdm.databaseaccess.IUserDao;
@@ -57,6 +54,9 @@ public class AuthenticationController {
 
 	private final static Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
 
+	
+	
+	
 	// *********************************************************************************************************************************************
 	// *********************************************************************************************************************************************
 	// constructors
@@ -126,7 +126,9 @@ public class AuthenticationController {
 	
 	// TODO java doc
 	public static IUser ensureUserIsLoggedIn(Request request) throws AuthenticationException{
-		int userId = SessionUtil.getUserId(request);
+		//System.out.println("in ensureUserIsLoggedIn");
+	    int userId = SessionUtil.getUserId(request);
+		//System.out.println("userId = " + userId);
 		IUser user = null;
 		if(userId == -1){
 			throw new AuthenticationException("User is not logged in!", true);
