@@ -73,7 +73,7 @@
 			#end
 			</p>
 		
-			<input class="align-bottom" type="submit" value="$lh.getWord("WEB_LOGIN_PAGE_SUBMIT_BUTTON_TEXT")">
+			<input type="submit" value="$lh.getWord("WEB_LOGIN_PAGE_SUBMIT_BUTTON_TEXT")">
 		</form>
 	</div>
 	
@@ -87,8 +87,8 @@
 		</p>
 		#**<p>Test</p>*#
 		
-		<form action="/web/concepts/allConceptsPublic/">
-		    <input class="align-bottom" type="submit" value="$lh.getWord("WEB_START_PAGE_PUBLIC_CONCEPTS_LINK_BUTTON")" />
+		<form class="align-bottom-md" action="/web/concepts/allConceptsPublic/">
+		    <input type="submit" value="$lh.getWord("WEB_START_PAGE_PUBLIC_CONCEPTS_LINK_BUTTON")" />
 		</form>
 	</div>
 
