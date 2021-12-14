@@ -10,7 +10,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="RegistryServerV0.1" target="1.8" />
       <module name="terms.gpii.eu" target="1.8" />
     </bytecodeTargetLevel>
   </component>
