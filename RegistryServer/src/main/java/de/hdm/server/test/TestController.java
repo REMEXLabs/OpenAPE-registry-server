@@ -15,8 +15,8 @@
  ******************************************************************************/
 package de.hdm.server.test;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import spark.Request;
 import spark.Response;
@@ -24,7 +24,7 @@ import spark.Route;
 
 public class TestController {
 
-	public final static Logger logger = LoggerFactory.getLogger(TestController.class);
+	public final static Logger logger = LogManager.getLogger(TestController.class);
 	
 	public static Route testRoute = (Request request, Response response) -> {
 		logger.info("in testRoute");

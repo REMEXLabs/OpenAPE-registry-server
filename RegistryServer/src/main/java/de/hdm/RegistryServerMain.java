@@ -15,11 +15,12 @@
  ******************************************************************************/
 package de.hdm;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import de.hdm.server.SuperRestInterface;
-import spark.debug.DebugScreen;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 /**
  * This is the main class of the registry server.
@@ -40,7 +41,7 @@ public class RegistryServerMain {
 	/**
 	 * Logger.
 	 */
-	private final static Logger logger = LoggerFactory.getLogger(RegistryServerMain.class);
+	private final static Logger logger = LogManager.getLogger(RegistryServerMain.class);
 
 
 
@@ -102,7 +103,6 @@ public class RegistryServerMain {
 		//Spark.port(4567);
 		//Spark.staticFileLocation("/public");
 		// staticFiles.expireTime(600L);
-		//DebugScreen.enableDebugScreen();
 
 		// Set up before-filters (called before each get/post)
 		// before("*", Filters.addTrailingSlashes);

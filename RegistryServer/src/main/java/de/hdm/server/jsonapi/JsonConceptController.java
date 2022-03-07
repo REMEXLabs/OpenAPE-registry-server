@@ -19,8 +19,10 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 import de.hdm.configuration.MyProperties;
 import de.hdm.databaseaccess.ConceptFilter;
@@ -74,7 +76,7 @@ public class JsonConceptController implements IJsonConceptController {
 	/**
 	 * Logger.
 	 */
-	private final static Logger logger = LoggerFactory.getLogger(JsonConceptController.class);
+	private final static Logger logger = LogManager.getLogger(JsonConceptController.class);
 	
 	/**
 	 * Data access object for the concepts.

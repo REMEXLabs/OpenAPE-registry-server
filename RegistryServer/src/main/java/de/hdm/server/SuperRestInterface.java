@@ -15,14 +15,13 @@
  ******************************************************************************/
 package de.hdm.server;
 
-import static spark.Spark.before;
 import static spark.Spark.delete;
 import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.put;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.hdm.server.jsonapi.IJsonConceptController;
 import de.hdm.server.jsonapi.JsonConceptController;
@@ -61,7 +60,7 @@ public class SuperRestInterface {
     /**
      * Logger.
      */
-    private final static Logger logger = LoggerFactory.getLogger(SuperRestInterface.class);
+    private final static Logger logger = LogManager.getLogger(SuperRestInterface.class);
 
     /**
      * Handles the JSON Rest API requests.

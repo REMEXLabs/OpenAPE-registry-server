@@ -19,8 +19,9 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 import de.hdm.datatypes.IUser;
 import de.hdm.multiplelanguages.LanguageHandler;
@@ -43,7 +44,7 @@ public class HtmlInfoAndErrorController extends HtmlController implements IHtmlI
 	/**
 	 * Logger.
 	 */
-	private final static Logger logger = LoggerFactory.getLogger(HtmlInfoAndErrorController.class);
+	private final static Logger logger = LogManager.getLogger(HtmlInfoAndErrorController.class);
 
 	
 	

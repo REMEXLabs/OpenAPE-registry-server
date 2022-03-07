@@ -21,8 +21,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.hdm.databaseaccess.DaoFactory;
 import de.hdm.databaseaccess.DataAccessException;
@@ -34,7 +34,6 @@ import de.hdm.datatypes.GroupMember;
 import de.hdm.datatypes.IGroup;
 import de.hdm.datatypes.IGroupMember;
 import de.hdm.datatypes.IUser;
-import de.hdm.exceptions.RegistryServerException;
 import de.hdm.helpers.TemplateFiller;
 import de.hdm.multiplelanguages.LanguageHandler;
 import de.hdm.server.AuthenticationController;
@@ -57,7 +56,7 @@ public class HtmlGroupController extends HtmlController implements IHtmlGroupCon
 	/**
 	 * Logger.
 	 */
-	private final static Logger logger = LoggerFactory.getLogger(HtmlGroupController.class);
+	private final static Logger logger = LogManager.getLogger(HtmlGroupController.class);
 	
 	private static final String MODEL_VALUE_KEY_GROUP_NAME = "groupName";
 	

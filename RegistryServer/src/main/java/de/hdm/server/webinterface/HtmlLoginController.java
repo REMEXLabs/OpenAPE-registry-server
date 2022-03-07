@@ -15,8 +15,6 @@
  ******************************************************************************/
 package de.hdm.server.webinterface;
 
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -25,16 +23,14 @@ import javax.mail.MessagingException;
 import javax.servlet.http.HttpSession;
 
 import de.hdm.server.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.hdm.configuration.MyProperties;
 import de.hdm.databaseaccess.DaoFactory;
 import de.hdm.databaseaccess.DataAccessException;
-import de.hdm.databaseaccess.IUnitOfWork;
 import de.hdm.databaseaccess.IUserDao;
 import de.hdm.datatypes.IUser;
-import de.hdm.exceptions.RegistryServerException;
 import de.hdm.multiplelanguages.LanguageHandler;
 import spark.Request;
 import spark.Response;
@@ -50,7 +46,7 @@ public class HtmlLoginController extends HtmlController implements IHtmlLoginCon
     /**
      * Logger.
      */
-    private final static Logger logger = LoggerFactory.getLogger(HtmlLoginController.class);
+    private final static Logger logger = LogManager.getLogger(HtmlLoginController.class);
     
 	private static final String MODEL_VALUE_KEY_AUTHENTICATION_FAILED = "authenticationFailed";
 	

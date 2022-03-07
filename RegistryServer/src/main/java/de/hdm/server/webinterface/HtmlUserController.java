@@ -19,8 +19,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.hdm.configuration.MyProperties;
 import de.hdm.databaseaccess.DaoFactory;
@@ -56,7 +57,7 @@ public class HtmlUserController extends HtmlController implements IHtmlUserContr
 	/**
 	 * Logger.
 	 */
-	private final static Logger logger = LoggerFactory.getLogger(HtmlGroupController.class);
+	private final static Logger logger = LogManager.getLogger(HtmlGroupController.class);
 	
 	private static final String MODEL_VALUE_KEY_USER_LIST = "userList";
 	

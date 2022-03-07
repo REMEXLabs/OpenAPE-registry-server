@@ -9,8 +9,5 @@
         <module name="terms.gpii.eu" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="terms.gpii.eu" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

@@ -18,8 +18,8 @@ package de.hdm.server.webinterface;
 import java.util.Locale;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import de.hdm.databaseaccess.DataAccessException;
 import de.hdm.databaseaccess.IUnitOfWork;
@@ -45,7 +45,7 @@ public abstract class HtmlController {
 	/**
 	 * Logger.
 	 */
-	private final static Logger logger = LoggerFactory.getLogger(HtmlController.class);
+	private final static Logger logger = LogManager.getLogger(HtmlController.class);
 
 	protected static final String MODEL_VALUE_KEY_INFO_MESSAGE = "infoMessage";
 

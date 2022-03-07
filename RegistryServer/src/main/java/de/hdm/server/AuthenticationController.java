@@ -26,9 +26,10 @@ import de.hdm.datatypes.IUser;
 import de.hdm.helpers.Checker;
 import de.hdm.helpers.TemplateFiller;
 import de.hdm.multiplelanguages.LanguageHandler;
+import org.apache.logging.log4j.LogManager;
 import spark.Request;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.Logger;
+
 /**
  * This class provides methods for authentication via user name and password or an api key. The registry server needs
  * this class for the web interface and the JSON Rest api.
@@ -52,7 +53,7 @@ public class AuthenticationController {
 	private static IUserDao userDao = DaoFactory.createDaoFactory(DaoFactory.Database.DEFAULT).createUserDao();
 
 
-	private final static Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
+	private final static Logger logger = LogManager.getLogger(AuthenticationController.class);
 
 	
 	
